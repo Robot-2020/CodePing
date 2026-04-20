@@ -14,17 +14,17 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 
 ## ✨ Features
 
-- 🎭 **Real-time status sync** - Shows live states (thinking, typing, working, done)
+- 🎭 **Real-time status sync** - Shows live states (thinking, typing, working, done) with improved Comate latency
 - 🔔 **Permission prompts** - Surfaces important decisions on your desktop
-- 🎨 **Theme system** - Multiple built-in themes + custom support
-- 🌐 **Multilingual** - English / 中文
-- 😴 **Smart sleep** - Automatic idle animations
-- 📏 **Mini mode** - Edge-snapping compact view
+- 🎨 **Theme system** - Multiple built-in themes (Sunset, Calico, Lucy) + custom support
+- 🌐 **Multilingual** - English / 中文 / 한국어
+- 😴 **Smart sleep** - Automatic idle animations with smart sleep sequences
+- 📏 **Mini mode** - Edge-snapping compact view with smooth animations
 
 ### Supported AI Coding Agents
 
 - ✅ Claude Code - Full support (hooks + permission bubbles)
-- ✅ Comate - State sync + process monitoring
+- ✅ Comate - Optimized state sync with latency fix (v0.6.0+)
 - ✅ Codex CLI, Copilot CLI, Cursor Agent
 - ✅ Gemini CLI, Kiro CLI, CodeBuddy, opencode
 
@@ -84,8 +84,9 @@ npm run build:mac
 
 ## 📚 Documentation
 
-- [Installation Guide](docs/guides/installation-guide.md) - Step-by-step setup instructions
-- [Code Signing Guide](docs/guides/macos-code-signing.md) - For developers
+- [Installation Guide](docs/guides/setup-guide.md) - Step-by-step setup instructions
+- [Theme Creation Guide](docs/guides/guide-theme-creation.md) - Create custom themes
+- [State Mapping](docs/guides/state-mapping.md) - Animation states reference
 - [Release Notes](RELEASE_NOTES_v0.6.0.md) - What's new in v0.6.0
 
 ## 🙏 Contributing
