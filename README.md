@@ -24,7 +24,7 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 ### Supported AI Coding Agents
 
 - ✅ Claude Code - Full support (hooks + permission bubbles)
-- ✅ Comate - Optimized state sync with latency fix (v0.6.0+)
+- ✅ Comate - Optimized state sync with latency fix
 - ✅ Codex CLI, Copilot CLI, Cursor Agent
 - ✅ Gemini CLI, Kiro CLI, CodeBuddy, opencode
 
@@ -32,14 +32,14 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 
 ### For macOS Users (Recommended)
 
-**Latest Release: v0.6.0** 🎉
+**Latest Release: v1.0.0** 🎉
 
 Download the appropriate version for your Mac:
 
 | Platform | Download | Size |
 |----------|----------|------|
-| **Apple Silicon (M1/M2/M3)** | [CodePing-0.6.0-arm64.dmg](https://github.com/Robot-2020/codeping/releases/latest) | 138 MB |
-| **Intel Mac** | [CodePing-0.6.0.dmg](https://github.com/Robot-2020/codeping/releases/latest) | 142 MB |
+| **Apple Silicon (M1/M2/M3)** | [CodePing-1.0.0-arm64.dmg](https://github.com/Robot-2020/CodePing/releases/latest) | 138 MB |
+| **Intel Mac** | [CodePing-1.0.0.dmg](https://github.com/Robot-2020/CodePing/releases/latest) | 142 MB |
 
 **System Requirements**: macOS 10.15+
 
@@ -56,14 +56,22 @@ Download the appropriate version for your Mac:
 xattr -cr /Applications/CodePing.app
 ```
 
-📖 **Detailed Guide**: See [Installation Guide](docs/guides/installation-guide.md)
+📖 **Detailed Guide**: See [Installation Guide](docs/guides/setup-guide.md)
+
+### For Windows & Linux Users
+
+| Platform | Download | Size |
+|----------|----------|------|
+| **Windows** | [CodePing-Setup-1.0.0.exe](https://github.com/Robot-2020/CodePing/releases/latest) | 118 MB |
+| **Linux AppImage** | [CodePing-1.0.0.AppImage](https://github.com/Robot-2020/CodePing/releases/latest) | 143 MB |
+| **Linux Debian** | [codeping_1.0.0_amd64.deb](https://github.com/Robot-2020/CodePing/releases/latest) | 111 MB |
 
 ### For Developers (Build from Source)
 
 ```bash
 # Clone repository
-git clone https://github.com/Robot-2020/codeping.git
-cd codeping
+git clone https://github.com/Robot-2020/CodePing.git
+cd CodePing
 
 # Install dependencies
 npm install
@@ -71,8 +79,8 @@ npm install
 # Run in development
 npm start
 
-# Build for macOS
-npm run build:mac
+# Build for all platforms
+npm run build:all
 ```
 
 ## Stack
@@ -87,7 +95,7 @@ npm run build:mac
 - [Installation Guide](docs/guides/setup-guide.md) - Step-by-step setup instructions
 - [Theme Creation Guide](docs/guides/guide-theme-creation.md) - Create custom themes
 - [State Mapping](docs/guides/state-mapping.md) - Animation states reference
-- [Release Notes](RELEASE_NOTES_v0.6.0.md) - What's new in v0.6.0
+- [Release Notes](RELEASE_NOTES_v1.0.0.md) - What's new in v1.0.0
 
 ## 🙏 Contributing
 
