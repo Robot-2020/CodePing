@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .conduct-body {
+        transform-origin: 8px 8px;
+        animation: conduct-sway 1.5s infinite ease-in-out;
+      }
+
+      .baton {
+        transform-origin: 20px 5px;
+        animation: baton-wave 1.5s infinite ease-in-out;
+      }
+
+      .eyes-blink {
+        transform-origin: 8px 6px;
+        animation: eye-blink 4s infinite ease-in-out;
+      }
+
+      #eyes-js, #body-js, #shadow-js {
+        transition: transform 0.2s ease-out;
+      }
+      
+      #shadow-js {
+        transform-origin: 8px 22px;
+      }
+
+      .note { opacity: 0; animation: note-float 2.5s infinite ease-out; }
+      .n1 { animation-delay: 0s; }
+      .n2 { animation-delay: 0.8s; }
+      .n3 { animation-delay: 1.6s; }
+
+      @keyframes conduct-sway {
+        0%, 100% { transform: rotate(-4deg); }
+        50% { transform: rotate(4deg); }
+      }
+
+      @keyframes baton-wave {
+        0%, 100% { transform: rotate(-25deg); }
+        25% { transform: rotate(15deg); }
+        50% { transform: rotate(-15deg); }
+        75% { transform: rotate(25deg); }
+      }
+
+      @keyframes eye-blink {
+        0%, 10%, 100% { transform: scaleY(1); }
+        5% { transform: scaleY(0.1); }
+      }
+
+      @keyframes note-float {
+        0% { transform: translate(0, 0); opacity: 0; }
+        15% { opacity: 0.8; }
+        100% { transform: translate(4px, -12px); opacity: 0; }
+      }
+    </style>
+    <clipPath id="bodyClip">
+      <circle cx="8" cy="8" r="14"/>
+    </clipPath>
+  </defs>
+
+  <!-- Ground Shadow -->
+  <g id="shadow-js">
+    <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  </g>
+
+  <!-- Musical notes -->
+  <g fill="#4ECDC4" opacity="0.7">
+    <text class="note n1" x="-7" y="-2" font-size="6">♪</text>
+    <text class="note n2" x="22" y="-6" font-size="5">♫</text>
+    <text class="note n3" x="-4" y="3" font-size="5">♪</text>
+  </g>
+
+  <!-- Main Body -->
+  <g id="body-js">
+    <g class="conduct-body">
+      <g clip-path="url(#bodyClip)">
+        <!-- Orange-red crescent (larger) -->
+        <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+        <!-- Dark body -->
+        <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+      </g>
+      
+      <!-- Happy eyes ^_^ style -->
+      <g id="eyes-js" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round">
+        <g class="eyes-blink">
+          <path d="M 3.5 6 Q 5 4 6.5 6"/>
+          <path d="M 9.5 6 Q 11 4 12.5 6"/>
+        </g>
+      </g>
+      
+      <!-- Happy smile -->
+      <path d="M 5 10.5 Q 8 13.5 11 10.5" stroke="#FFFFFF" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Conductor's baton -->
+  <g class="baton">
+    <line x1="18" y1="5" x2="26" y2="-4" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="26" cy="-4" r="0.8" fill="#FFFFFF"/>
+  </g>
+</svg>

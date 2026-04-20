@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .juggle-body { transform-origin: 8px 20px; animation: juggle-bounce 0.6s infinite ease-in-out; }
+      .ball { animation: ball-juggle 1.2s infinite ease-in-out; }
+      .ball1 { animation-delay: 0s; }
+      .ball2 { animation-delay: 0.4s; }
+      .ball3 { animation-delay: 0.8s; }
+      .eyes-focus { animation: focus-track 1.2s infinite ease-in-out; }
+      @keyframes juggle-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+      @keyframes ball-juggle {
+        0% { transform: translate(-8px, -5px); }
+        33% { transform: translate(0px, -15px); }
+        66% { transform: translate(8px, -5px); }
+        100% { transform: translate(-8px, -5px); }
+      }
+      @keyframes focus-track { 0%, 100% { transform: translateX(-0.5px); } 50% { transform: translateX(0.5px); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g transform="translate(8, 0)">
+    <circle class="ball ball1" r="2" fill="#FF6B6B"/>
+    <circle class="ball ball2" r="2" fill="#4ECDC4"/>
+    <circle class="ball ball3" r="2" fill="#FFE66D"/>
+  </g>
+  <g class="juggle-body">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g class="eyes-focus" fill="#FFFFFF">
+      <circle cx="5" cy="5" r="1"/>
+      <circle cx="11" cy="5" r="1"/>
+    </g>
+    <path d="M 6 11 L 10 11" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round"/>
+  </g>
+</svg>

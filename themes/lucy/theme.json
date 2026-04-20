@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "name": "Lucy Stone",
+  "author": "User",
+  "version": "1.0.0",
+  "description": "A cute round character with dark body and orange crescent decoration",
+  "license": "MIT",
+  "viewBox": {
+    "x": -20,
+    "y": -25,
+    "width": 55,
+    "height": 55
+  },
+  "layout": {
+    "contentBox": {
+      "x": -8,
+      "y": -8,
+      "width": 32,
+      "height": 32
+    },
+    "marginBox": {
+      "x": -12,
+      "y": -12,
+      "width": 40,
+      "height": 40
+    },
+    "centerX": 8,
+    "baselineY": 24,
+    "visibleHeightRatio": 0.6,
+    "baselineBottomRatio": 0.05
+  },
+  "eyeTracking": {
+    "enabled": true,
+    "states": [
+      "idle",
+      "dozing",
+      "mini-idle"
+    ],
+    "eyeRatioX": 0.5,
+    "eyeRatioY": 0.5,
+    "maxOffset": 2,
+    "bodyScale": 0.2,
+    "shadowStretch": 0.1,
+    "shadowShift": 0.2,
+    "ids": {
+      "eyes": "eyes-js",
+      "body": "body-js",
+      "shadow": "shadow-js",
+      "dozeEyes": "eyes-doze"
+    },
+    "shadowOrigin": "8px 22px"
+  },
+  "states": {
+    "idle": [
+      "lucy-idle-follow.svg"
+    ],
+    "yawning": [
+      "lucy-idle-yawn.svg"
+    ],
+    "dozing": [
+      "lucy-idle-doze.svg"
+    ],
+    "collapsing": [
+      "lucy-collapse-sleep.svg"
+    ],
+    "thinking": [
+      "lucy-working-thinking.svg"
+    ],
+    "working": [
+      "lucy-working-typing.svg"
+    ],
+    "juggling": [
+      "lucy-working-juggling.svg"
+    ],
+    "sweeping": [
+      "lucy-working-sweeping.svg"
+    ],
+    "error": [
+      "lucy-error.svg"
+    ],
+    "attention": [
+      "lucy-happy.svg"
+    ],
+    "notification": [
+      "lucy-notification.svg"
+    ],
+    "carrying": [
+      "lucy-working-carrying.svg"
+    ],
+    "sleeping": [
+      "lucy-sleeping.svg"
+    ],
+    "waking": [
+      "lucy-wake.svg"
+    ]
+  },
+  "workingTiers": [
+    {
+      "minSessions": 3,
+      "file": "lucy-working-building.svg"
+    },
+    {
+      "minSessions": 2,
+      "file": "lucy-working-juggling.svg"
+    },
+    {
+      "minSessions": 1,
+      "file": "lucy-working-typing.svg"
+    }
+  ],
+  "jugglingTiers": [
+    {
+      "minSessions": 2,
+      "file": "lucy-working-conducting.svg"
+    },
+    {
+      "minSessions": 1,
+      "file": "lucy-working-juggling.svg"
+    }
+  ],
+  "idleAnimations": [
+    {
+      "file": "lucy-idle-look.svg",
+      "duration": 6500
+    },
+    {
+      "file": "lucy-idle-reading.svg",
+      "duration": 14000
+    }
+  ],
+  "displayHintMap": {
+    "lucy-working-building.svg": "lucy-working-building.svg",
+    "lucy-working-typing.svg": "lucy-working-typing.svg",
+    "lucy-working-juggling.svg": "lucy-working-juggling.svg",
+    "lucy-working-conducting.svg": "lucy-working-conducting.svg",
+    "lucy-idle-reading.svg": "lucy-idle-reading.svg",
+    "lucy-working-thinking.svg": "lucy-working-thinking.svg"
+  },
+  "timings": {
+    "minDisplay": {
+      "attention": 4000,
+      "error": 5000,
+      "sweeping": 5500,
+      "notification": 2500,
+      "carrying": 3000,
+      "working": 1000,
+      "thinking": 1000
+    },
+    "autoReturn": {
+      "attention": 4000,
+      "error": 5000,
+      "sweeping": 300000,
+      "notification": 2500,
+      "carrying": 3000
+    },
+    "yawnDuration": 3000,
+    "wakeDuration": 1500,
+    "deepSleepTimeout": 600000,
+    "mouseIdleTimeout": 20000,
+    "mouseSleepTimeout": 60000
+  },
+  "hitBoxes": {
+    "default": {
+      "x": -4,
+      "y": 0,
+      "w": 24,
+      "h": 24
+    },
+    "sleeping": {
+      "x": -2,
+      "y": 6,
+      "w": 20,
+      "h": 14
+    },
+    "wide": {
+      "x": -6,
+      "y": -2,
+      "w": 28,
+      "h": 28
+    }
+  },
+  "wideHitboxFiles": [
+    "lucy-error.svg",
+    "lucy-notification.svg",
+    "lucy-working-conducting.svg"
+  ],
+  "sleepingHitboxFiles": [
+    "lucy-sleeping.svg",
+    "lucy-collapse-sleep.svg"
+  ],
+  "reactions": {
+    "drag": {
+      "file": "lucy-react-drag.svg"
+    },
+    "clickLeft": {
+      "file": "lucy-react-left.svg",
+      "duration": 2500
+    },
+    "clickRight": {
+      "file": "lucy-react-right.svg",
+      "duration": 2500
+    },
+    "annoyed": {
+      "file": "lucy-react-annoyed.svg",
+      "duration": 3500
+    },
+    "double": {
+      "files": [
+        "lucy-react-double.svg",
+        "lucy-react-double-jump.svg"
+      ],
+      "duration": 3500
+    }
+  },
+  "miniMode": {
+    "supported": true,
+    "offsetRatio": 0.5,
+    "states": {
+      "mini-idle": [
+        "lucy-mini-idle.svg"
+      ],
+      "mini-alert": [
+        "lucy-mini-alert.svg"
+      ],
+      "mini-happy": [
+        "lucy-mini-happy.svg"
+      ],
+      "mini-enter": [
+        "lucy-mini-enter.svg"
+      ],
+      "mini-peek": [
+        "lucy-mini-peek.svg"
+      ],
+      "mini-working": [
+        "lucy-mini-typing.svg"
+      ],
+      "mini-crabwalk": [
+        "lucy-mini-walk.svg"
+      ],
+      "mini-enter-sleep": [
+        "lucy-mini-enter-sleep.svg"
+      ],
+      "mini-sleep": [
+        "lucy-mini-sleep.svg"
+      ]
+    },
+    "timings": {
+      "minDisplay": {
+        "mini-alert": 4000,
+        "mini-happy": 4000
+      },
+      "autoReturn": {
+        "mini-alert": 4000,
+        "mini-happy": 4000
+      }
+    },
+    "glyphFlips": {
+      "pixel-z": 4,
+      "pixel-z-small": 3
+    }
+  },
+  "sounds": {
+    "complete": "complete.mp3",
+    "confirm": "confirm.mp3"
+  },
+  "objectScale": {
+    "widthRatio": 1.6,
+    "heightRatio": 1.2,
+    "offsetX": -0.4,
+    "offsetY": -0.2
+  }
+}

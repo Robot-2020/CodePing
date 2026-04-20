@@ -1,0 +1,1807 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - link [ref=e9] [cursor=pointer]:
+              - /url: https://ku.baidu-int.com/
+              - img [ref=e10]
+            - generic [ref=e11]:
+              - img [ref=e13]
+              - generic [ref=e17] [cursor=pointer]:
+                - generic [ref=e18]: 孙浩的知识库
+                - img [ref=e20]
+            - generic [ref=e25]:
+              - img [ref=e27]
+              - generic [ref=e31] [cursor=pointer]:
+                - generic [ref=e32]: Comate Agent Hooks 完整指南（最新版）
+                - generic: Comate Agent Hooks 完整指南（最新版）
+              - generic: Comate Agent Hooks 完整指南（最新版）
+            - generic [ref=e33]:
+              - img [ref=e35]
+              - text: 公开
+            - generic [ref=e41]:
+              - img [ref=e43]
+              - generic [ref=e47]: 孙浩最近更新于4-13
+            - generic [ref=e48]:
+              - img [ref=e53] [cursor=pointer]
+              - img [ref=e64] [cursor=pointer]
+              - img [ref=e70] [cursor=pointer]
+            - img [ref=e80] [cursor=pointer]
+            - button "权限申请" [ref=e84] [cursor=pointer]
+            - button "新建" [ref=e86] [cursor=pointer]:
+              - img [ref=e88]
+              - generic [ref=e94]: 新建
+            - generic [ref=e96]:
+              - img [ref=e97]
+              - textbox "搜索" [ref=e99]
+            - link [ref=e101] [cursor=pointer]:
+              - /url: /home/wuzhiao
+              - img [ref=e103]
+          - generic [ref=e105]:
+            - link [ref=e107] [cursor=pointer]:
+              - /url: https://ku.baidu-int.com/
+              - img [ref=e108]
+            - generic [ref=e109]:
+              - img [ref=e111]
+              - generic [ref=e115] [cursor=pointer]:
+                - generic [ref=e116]: 孙浩的知识库
+                - img [ref=e118]
+            - generic [ref=e123]:
+              - img [ref=e125]
+              - generic [ref=e129] [cursor=pointer]:
+                - generic [ref=e130]: Comate Agent Hooks 完整指南（最新版）
+                - generic: Comate Agent Hooks 完整指南（最新版）
+              - generic: Comate Agent Hooks 完整指南（最新版）
+            - generic [ref=e131]:
+              - img [ref=e133]
+              - text: 公开
+            - generic [ref=e139]:
+              - img [ref=e141]
+              - generic [ref=e145]: 孙浩最近更新于4-13
+            - generic [ref=e146]:
+              - generic [ref=e149] [cursor=pointer]:
+                - img [ref=e151]
+                - generic [ref=e155]: 星标
+              - generic [ref=e156] [cursor=pointer]:
+                - img [ref=e158]
+                - generic [ref=e165]: 演示
+            - button "权限申请" [ref=e166] [cursor=pointer]
+      - main [ref=e168]:
+        - generic [ref=e170]:
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - img [ref=e176] [cursor=pointer]
+              - img [ref=e179] [cursor=pointer]
+              - img [ref=e182] [cursor=pointer]
+            - generic:
+              - generic [ref=e188]:
+                - generic [ref=e189] [cursor=pointer]:
+                  - img [ref=e190]
+                  - text: 超级助理
+                - generic [ref=e192] [cursor=pointer]:
+                  - img [ref=e193]
+                  - text: 模板库
+                - generic [ref=e195] [cursor=pointer]:
+                  - img [ref=e196]
+                  - text: 评论
+                - img [ref=e201]
+              - img [ref=e210] [cursor=pointer]
+            - generic:
+              - generic [ref=e219]:
+                - generic:
+                  - generic [ref=e220] [cursor=pointer]: 官方模板
+                  - generic [ref=e221] [cursor=pointer]: 最近使用
+                  - generic [ref=e222] [cursor=pointer]: 我的保存
+                - generic:
+                  - generic [ref=e223]:
+                    - generic [ref=e225] [cursor=pointer]:
+                      - generic "最新" [ref=e227]
+                      - img [ref=e230]
+                    - generic [ref=e234] [cursor=pointer]: 基础布局
+                    - generic [ref=e235] [cursor=pointer]: 图形图表
+                    - generic [ref=e236] [cursor=pointer]: 数据表格
+                  - generic [ref=e237]:
+                    - img [ref=e239] [cursor=pointer]
+                    - img [ref=e243] [cursor=pointer]
+              - generic [ref=e248]: 官方模板为空，待管理员添加
+            - main [ref=e252]:
+              - generic [ref=e257]:
+                - complementary [ref=e258]:
+                  - generic [ref=e260]:
+                    - img [ref=e265] [cursor=pointer]
+                    - list [ref=e270]:
+                      - listitem [ref=e271]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da48deb1-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e272]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da48dec4-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e273]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4905d2-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e274]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4905ee-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e275]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490606-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e276]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490633-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e277]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da49063d-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e278]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490647-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e279]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da49064e-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e280]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490661-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e281]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490664-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e282]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490667-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e283]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490671-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e284]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490674-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e285]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da49067e-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e286]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490682-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e287]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da490698-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e288]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da49069b-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e289]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4906ac-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e290]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4906b3-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e291]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4906be-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e292]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da4906cf-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e293]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492cd3-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e294]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492cdc-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e295]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492ce8-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e296]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d0b-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e297]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d21-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e298]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d39-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e299]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d55-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e300]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d5d-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e301]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d60-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e302]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d66-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e303]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d75-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e304]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d77-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e305]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d7b-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e306]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d7e-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e307]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d81-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e308]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d8a-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e309]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492d9c-36e7-11f1-8600-bf1f07b2cc37
+                      - listitem [ref=e310]:
+                        - link:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y#anchor-da492db1-36e7-11f1-8600-bf1f07b2cc37
+                - generic [ref=e311]:
+                  - generic [ref=e316]: Comate Agent Hooks 完整指南（最新版）
+                  - generic [ref=e318]:
+                    - generic:
+                      - generic [ref=e321]: 复制
+                      - generic [ref=e322]:
+                        - generic [ref=e323]: AI
+                        - generic [ref=e324]:
+                          - generic [ref=e325]:
+                            - img [ref=e326]
+                            - generic [ref=e335]: 智能创作
+                            - generic [ref=e336]: /zncz
+                          - generic [ref=e337] [cursor=pointer]:
+                            - img [ref=e338]
+                            - generic [ref=e340]: 随心写
+                            - generic [ref=e341]: /sxx
+                          - generic [ref=e342]:
+                            - img [ref=e343]
+                            - generic [ref=e348]: 在此处拆分卡片
+                            - generic [ref=e349]: /zcccfkp
+                        - generic [ref=e350]: 文本格式
+                        - generic [ref=e352]:
+                          - button [ref=e353] [cursor=pointer]:
+                            - img [ref=e354]
+                          - button [ref=e356] [cursor=pointer]:
+                            - img [ref=e357]
+                          - button [ref=e359] [cursor=pointer]:
+                            - img [ref=e360]
+                          - button [ref=e363] [cursor=pointer]:
+                            - img [ref=e364]
+                          - button [ref=e367] [cursor=pointer]:
+                            - img [ref=e368]
+                          - button [ref=e370] [cursor=pointer]:
+                            - img [ref=e371]
+                          - button [ref=e376] [cursor=pointer]:
+                            - img [ref=e377]
+                          - button [ref=e381] [cursor=pointer]:
+                            - img [ref=e382]
+                          - button [ref=e384] [cursor=pointer]:
+                            - img [ref=e385]
+                          - button [ref=e387] [cursor=pointer]:
+                            - img [ref=e388]
+                        - generic [ref=e390]: 通用
+                        - generic [ref=e391]:
+                          - generic [ref=e392] [cursor=pointer]:
+                            - img [ref=e393]
+                            - generic [ref=e395]: 表格
+                            - generic [ref=e396]: /bg
+                          - generic [ref=e397] [cursor=pointer]:
+                            - img [ref=e398]
+                            - generic [ref=e400]: 代码块
+                            - generic [ref=e401]: /dmk
+                          - generic [ref=e402] [cursor=pointer]:
+                            - img [ref=e403]
+                            - generic [ref=e405]: 附件
+                            - generic [ref=e406]: /fj
+                          - generic [ref=e407] [cursor=pointer]:
+                            - img [ref=e408]
+                            - generic [ref=e410]: 公式
+                            - generic [ref=e411]: /gs
+                          - generic [ref=e412] [cursor=pointer]:
+                            - img [ref=e413]
+                            - generic [ref=e415]: 图片
+                            - generic [ref=e416]: /tp
+                          - generic [ref=e417] [cursor=pointer]:
+                            - img [ref=e418]
+                            - generic [ref=e420]: 超链接
+                            - generic [ref=e421]: /clj
+                          - generic [ref=e422] [cursor=pointer]:
+                            - img [ref=e423]
+                            - generic [ref=e425]: 提及
+                            - generic [ref=e426]: /tj
+                        - generic [ref=e427]: 样式布局
+                        - generic [ref=e428]:
+                          - generic [ref=e429] [cursor=pointer]:
+                            - img [ref=e430]
+                            - generic [ref=e432]: 分割线
+                            - generic [ref=e433]: /fgx
+                          - generic [ref=e434] [cursor=pointer]:
+                            - img [ref=e435]
+                            - generic [ref=e437]: 高亮信息
+                            - generic [ref=e438]: /glxx
+                          - generic [ref=e439] [cursor=pointer]:
+                            - img [ref=e440]
+                            - generic [ref=e442]: 引用
+                            - generic [ref=e443]: /yy
+                          - generic [ref=e444] [cursor=pointer]:
+                            - img [ref=e445]
+                            - generic [ref=e447]: 分栏
+                            - img [ref=e449]
+                          - generic [ref=e451] [cursor=pointer]:
+                            - img [ref=e452]
+                            - generic [ref=e454]: 布局块
+                            - img [ref=e456]
+                          - generic [ref=e458] [cursor=pointer]:
+                            - img [ref=e459]
+                            - generic [ref=e461]: 模板库
+                        - generic [ref=e462]: 数据图形
+                        - generic [ref=e463]:
+                          - generic [ref=e464] [cursor=pointer]:
+                            - img [ref=e465]
+                            - generic [ref=e467]: 流程图
+                            - generic [ref=e468]: /lct
+                          - generic [ref=e469] [cursor=pointer]:
+                            - img [ref=e470]
+                            - generic [ref=e474]: 思维导图
+                            - generic [ref=e475]: /swdt
+                          - generic [ref=e476] [cursor=pointer]:
+                            - img [ref=e477]
+                            - generic [ref=e479]: 数据表
+                            - img [ref=e481]
+                          - generic [ref=e483] [cursor=pointer]:
+                            - img [ref=e484]
+                            - generic [ref=e486]: 图表
+                            - img [ref=e488]
+                          - generic [ref=e490] [cursor=pointer]:
+                            - img [ref=e491]
+                            - generic [ref=e495]: Mermaid绘图
+                            - generic [ref=e496]: /mer
+                        - generic [ref=e497]: 功能卡片（插入后会切换到卡片视图）
+                        - generic [ref=e498]:
+                          - generic [ref=e499] [cursor=pointer]:
+                            - img [ref=e500]
+                            - generic [ref=e503]: 目录卡片
+                            - generic [ref=e504]: /mlkp
+                          - generic [ref=e505] [cursor=pointer]:
+                            - img [ref=e506]
+                            - generic [ref=e509]: 子文档列表卡
+                            - generic [ref=e510]: /zwdlbk
+                        - generic [ref=e511]: 其他
+                        - generic [ref=e512]:
+                          - generic [ref=e513] [cursor=pointer]:
+                            - img [ref=e514]
+                            - generic [ref=e516]: 统计 (原阅读统计)
+                            - img [ref=e518]
+                          - generic [ref=e520] [cursor=pointer]:
+                            - img [ref=e521]
+                            - generic [ref=e523]: 第三方应用
+                            - img [ref=e525]
+                    - textbox [ref=e527]:
+                      - heading "Comate Agent Hooks 完整指南（最新版）" [level=1] [ref=e528]:
+                        - button [ref=e530] [cursor=pointer]:
+                          - img [ref=e531]
+                        - img [ref=e539] [cursor=pointer]
+                        - generic [ref=e545]:
+                          - generic [ref=e547]: Comate
+                          - generic [ref=e548]: Agent Hooks 完整指南（最新版）
+                      - generic [ref=e549]:
+                        - generic [ref=e551]: 本文基于当前仓库的实际实现整理，覆盖 Hooks 的配置方式、事件模型、输入输出协议、执行器行为、上下文注入机制，以及
+                        - code [ref=e552]:
+                          - generic [ref=e554]: "permissionDecision: \"deny\""
+                        - generic [ref=e556]: 、
+                        - code [ref=e557]:
+                          - generic [ref=e559]: "decision: \"block\""
+                        - generic [ref=e561]: 、
+                        - code [ref=e562]:
+                          - generic [ref=e564]: "continue: false"
+                        - generic [ref=e566]: 三者的差异与使用建议。
+                        - link "Comate Hook 脚本编写指南（v4 — 三级配置体系）" [ref=e571] [cursor=pointer]:
+                          - /url: https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/A0lKGgJBXcQSBH
+                      - separator [ref=e577]
+                      - heading "1. 什么是 Hooks" [level=2] [ref=e579]:
+                        - button [ref=e581] [cursor=pointer]:
+                          - img [ref=e582]
+                        - img [ref=e590] [cursor=pointer]
+                        - generic [ref=e597]: 1. 什么是 Hooks
+                      - generic [ref=e600]: Hooks 是用户自定义的自动化逻辑，会在 Agent 生命周期中的特定阶段被触发。当前 Comate 支持两种执行方式：
+                      - list [ref=e602]:
+                        - listitem [ref=e603]:
+                          - generic: •
+                          - generic [ref=e604]:
+                            - code [ref=e605]:
+                              - generic [ref=e607]: command
+                            - generic [ref=e609]: ：执行本地 shell 命令或脚本
+                      - list [ref=e611]:
+                        - listitem [ref=e612]:
+                          - generic: •
+                          - generic [ref=e613]:
+                            - code [ref=e614]:
+                              - generic [ref=e616]: http
+                            - generic [ref=e618]: ：向指定 HTTP 接口发送请求
+                      - generic [ref=e621]: Hooks 可用于：
+                      - list [ref=e623]:
+                        - listitem [ref=e624]:
+                          - generic: •
+                          - generic [ref=e627]: 阻止危险工具调用
+                      - list [ref=e629]:
+                        - listitem [ref=e630]:
+                          - generic: •
+                          - generic [ref=e633]: 对用户 prompt 做提交前校验
+                      - list [ref=e635]:
+                        - listitem [ref=e636]:
+                          - generic: •
+                          - generic [ref=e639]: 在工具执行前后注入额外上下文
+                      - list [ref=e641]:
+                        - listitem [ref=e642]:
+                          - generic: •
+                          - generic [ref=e645]: 在 Agent 完成后触发持续迭代（loop）
+                      - list [ref=e647]:
+                        - listitem [ref=e648]:
+                          - generic: •
+                          - generic [ref=e651]: 做审计、通知、自动化质量检查
+                      - separator [ref=e657]
+                      - heading "2. 配置文件位置" [level=2] [ref=e659]:
+                        - button [ref=e661] [cursor=pointer]:
+                          - img [ref=e662]
+                        - img [ref=e670] [cursor=pointer]
+                        - generic [ref=e677]: 2. 配置文件位置
+                      - generic [ref=e680]: 支持三个作用域，系统会统一加载并合并：
+                      - generic [ref=e685]:
+                        - generic [ref=e687]:
+                          - generic [ref=e690]: "1"
+                          - generic [ref=e693]: "2"
+                          - generic [ref=e696]: "3"
+                          - generic [ref=e699]: "4"
+                        - table [ref=e702]:
+                          - rowgroup [ref=e707]:
+                            - row "作用域 路径 用途" [ref=e708]:
+                              - cell "作用域" [ref=e709]:
+                                - generic [ref=e713]: 作用域
+                              - cell "路径" [ref=e714]:
+                                - generic [ref=e718]: 路径
+                              - cell "用途" [ref=e719]:
+                                - generic [ref=e723]: 用途
+                            - row "personal ~/.comate/hooks.json 个人全局配置" [ref=e724]:
+                              - cell "personal" [ref=e725]:
+                                - generic [ref=e729]: personal
+                              - cell "~/.comate/hooks.json" [ref=e730]:
+                                - code [ref=e733]:
+                                  - generic [ref=e735]: ~/.comate/hooks.json
+                              - cell "个人全局配置" [ref=e736]:
+                                - generic [ref=e740]: 个人全局配置
+                            - row "project <workspace>/.comate/hooks.json 项目共享配置" [ref=e741]:
+                              - cell "project" [ref=e742]:
+                                - strong [ref=e747]: project
+                              - cell "<workspace>/.comate/hooks.json" [ref=e748]:
+                                - generic [ref=e750]:
+                                  - generic:
+                                    - generic:
+                                      - strong
+                                  - code [ref=e751]:
+                                    - strong [ref=e754]: <workspace>/.comate/hooks.json
+                                  - generic:
+                                    - generic:
+                                      - strong
+                              - cell "项目共享配置" [ref=e755]:
+                                - strong [ref=e760]: 项目共享配置
+                            - row "local <workspace>/.comate/hooks.local.json 本地私有配置" [ref=e761]:
+                              - cell "local" [ref=e762]:
+                                - generic [ref=e766]: local
+                              - cell "<workspace>/.comate/hooks.local.json" [ref=e767]:
+                                - code [ref=e770]:
+                                  - generic [ref=e772]: <workspace>/.comate/hooks.local.json
+                              - cell "本地私有配置" [ref=e773]:
+                                - generic [ref=e777]: 本地私有配置
+                      - generic [ref=e781]: 说明：
+                      - list [ref=e783]:
+                        - listitem [ref=e784]:
+                          - generic: •
+                          - generic [ref=e787]: 文件变更后会自动热加载
+                      - list [ref=e789]:
+                        - listitem [ref=e790]:
+                          - generic: •
+                          - generic [ref=e791]:
+                            - code [ref=e792]:
+                              - generic [ref=e794]: loopLimit
+                            - generic [ref=e796]: 多份配置同时存在时，取最小值
+                      - list [ref=e798]:
+                        - listitem [ref=e799]:
+                          - generic: •
+                          - generic [ref=e800]:
+                            - generic [ref=e802]: project/local 作用域监听的是
+                            - code [ref=e803]:
+                              - generic [ref=e805]: .comate/
+                            - generic [ref=e807]: 目录变化
+                      - separator [ref=e813]
+                      - heading "3. 配置格式" [level=2] [ref=e815]:
+                        - button [ref=e817] [cursor=pointer]:
+                          - img [ref=e818]
+                        - img [ref=e826] [cursor=pointer]
+                        - generic [ref=e833]: 3. 配置格式
+                      - generic [ref=e837]: 字段说明：
+                      - list [ref=e839]:
+                        - listitem [ref=e840]:
+                          - generic: •
+                          - generic [ref=e841]:
+                            - code [ref=e842]:
+                              - generic [ref=e844]: loopLimit
+                            - generic [ref=e846]: ：
+                            - code [ref=e847]:
+                              - generic [ref=e849]: Stop
+                            - generic [ref=e851]: 事件触发 loop followup 的最大次数，默认
+                            - code [ref=e852]:
+                              - generic [ref=e854]: "5"
+                      - list [ref=e856]:
+                        - listitem [ref=e857]:
+                          - generic: •
+                          - generic [ref=e858]:
+                            - code [ref=e859]:
+                              - generic [ref=e861]: hooks.<事件名>
+                            - generic [ref=e863]: ：某个事件对应的 HookGroup 数组
+                      - list [ref=e865]:
+                        - listitem [ref=e866]:
+                          - generic: •
+                          - generic [ref=e867]:
+                            - code [ref=e868]:
+                              - generic [ref=e870]: matcher
+                            - generic [ref=e872]: ：可选，仅对带
+                            - code [ref=e873]:
+                              - generic [ref=e875]: tool_name
+                            - generic [ref=e877]: 的事件有意义，按工具名正则匹配
+                      - list [ref=e879]:
+                        - listitem [ref=e880]:
+                          - generic: •
+                          - generic [ref=e881]:
+                            - code [ref=e882]:
+                              - generic [ref=e884]: hooks
+                            - generic [ref=e886]: ：真正要执行的 hook 列表
+                      - list [ref=e888]:
+                        - listitem [ref=e889]:
+                          - generic: •
+                          - generic [ref=e890]:
+                            - code [ref=e891]:
+                              - generic [ref=e893]: type
+                            - generic [ref=e895]: ：
+                            - code [ref=e896]:
+                              - generic [ref=e898]: command
+                            - generic [ref=e900]: 或
+                            - code [ref=e901]:
+                              - generic [ref=e903]: http
+                      - list [ref=e905]:
+                        - listitem [ref=e906]:
+                          - generic: •
+                          - generic [ref=e907]:
+                            - code [ref=e908]:
+                              - generic [ref=e910]: timeout
+                            - generic [ref=e912]: ：超时秒数，默认
+                            - code [ref=e913]:
+                              - generic [ref=e915]: "30"
+                      - generic [ref=e918]: 补充说明：
+                      - list [ref=e920]:
+                        - listitem [ref=e921]:
+                          - generic: •
+                          - generic [ref=e922]:
+                            - code [ref=e923]:
+                              - generic [ref=e925]: command
+                            - generic [ref=e927]: 支持
+                            - code [ref=e928]:
+                              - generic [ref=e930]: ~/
+                            - generic [ref=e932]: 路径展开
+                      - list [ref=e934]:
+                        - listitem [ref=e935]:
+                          - generic: •
+                          - generic [ref=e936]:
+                            - code [ref=e937]:
+                              - generic [ref=e939]: http.url
+                            - generic [ref=e941]: 和
+                            - code [ref=e942]:
+                              - generic [ref=e944]: headers
+                            - generic [ref=e946]: 值支持环境变量替换：
+                            - code [ref=e947]:
+                              - generic [ref=e949]: $VAR
+                            - generic [ref=e951]: /
+                            - code [ref=e952]:
+                              - generic [ref=e954]: "${VAR}"
+                      - list [ref=e956]:
+                        - listitem [ref=e957]:
+                          - generic: •
+                          - generic [ref=e958]:
+                            - generic [ref=e960]: 如果
+                            - code [ref=e961]:
+                              - generic [ref=e963]: matcher
+                            - generic [ref=e965]: 为空，则该事件下所有工具都匹配
+                      - separator [ref=e971]
+                      - heading "4. 支持的事件" [level=2] [ref=e973]:
+                        - button [ref=e975] [cursor=pointer]:
+                          - img [ref=e976]
+                        - img [ref=e984] [cursor=pointer]
+                        - generic [ref=e991]: 4. 支持的事件
+                      - generic [ref=e994]: 当前共支持 7 个事件：
+                      - generic [ref=e998]: 三种模式说明：
+                      - heading "4.1 阻塞型事件" [level=3] [ref=e999]:
+                        - button [ref=e1001] [cursor=pointer]:
+                          - img [ref=e1002]
+                        - img [ref=e1010] [cursor=pointer]
+                        - generic [ref=e1017]: 4.1 阻塞型事件
+                      - generic [ref=e1020]: 包括：
+                      - list [ref=e1022]:
+                        - listitem [ref=e1023]:
+                          - generic: •
+                          - code [ref=e1025]:
+                            - generic [ref=e1027]: PreToolUse
+                      - list [ref=e1029]:
+                        - listitem [ref=e1030]:
+                          - generic: •
+                          - code [ref=e1032]:
+                            - generic [ref=e1034]: UserPromptSubmit
+                      - list [ref=e1036]:
+                        - listitem [ref=e1037]:
+                          - generic: •
+                          - code [ref=e1039]:
+                            - generic [ref=e1041]: Stop
+                      - generic [ref=e1044]: 这些事件会等待 hook 返回结果，并可能改变主流程。
+                      - heading "4.2 上下文注入事件" [level=3] [ref=e1045]:
+                        - button [ref=e1047] [cursor=pointer]:
+                          - img [ref=e1048]
+                        - img [ref=e1056] [cursor=pointer]
+                        - generic [ref=e1063]: 4.2 上下文注入事件
+                      - generic [ref=e1066]: 包括：
+                      - list [ref=e1068]:
+                        - listitem [ref=e1069]:
+                          - generic: •
+                          - code [ref=e1071]:
+                            - generic [ref=e1073]: PostToolUse
+                      - list [ref=e1075]:
+                        - listitem [ref=e1076]:
+                          - generic: •
+                          - code [ref=e1078]:
+                            - generic [ref=e1080]: PostToolUseFailure
+                      - generic [ref=e1081]:
+                        - generic [ref=e1083]: 这些事件也会等待 hook 返回，但不会阻断执行。它们的主要用途是返回
+                        - code [ref=e1084]:
+                          - generic [ref=e1086]: additionalContext
+                        - generic [ref=e1088]: ，作为 system-reminder 注入给 LLM。
+                      - heading "4.3 即发即忘事件" [level=3] [ref=e1089]:
+                        - button [ref=e1091] [cursor=pointer]:
+                          - img [ref=e1092]
+                        - img [ref=e1100] [cursor=pointer]
+                        - generic [ref=e1107]: 4.3 即发即忘事件
+                      - generic [ref=e1110]: 包括：
+                      - list [ref=e1112]:
+                        - listitem [ref=e1113]:
+                          - generic: •
+                          - code [ref=e1115]:
+                            - generic [ref=e1117]: SessionStart
+                      - list [ref=e1119]:
+                        - listitem [ref=e1120]:
+                          - generic: •
+                          - code [ref=e1122]:
+                            - generic [ref=e1124]: SessionEnd
+                      - generic [ref=e1127]: 此类事件不会阻塞主流程，适合做清理与异步通知。
+                      - separator [ref=e1133]
+                      - heading "5. Hook 输入格式" [level=2] [ref=e1135]:
+                        - button [ref=e1137] [cursor=pointer]:
+                          - img [ref=e1138]
+                        - img [ref=e1146] [cursor=pointer]
+                        - generic [ref=e1153]: 5. Hook 输入格式
+                      - generic [ref=e1156]: 所有事件都会包含公共字段：
+                      - generic [ref=e1160]: 公共字段说明：
+                      - list [ref=e1162]:
+                        - listitem [ref=e1163]:
+                          - generic: •
+                          - generic [ref=e1164]:
+                            - code [ref=e1165]:
+                              - generic [ref=e1167]: hook_event_name
+                            - generic [ref=e1169]: ：当前事件名
+                      - list [ref=e1171]:
+                        - listitem [ref=e1172]:
+                          - generic: •
+                          - generic [ref=e1173]:
+                            - code [ref=e1174]:
+                              - generic [ref=e1176]: cwd
+                            - generic [ref=e1178]: ：工作区根目录
+                      - list [ref=e1180]:
+                        - listitem [ref=e1181]:
+                          - generic: •
+                          - generic [ref=e1182]:
+                            - code [ref=e1183]:
+                              - generic [ref=e1185]: conversation_id
+                            - generic [ref=e1187]: ：对话 id
+                      - list [ref=e1189]:
+                        - listitem [ref=e1190]:
+                          - generic: •
+                          - generic [ref=e1191]:
+                            - code [ref=e1192]:
+                              - generic [ref=e1194]: session_id
+                            - generic [ref=e1196]: ：会话 id
+                      - list [ref=e1198]:
+                        - listitem [ref=e1199]:
+                          - generic: •
+                          - generic [ref=e1200]:
+                            - code [ref=e1201]:
+                              - generic [ref=e1203]: task_id
+                            - generic [ref=e1205]: ：任务 id
+                      - list [ref=e1207]:
+                        - listitem [ref=e1208]:
+                          - generic: •
+                          - generic [ref=e1209]:
+                            - code [ref=e1210]:
+                              - generic [ref=e1212]: license
+                            - generic [ref=e1214]: ：当前 license
+                      - list [ref=e1216]:
+                        - listitem [ref=e1217]:
+                          - generic: •
+                          - generic [ref=e1218]:
+                            - code [ref=e1219]:
+                              - generic [ref=e1221]: model
+                            - generic [ref=e1223]: ：当前模型（如果有）
+                      - heading "5.1 PreToolUse" [level=3] [ref=e1224]:
+                        - button [ref=e1226] [cursor=pointer]:
+                          - img [ref=e1227]
+                        - img [ref=e1235] [cursor=pointer]
+                        - generic [ref=e1240]:
+                          - generic [ref=e1242]: "5.1"
+                          - code [ref=e1243]:
+                            - generic [ref=e1245]: PreToolUse
+                      - heading "5.2 PostToolUse" [level=3] [ref=e1247]:
+                        - button [ref=e1249] [cursor=pointer]:
+                          - img [ref=e1250]
+                        - img [ref=e1258] [cursor=pointer]
+                        - generic [ref=e1263]:
+                          - generic [ref=e1265]: "5.2"
+                          - code [ref=e1266]:
+                            - generic [ref=e1268]: PostToolUse
+                      - heading "5.3 PostToolUseFailure" [level=3] [ref=e1270]:
+                        - button [ref=e1272] [cursor=pointer]:
+                          - img [ref=e1273]
+                        - img [ref=e1281] [cursor=pointer]
+                        - generic [ref=e1286]:
+                          - generic [ref=e1288]: "5.3"
+                          - code [ref=e1289]:
+                            - generic [ref=e1291]: PostToolUseFailure
+                      - generic [ref=e1293]:
+                        - generic [ref=e1295]: 其中
+                        - code [ref=e1296]:
+                          - generic [ref=e1298]: failure_type
+                        - generic [ref=e1300]: 支持：
+                      - list [ref=e1302]:
+                        - listitem [ref=e1303]:
+                          - generic: •
+                          - code [ref=e1305]:
+                            - generic [ref=e1307]: validation
+                      - list [ref=e1309]:
+                        - listitem [ref=e1310]:
+                          - generic: •
+                          - code [ref=e1312]:
+                            - generic [ref=e1314]: error
+                      - list [ref=e1316]:
+                        - listitem [ref=e1317]:
+                          - generic: •
+                          - code [ref=e1319]:
+                            - generic [ref=e1321]: skipped
+                      - heading "5.4 UserPromptSubmit" [level=3] [ref=e1322]:
+                        - button [ref=e1324] [cursor=pointer]:
+                          - img [ref=e1325]
+                        - img [ref=e1333] [cursor=pointer]
+                        - generic [ref=e1338]:
+                          - generic [ref=e1340]: "5.4"
+                          - code [ref=e1341]:
+                            - generic [ref=e1343]: UserPromptSubmit
+                      - heading "5.5 Stop" [level=3] [ref=e1345]:
+                        - button [ref=e1347] [cursor=pointer]:
+                          - img [ref=e1348]
+                        - img [ref=e1356] [cursor=pointer]
+                        - generic [ref=e1361]:
+                          - generic [ref=e1363]: "5.5"
+                          - code [ref=e1364]:
+                            - generic [ref=e1366]: Stop
+                      - generic [ref=e1368]:
+                        - generic [ref=e1370]: 其中
+                        - code [ref=e1371]:
+                          - generic [ref=e1373]: status
+                        - generic [ref=e1375]: 支持：
+                      - list [ref=e1377]:
+                        - listitem [ref=e1378]:
+                          - generic: •
+                          - code [ref=e1380]:
+                            - generic [ref=e1382]: completed
+                      - list [ref=e1384]:
+                        - listitem [ref=e1385]:
+                          - generic: •
+                          - code [ref=e1387]:
+                            - generic [ref=e1389]: cancelled
+                      - list [ref=e1391]:
+                        - listitem [ref=e1392]:
+                          - generic: •
+                          - code [ref=e1394]:
+                            - generic [ref=e1396]: error
+                      - heading "5.6 SessionEnd" [level=3] [ref=e1397]:
+                        - button [ref=e1399] [cursor=pointer]:
+                          - img [ref=e1400]
+                        - img [ref=e1408] [cursor=pointer]
+                        - generic [ref=e1413]:
+                          - generic [ref=e1415]: "5.6"
+                          - code [ref=e1416]:
+                            - generic [ref=e1418]: SessionEnd
+                      - separator [ref=e1425]
+                      - heading "6. Hook 输出格式" [level=2] [ref=e1427]:
+                        - button [ref=e1429] [cursor=pointer]:
+                          - img [ref=e1430]
+                        - img [ref=e1438] [cursor=pointer]
+                        - generic [ref=e1445]: 6. Hook 输出格式
+                      - generic [ref=e1448]: 当前统一输出模型如下：
+                      - generic [ref=e1452]: 其中通用字段为：
+                      - list [ref=e1454]:
+                        - listitem [ref=e1455]:
+                          - generic: •
+                          - generic [ref=e1456]:
+                            - code [ref=e1457]:
+                              - generic [ref=e1459]: decision
+                            - generic [ref=e1461]: ":"
+                            - code [ref=e1462]:
+                              - generic [ref=e1464]: allow | deny | block
+                      - list [ref=e1466]:
+                        - listitem [ref=e1467]:
+                          - generic: •
+                          - generic [ref=e1468]:
+                            - code [ref=e1469]:
+                              - generic [ref=e1471]: reason
+                            - generic [ref=e1473]: ": 拒绝或阻塞原因"
+                      - list [ref=e1475]:
+                        - listitem [ref=e1476]:
+                          - generic: •
+                          - generic [ref=e1477]:
+                            - code [ref=e1478]:
+                              - generic [ref=e1480]: continue
+                            - generic [ref=e1482]: ": 是否继续执行，"
+                            - code [ref=e1483]:
+                              - generic [ref=e1485]: "false"
+                            - generic [ref=e1487]: 表示硬停止
+                      - list [ref=e1489]:
+                        - listitem [ref=e1490]:
+                          - generic: •
+                          - generic [ref=e1491]:
+                            - code [ref=e1492]:
+                              - generic [ref=e1494]: stopReason
+                            - generic [ref=e1496]: ": 只能和"
+                            - code [ref=e1497]:
+                              - generic [ref=e1499]: continue
+                            - generic [ref=e1501]: 联合使用表示停止原因
+                      - generic [ref=e1504]: 当前只保留一种上下文注入字段：
+                      - list [ref=e1506]:
+                        - listitem [ref=e1507]:
+                          - generic: •
+                          - code [ref=e1509]:
+                            - generic [ref=e1511]: additionalContext
+                      - generic [ref=e1514]: 说明：
+                      - list [ref=e1516]:
+                        - listitem [ref=e1517]:
+                          - generic: •
+                          - generic [ref=e1518]:
+                            - code [ref=e1519]:
+                              - generic [ref=e1521]: additionalContext
+                            - generic [ref=e1523]: 在当前实现中用于
+                            - code [ref=e1524]:
+                              - generic [ref=e1526]: SessionStart
+                            - generic [ref=e1528]: 、
+                            - code [ref=e1529]:
+                              - generic [ref=e1531]: PostToolUse
+                            - generic [ref=e1533]: 、
+                            - code [ref=e1534]:
+                              - generic [ref=e1536]: PostToolUseFailure
+                            - generic [ref=e1538]: ，以及
+                            - code [ref=e1539]:
+                              - generic [ref=e1541]: PreToolUse deny
+                            - generic [ref=e1543]: 时补充说明
+                      - list [ref=e1545]:
+                        - listitem [ref=e1546]:
+                          - generic: •
+                          - generic [ref=e1547]:
+                            - generic [ref=e1549]: 旧的
+                            - code [ref=e1550]:
+                              - generic [ref=e1552]: contextMessage
+                            - generic [ref=e1554]: 已移除，不再使用
+                      - separator [ref=e1560]
+                      - 'heading "7. permissionDecision: \"deny\" 、 decision: \"block\" 、 continue: false 的区别" [level=2] [ref=e1562]':
+                        - button [ref=e1564] [cursor=pointer]:
+                          - img [ref=e1565]
+                        - img [ref=e1573] [cursor=pointer]
+                        - generic [ref=e1578]:
+                          - generic [ref=e1580]: "7."
+                          - code [ref=e1581]:
+                            - generic [ref=e1583]: "permissionDecision: \"deny\""
+                          - generic [ref=e1585]: 、
+                          - code [ref=e1586]:
+                            - generic [ref=e1588]: "decision: \"block\""
+                          - generic [ref=e1590]: 、
+                          - code [ref=e1591]:
+                            - generic [ref=e1593]: "continue: false"
+                          - generic [ref=e1595]: 的区别
+                      - generic [ref=e1598]: 这是最容易混淆的部分，建议重点理解。
+                      - 'heading "7.1 permissionDecision: \"deny\"" [level=3] [ref=e1599]':
+                        - button [ref=e1601] [cursor=pointer]:
+                          - img [ref=e1602]
+                        - img [ref=e1610] [cursor=pointer]
+                        - generic [ref=e1615]:
+                          - generic [ref=e1617]: "7.1"
+                          - code [ref=e1618]:
+                            - generic [ref=e1620]: "permissionDecision: \"deny\""
+                      - generic [ref=e1621]:
+                        - generic [ref=e1623]: 这是
+                        - code [ref=e1624]:
+                          - generic [ref=e1626]: PreToolUse
+                        - generic [ref=e1628]: 专用的 Claude Code 风格嵌套格式：
+                      - generic [ref=e1632]: 等价于：
+                      - generic [ref=e1636]: 行为特点：
+                      - list [ref=e1638]:
+                        - listitem [ref=e1639]:
+                          - generic: •
+                          - generic [ref=e1640]:
+                            - generic [ref=e1642]: 只对
+                            - code [ref=e1643]:
+                              - generic [ref=e1645]: PreToolUse
+                            - generic [ref=e1647]: 有意义
+                      - list [ref=e1649]:
+                        - listitem [ref=e1650]:
+                          - generic: •
+                          - generic [ref=e1653]: 当前工具会被跳过，不执行
+                      - list [ref=e1655]:
+                        - listitem [ref=e1656]:
+                          - generic: •
+                          - generic [ref=e1657]:
+                            - generic [ref=e1659]: LLM 会收到拒绝原因和可选的
+                            - code [ref=e1660]:
+                              - generic [ref=e1662]: additionalContext
+                      - list [ref=e1664]:
+                        - listitem [ref=e1665]:
+                          - generic: •
+                          - generic [ref=e1668]: Agent 不会整体停止，模型可以换一种方案继续完成任务
+                      - generic [ref=e1669]:
+                        - generic [ref=e1671]: 一句话总结：
+                        - strong [ref=e1674]: 拒绝当前工具，但允许 Agent 继续思考别的办法。
+                      - separator [ref=e1680]
+                      - 'heading "7.2 decision: \"block\"" [level=3] [ref=e1682]':
+                        - button [ref=e1684] [cursor=pointer]:
+                          - img [ref=e1685]
+                        - img [ref=e1693] [cursor=pointer]
+                        - generic [ref=e1698]:
+                          - generic [ref=e1700]: "7.2"
+                          - code [ref=e1701]:
+                            - generic [ref=e1703]: "decision: \"block\""
+                      - generic [ref=e1704]:
+                        - code [ref=e1705]:
+                          - generic [ref=e1707]: block
+                        - generic [ref=e1709]: 主要用于：
+                      - list [ref=e1711]:
+                        - listitem [ref=e1712]:
+                          - generic: •
+                          - code [ref=e1714]:
+                            - generic [ref=e1716]: UserPromptSubmit
+                      - list [ref=e1718]:
+                        - listitem [ref=e1719]:
+                          - generic: •
+                          - code [ref=e1721]:
+                            - generic [ref=e1723]: Stop
+                      - heading "在 UserPromptSubmit 中" [level=4] [ref=e1724]:
+                        - button [ref=e1726] [cursor=pointer]:
+                          - img [ref=e1727]
+                        - img [ref=e1735] [cursor=pointer]
+                        - generic [ref=e1740]:
+                          - generic [ref=e1742]: 在
+                          - code [ref=e1743]:
+                            - generic [ref=e1745]: UserPromptSubmit
+                          - generic [ref=e1747]: 中
+                      - generic [ref=e1751]: 行为：
+                      - list [ref=e1753]:
+                        - listitem [ref=e1754]:
+                          - generic: •
+                          - generic [ref=e1757]: 当前用户消息不会提交给 LLM
+                      - list [ref=e1759]:
+                        - listitem [ref=e1760]:
+                          - generic: •
+                          - generic [ref=e1763]: 前端会收到 hook blocked 提示
+                      - list [ref=e1765]:
+                        - listitem [ref=e1766]:
+                          - generic: •
+                          - generic [ref=e1769]: 用户必须修改后重新发送
+                      - generic [ref=e1770]:
+                        - generic [ref=e1772]: 一句话总结：
+                        - strong [ref=e1775]: 拦住这条用户消息，不让它进入模型。
+                      - heading "在 Stop 中" [level=4] [ref=e1776]:
+                        - button [ref=e1778] [cursor=pointer]:
+                          - img [ref=e1779]
+                        - img [ref=e1787] [cursor=pointer]
+                        - generic [ref=e1792]:
+                          - generic [ref=e1794]: 在
+                          - code [ref=e1795]:
+                            - generic [ref=e1797]: Stop
+                          - generic [ref=e1799]: 中
+                      - generic [ref=e1803]: 行为：
+                      - list [ref=e1805]:
+                        - listitem [ref=e1806]:
+                          - generic: •
+                          - generic [ref=e1809]: 当前 roundtrip 结束后，不真正停下
+                      - list [ref=e1811]:
+                        - listitem [ref=e1812]:
+                          - generic: •
+                          - generic [ref=e1815]: reason 会作为新的 followup query，驱动 Agent 再跑一轮
+                      - list [ref=e1817]:
+                        - listitem [ref=e1818]:
+                          - generic: •
+                          - generic [ref=e1821]: 这就是 loop followup 机制
+                      - generic [ref=e1822]:
+                        - generic [ref=e1824]: 一句话总结：
+                        - strong [ref=e1827]: 别停，带着新的 followup 再来一轮。
+                      - generic [ref=e1830]: 注意：
+                      - list [ref=e1832]:
+                        - listitem [ref=e1833]:
+                          - generic: •
+                          - generic [ref=e1834]:
+                            - code [ref=e1835]:
+                              - generic [ref=e1837]: block
+                            - generic [ref=e1839]: 对
+                            - code [ref=e1840]:
+                              - generic [ref=e1842]: PreToolUse
+                            - generic [ref=e1844]: 不是主要语义，当前工具拦截应使用
+                            - code [ref=e1845]:
+                              - generic [ref=e1847]: deny
+                      - list [ref=e1849]:
+                        - listitem [ref=e1850]:
+                          - generic: •
+                          - generic [ref=e1851]:
+                            - code [ref=e1852]:
+                              - generic [ref=e1854]: Stop
+                            - generic [ref=e1856]: 中如果没
+                            - code [ref=e1857]:
+                              - generic [ref=e1859]: reason
+                            - generic [ref=e1861]: ，就不会继续 loop
+                      - separator [ref=e1867]
+                      - 'heading "7.3 continue: false" [level=3] [ref=e1869]':
+                        - button [ref=e1871] [cursor=pointer]:
+                          - img [ref=e1872]
+                        - img [ref=e1880] [cursor=pointer]
+                        - generic [ref=e1885]:
+                          - generic [ref=e1887]: "7.3"
+                          - code [ref=e1888]:
+                            - generic [ref=e1890]: "continue: false"
+                      - generic [ref=e1894]: 行为特点：
+                      - list [ref=e1896]:
+                        - listitem [ref=e1897]:
+                          - generic: •
+                          - generic [ref=e1900]: 它是最强的停止信号
+                      - list [ref=e1902]:
+                        - listitem [ref=e1903]:
+                          - generic: •
+                          - generic [ref=e1904]:
+                            - generic [ref=e1906]: 在
+                            - code [ref=e1907]:
+                              - generic [ref=e1909]: PreToolUse
+                            - generic [ref=e1911]: 中，表示不只是拒绝当前工具，而是直接终止整轮执行
+                      - list [ref=e1913]:
+                        - listitem [ref=e1914]:
+                          - generic: •
+                          - generic [ref=e1915]:
+                            - generic [ref=e1917]: 在
+                            - code [ref=e1918]:
+                              - generic [ref=e1920]: Stop
+                            - generic [ref=e1922]: 中，表示即使之前可能有 loop 逻辑，也不要继续，直接结束
+                      - heading "在 PreToolUse 中" [level=4] [ref=e1923]:
+                        - button [ref=e1925] [cursor=pointer]:
+                          - img [ref=e1926]
+                        - img [ref=e1934] [cursor=pointer]
+                        - generic [ref=e1939]:
+                          - generic [ref=e1941]: 在
+                          - code [ref=e1942]:
+                            - generic [ref=e1944]: PreToolUse
+                          - generic [ref=e1946]: 中
+                      - list [ref=e1948]:
+                        - listitem [ref=e1949]:
+                          - generic: •
+                          - generic [ref=e1950]:
+                            - generic [ref=e1952]: 当前工具状态会进入
+                            - code [ref=e1953]:
+                              - generic [ref=e1955]: hook_stopped
+                      - list [ref=e1957]:
+                        - listitem [ref=e1958]:
+                          - generic: •
+                          - generic [ref=e1959]:
+                            - generic [ref=e1961]: 抛出
+                            - code [ref=e1962]:
+                              - generic [ref=e1964]: HookStopExecutionError
+                      - list [ref=e1966]:
+                        - listitem [ref=e1967]:
+                          - generic: •
+                          - generic [ref=e1970]: 后续不再让 LLM继续尝试替代方案
+                      - generic [ref=e1971]:
+                        - generic [ref=e1973]: 一句话总结：
+                        - strong [ref=e1976]: 不是“这个工具不能用”，而是“整轮执行到此为止”。
+                      - heading "在 Stop 中" [level=4] [ref=e1977]:
+                        - button [ref=e1979] [cursor=pointer]:
+                          - img [ref=e1980]
+                        - img [ref=e1988] [cursor=pointer]
+                        - generic [ref=e1993]:
+                          - generic [ref=e1995]: 在
+                          - code [ref=e1996]:
+                            - generic [ref=e1998]: Stop
+                          - generic [ref=e2000]: 中
+                      - generic [ref=e2004]: 行为：
+                      - list [ref=e2006]:
+                        - listitem [ref=e2007]:
+                          - generic: •
+                          - generic [ref=e2010]: 直接终止 stop hook 的 followup 流程
+                      - list [ref=e2012]:
+                        - listitem [ref=e2013]:
+                          - generic: •
+                          - generic [ref=e2016]: 重置 loop 计数
+                      - list [ref=e2018]:
+                        - listitem [ref=e2019]:
+                          - generic: •
+                          - generic [ref=e2022]: 不再继续下一轮
+                      - generic [ref=e2023]:
+                        - generic [ref=e2025]: 一句话总结：
+                        - strong [ref=e2028]: 无条件结束，不再 loop。
+                      - separator [ref=e2034]
+                      - heading "7.4 三者对比表" [level=3] [ref=e2036]:
+                        - button [ref=e2038] [cursor=pointer]:
+                          - img [ref=e2039]
+                        - img [ref=e2047] [cursor=pointer]
+                        - generic [ref=e2054]: 7.4 三者对比表
+                      - generic [ref=e2058]: 最实用的记忆方式：
+                      - list [ref=e2060]:
+                        - listitem [ref=e2061]:
+                          - generic: •
+                          - generic [ref=e2062]:
+                            - code [ref=e2063]:
+                              - generic [ref=e2065]: deny
+                            - generic [ref=e2067]: ：
+                            - strong [ref=e2070]: 这个工具别用，但你可以换一个
+                      - list [ref=e2072]:
+                        - listitem [ref=e2073]:
+                          - generic: •
+                          - generic [ref=e2074]:
+                            - code [ref=e2075]:
+                              - generic [ref=e2077]: block
+                            - generic [ref=e2079]: ：
+                            - strong [ref=e2082]: 现在先别往下走，等我拦一下或者再来一轮
+                      - list [ref=e2084]:
+                        - listitem [ref=e2085]:
+                          - generic: •
+                          - generic [ref=e2086]:
+                            - code [ref=e2087]:
+                              - generic [ref=e2089]: "continue: false"
+                            - generic [ref=e2091]: ：
+                            - strong [ref=e2094]: 到这里为止，整个流程立即结束
+                      - separator [ref=e2100]
+                      - heading "8. Command Hook 执行规则" [level=2] [ref=e2102]:
+                        - button [ref=e2104] [cursor=pointer]:
+                          - img [ref=e2105]
+                        - img [ref=e2113] [cursor=pointer]
+                        - generic [ref=e2120]: 8. Command Hook 执行规则
+                      - generic [ref=e2123]: Command Hook 使用 shell 执行，并通过 stdin / stdout 交换 JSON：
+                      - list [ref=e2125]:
+                        - listitem [ref=e2126]:
+                          - generic: •
+                          - generic [ref=e2127]:
+                            - generic [ref=e2129]: macOS / Linux：
+                            - code [ref=e2130]:
+                              - generic [ref=e2132]: sh -c <command>
+                      - list [ref=e2134]:
+                        - listitem [ref=e2135]:
+                          - generic: •
+                          - generic [ref=e2136]:
+                            - generic [ref=e2138]: Windows：
+                            - code [ref=e2139]:
+                              - generic [ref=e2141]: cmd.exe /d /s /c <command>
+                      - generic [ref=e2144]: 输入：
+                      - list [ref=e2146]:
+                        - listitem [ref=e2147]:
+                          - generic: •
+                          - generic [ref=e2150]: Hook input JSON 从 stdin 传入
+                      - generic [ref=e2153]: 输出：
+                      - list [ref=e2155]:
+                        - listitem [ref=e2156]:
+                          - generic: •
+                          - generic [ref=e2159]: stdout 优先解析为 JSON
+                      - list [ref=e2161]:
+                        - listitem [ref=e2162]:
+                          - generic: •
+                          - generic [ref=e2163]:
+                            - generic [ref=e2165]: 如果 stdout 不是 JSON，则把纯文本当作
+                            - code [ref=e2166]:
+                              - generic [ref=e2168]: additionalContext
+                      - generic [ref=e2171]: 注入的环境变量：
+                      - list [ref=e2173]:
+                        - listitem [ref=e2174]:
+                          - generic: •
+                          - code [ref=e2176]:
+                            - generic [ref=e2178]: WORKSPACE_DIR
+                      - list [ref=e2180]:
+                        - listitem [ref=e2181]:
+                          - generic: •
+                          - code [ref=e2183]:
+                            - generic [ref=e2185]: SANDBOX_ROOT
+                      - list [ref=e2187]:
+                        - listitem [ref=e2188]:
+                          - generic: •
+                          - code [ref=e2190]:
+                            - generic [ref=e2192]: HOME
+                      - heading "8.1 退出码语义" [level=3] [ref=e2193]:
+                        - button [ref=e2195] [cursor=pointer]:
+                          - img [ref=e2196]
+                        - img [ref=e2204] [cursor=pointer]
+                        - generic [ref=e2211]: 8.1 退出码语义
+                      - generic [ref=e2213]:
+                        - generic [ref=e2215]: 当退出码为
+                        - code [ref=e2216]:
+                          - generic [ref=e2218]: "2"
+                        - generic [ref=e2220]: 时：
+                      - list [ref=e2222]:
+                        - listitem [ref=e2223]:
+                          - generic: •
+                          - generic [ref=e2224]:
+                            - code [ref=e2225]:
+                              - generic [ref=e2227]: UserPromptSubmit
+                            - generic [ref=e2229]: /
+                            - code [ref=e2230]:
+                              - generic [ref=e2232]: Stop
+                            - generic [ref=e2234]: → 转为
+                            - code [ref=e2235]:
+                              - generic [ref=e2237]: "decision: \"block\""
+                      - list [ref=e2239]:
+                        - listitem [ref=e2240]:
+                          - generic: •
+                          - generic [ref=e2241]:
+                            - code [ref=e2242]:
+                              - generic [ref=e2244]: PostToolUse
+                            - generic [ref=e2246]: /
+                            - code [ref=e2247]:
+                              - generic [ref=e2249]: PostToolUseFailure
+                            - generic [ref=e2251]: → 转为
+                            - code [ref=e2252]:
+                              - generic [ref=e2254]: additionalContext
+                      - list [ref=e2256]:
+                        - listitem [ref=e2257]:
+                          - generic: •
+                          - generic [ref=e2258]:
+                            - generic [ref=e2260]: 其他事件（如
+                            - code [ref=e2261]:
+                              - generic [ref=e2263]: PreToolUse
+                            - generic [ref=e2265]: ）→ 转为
+                            - code [ref=e2266]:
+                              - generic [ref=e2268]: "decision: \"deny\""
+                      - generic [ref=e2269]:
+                        - generic [ref=e2271]: 也就是说，退出码
+                        - code [ref=e2272]:
+                          - generic [ref=e2274]: "2"
+                        - generic [ref=e2276]: 是一个简洁的“语义控制捷径”。
+                      - separator [ref=e2282]
+                      - heading "9. HTTP Hook 执行规则" [level=2] [ref=e2284]:
+                        - button [ref=e2286] [cursor=pointer]:
+                          - img [ref=e2287]
+                        - img [ref=e2295] [cursor=pointer]
+                        - generic [ref=e2302]: 9. HTTP Hook 执行规则
+                      - generic [ref=e2305]: HTTP Hook 行为如下：
+                      - list [ref=e2307]:
+                        - listitem [ref=e2308]:
+                          - generic: •
+                          - generic [ref=e2309]:
+                            - generic [ref=e2311]: 使用
+                            - code [ref=e2312]:
+                              - generic [ref=e2314]: POST
+                            - generic [ref=e2316]: 请求
+                      - list [ref=e2318]:
+                        - listitem [ref=e2319]:
+                          - generic: •
+                          - generic [ref=e2322]: 请求体为 Hook input JSON
+                      - list [ref=e2324]:
+                        - listitem [ref=e2325]:
+                          - generic: •
+                          - generic [ref=e2326]:
+                            - generic [ref=e2328]: 默认 header 包含
+                            - code [ref=e2329]:
+                              - generic [ref=e2331]: "Content-Type: application/json"
+                      - list [ref=e2333]:
+                        - listitem [ref=e2334]:
+                          - generic: •
+                          - generic [ref=e2337]: 支持超时控制
+                      - list [ref=e2339]:
+                        - listitem [ref=e2340]:
+                          - generic: •
+                          - generic [ref=e2343]: HTTP 失败 / 非 2xx / 响应解析失败时，统一 fail-open
+                      - generic [ref=e2346]: 响应规则：
+                      - list [ref=e2348]:
+                        - listitem [ref=e2349]:
+                          - generic: •
+                          - generic [ref=e2350]:
+                            - generic [ref=e2352]: 若
+                            - code [ref=e2353]:
+                              - generic [ref=e2355]: content-type
+                            - generic [ref=e2357]: 包含
+                            - code [ref=e2358]:
+                              - generic [ref=e2360]: application/json
+                            - generic [ref=e2362]: ，则按 Hook 输出 JSON 解析
+                      - list [ref=e2364]:
+                        - listitem [ref=e2365]:
+                          - generic: •
+                          - generic [ref=e2366]:
+                            - generic [ref=e2368]: 否则把响应纯文本作为
+                            - code [ref=e2369]:
+                              - generic [ref=e2371]: additionalContext
+                      - generic [ref=e2374]: 这意味着你可以把 HTTP Hook 当成：
+                      - list [ref=e2376]:
+                        - listitem [ref=e2377]:
+                          - generic: •
+                          - generic [ref=e2380]: 权限服务
+                      - list [ref=e2382]:
+                        - listitem [ref=e2383]:
+                          - generic: •
+                          - generic [ref=e2386]: 规则引擎
+                      - list [ref=e2388]:
+                        - listitem [ref=e2389]:
+                          - generic: •
+                          - generic [ref=e2392]: 质量平台
+                      - list [ref=e2394]:
+                        - listitem [ref=e2395]:
+                          - generic: •
+                          - generic [ref=e2398]: 审批 / 审计网关
+                      - separator [ref=e2404]
+                      - heading "10. additionalContext 的注入机制" [level=2] [ref=e2406]:
+                        - button [ref=e2408] [cursor=pointer]:
+                          - img [ref=e2409]
+                        - img [ref=e2417] [cursor=pointer]
+                        - generic [ref=e2422]:
+                          - generic [ref=e2424]: "10."
+                          - code [ref=e2425]:
+                            - generic [ref=e2427]: additionalContext
+                          - generic [ref=e2429]: 的注入机制
+                      - generic [ref=e2430]:
+                        - generic [ref=e2432]: 当前实现中只有
+                        - code [ref=e2433]:
+                          - generic [ref=e2435]: additionalContext
+                        - generic [ref=e2437]: 一个上下文字段。
+                      - heading "10.2 PostToolUse / PostToolUseFailure" [level=3] [ref=e2438]:
+                        - button [ref=e2440] [cursor=pointer]:
+                          - img [ref=e2441]
+                        - img [ref=e2449] [cursor=pointer]
+                        - generic [ref=e2454]:
+                          - generic [ref=e2456]: "10.2"
+                          - code [ref=e2457]:
+                            - generic [ref=e2459]: PostToolUse
+                          - generic [ref=e2461]: /
+                          - code [ref=e2462]:
+                            - generic [ref=e2464]: PostToolUseFailure
+                      - generic [ref=e2465]:
+                        - generic [ref=e2467]: 如果 hook 返回
+                        - code [ref=e2468]:
+                          - generic [ref=e2470]: additionalContext
+                        - generic [ref=e2472]: ，会写入当前工具结果的
+                        - code [ref=e2473]:
+                          - generic [ref=e2475]: metadata.hookSystemReminder
+                        - generic [ref=e2477]: ，以 system-reminder 的形式反馈给 LLM。
+                      - heading "10.3 PreToolUse deny" [level=3] [ref=e2478]:
+                        - button [ref=e2480] [cursor=pointer]:
+                          - img [ref=e2481]
+                        - img [ref=e2489] [cursor=pointer]
+                        - generic [ref=e2494]:
+                          - generic [ref=e2496]: "10.3"
+                          - code [ref=e2497]:
+                            - generic [ref=e2499]: PreToolUse deny
+                      - generic [ref=e2500]:
+                        - generic [ref=e2502]: 当返回
+                        - code [ref=e2503]:
+                          - generic [ref=e2505]: deny
+                        - generic [ref=e2507]: 且同时提供
+                        - code [ref=e2508]:
+                          - generic [ref=e2510]: additionalContext
+                        - generic [ref=e2512]: 时，模型除了知道“为什么被拒绝”，还会收到一段附加说明，用于引导替代方案。
+                      - generic [ref=e2515]: 示例：
+                      - separator [ref=e2522]
+                      - heading "11. Stop Loop 机制" [level=2] [ref=e2524]:
+                        - button [ref=e2526] [cursor=pointer]:
+                          - img [ref=e2527]
+                        - img [ref=e2535] [cursor=pointer]
+                        - generic [ref=e2542]: 11. Stop Loop 机制
+                      - generic [ref=e2543]:
+                        - code [ref=e2544]:
+                          - generic [ref=e2546]: Stop
+                        - generic [ref=e2548]: 是实现“持续迭代直到满足条件”的关键事件。
+                      - generic [ref=e2551]: 示例：
+                      - generic [ref=e2553]:
+                        - code [ref=e2554]:
+                          - generic [ref=e2556]: check-tests.sh
+                        - generic [ref=e2558]: 示例：
+                      - generic [ref=e2562]: 这个例子里：
+                      - list [ref=e2564]:
+                        - listitem [ref=e2565]:
+                          - generic: •
+                          - generic [ref=e2566]:
+                            - generic [ref=e2568]: 测试失败 →
+                            - code [ref=e2569]:
+                              - generic [ref=e2571]: block + stopReason
+                            - generic [ref=e2573]: ，继续下一轮
+                      - list [ref=e2575]:
+                        - listitem [ref=e2576]:
+                          - generic: •
+                          - generic [ref=e2577]:
+                            - generic [ref=e2579]: 达到上限 →
+                            - code [ref=e2580]:
+                              - generic [ref=e2582]: "continue: false"
+                            - generic [ref=e2584]: ，强制停止
+                      - list [ref=e2586]:
+                        - listitem [ref=e2587]:
+                          - generic: •
+                          - generic [ref=e2590]: 测试通过 → 空对象，正常结束
+                      - separator [ref=e2596]
+                      - heading "12. 常用示例" [level=2] [ref=e2598]:
+                        - button [ref=e2600] [cursor=pointer]:
+                          - img [ref=e2601]
+                        - img [ref=e2609] [cursor=pointer]
+                        - generic [ref=e2616]: 12. 常用示例
+                      - heading "12.1 拒绝改敏感文件，但允许换方案继续" [level=3] [ref=e2617]:
+                        - button [ref=e2619] [cursor=pointer]:
+                          - img [ref=e2620]
+                        - img [ref=e2628] [cursor=pointer]
+                        - generic [ref=e2635]: 12.1 拒绝改敏感文件，但允许换方案继续
+                      - heading "12.2 检测到高危命令，直接硬停止" [level=3] [ref=e2638]:
+                        - button [ref=e2640] [cursor=pointer]:
+                          - img [ref=e2641]
+                        - img [ref=e2649] [cursor=pointer]
+                        - generic [ref=e2656]: 12.2 检测到高危命令，直接硬停止
+                      - heading "12.3 对用户输入做提交前拦截" [level=3] [ref=e2658]:
+                        - button [ref=e2660] [cursor=pointer]:
+                          - img [ref=e2661]
+                        - img [ref=e2669] [cursor=pointer]
+                        - generic [ref=e2676]: 12.3 对用户输入做提交前拦截
+                      - heading "12.4 工具执行后把 lint 结果注入模型" [level=3] [ref=e2678]:
+                        - button [ref=e2680] [cursor=pointer]:
+                          - img [ref=e2681]
+                        - img [ref=e2689] [cursor=pointer]
+                        - generic [ref=e2696]: 12.4 工具执行后把 lint 结果注入模型
+                      - generic [ref=e2698]:
+                        - generic [ref=e2700]: 如果脚本 stdout 输出的是纯文本，那么这段文本会作为
+                        - code [ref=e2701]:
+                          - generic [ref=e2703]: additionalContext
+                        - generic [ref=e2705]: 注入，而不是当作阻塞信号。
+                      - separator [ref=e2712]
+                      - heading "13. fail-open 策略" [level=2] [ref=e2714]:
+                        - button [ref=e2716] [cursor=pointer]:
+                          - img [ref=e2717]
+                        - img [ref=e2725] [cursor=pointer]
+                        - generic [ref=e2732]: 13. fail-open 策略
+                      - generic [ref=e2735]: 当前实现整体遵循 fail-open：
+                      - list [ref=e2737]:
+                        - listitem [ref=e2738]:
+                          - generic: •
+                          - generic [ref=e2739]:
+                            - generic [ref=e2741]: command 执行失败 → 默认
+                            - code [ref=e2742]:
+                              - generic [ref=e2744]: allow
+                      - list [ref=e2746]:
+                        - listitem [ref=e2747]:
+                          - generic: •
+                          - generic [ref=e2748]:
+                            - generic [ref=e2750]: http 请求失败 → 默认
+                            - code [ref=e2751]:
+                              - generic [ref=e2753]: allow
+                      - list [ref=e2755]:
+                        - listitem [ref=e2756]:
+                          - generic: •
+                          - generic [ref=e2757]:
+                            - generic [ref=e2759]: JSON 解析失败 → 默认
+                            - code [ref=e2760]:
+                              - generic [ref=e2762]: allow
+                      - list [ref=e2764]:
+                        - listitem [ref=e2765]:
+                          - generic: •
+                          - generic [ref=e2766]:
+                            - generic [ref=e2768]: 非预期错误 → 默认
+                            - code [ref=e2769]:
+                              - generic [ref=e2771]: allow
+                      - generic [ref=e2774]: 这样做的目标是：
+                      - list [ref=e2776]:
+                        - listitem [ref=e2777]:
+                          - generic: •
+                          - generic [ref=e2780]: Hook 系统尽量提供增强能力
+                      - list [ref=e2782]:
+                        - listitem [ref=e2783]:
+                          - generic: •
+                          - generic [ref=e2786]: 不因为外部脚本 / 服务异常把主流程完全拖死
+                      - generic [ref=e2787]:
+                        - generic [ref=e2789]: 如果你希望“脚本异常也必须拦住”，就不要依赖异常退出，而应明确返回结构化 JSON，或者用退出码
+                        - code [ref=e2790]:
+                          - generic [ref=e2792]: "2"
+                        - generic [ref=e2794]: 传递语义结果。
+                      - separator [ref=e2800]
+                      - heading "14. 最佳实践" [level=2] [ref=e2802]:
+                        - button [ref=e2804] [cursor=pointer]:
+                          - img [ref=e2805]
+                        - img [ref=e2813] [cursor=pointer]
+                        - generic [ref=e2820]: 14. 最佳实践
+                      - list [ref=e2822]:
+                        - listitem [ref=e2823]:
+                          - generic: •
+                          - generic [ref=e2824]:
+                            - generic [ref=e2826]: 优先把“规则拒绝”建模为
+                            - code [ref=e2827]:
+                              - generic [ref=e2829]: deny
+                            - generic [ref=e2831]: ，而不是直接
+                            - code [ref=e2832]:
+                              - generic [ref=e2834]: "continue: false"
+                      - list [ref=e2836]:
+                        - listitem [ref=e2837]:
+                          - generic: •
+                          - generic [ref=e2838]:
+                            - generic [ref=e2840]: 只有在高风险场景下才使用
+                            - code [ref=e2841]:
+                              - generic [ref=e2843]: "continue: false"
+                      - list [ref=e2845]:
+                        - listitem [ref=e2846]:
+                          - generic: •
+                          - generic [ref=e2847]:
+                            - code [ref=e2848]:
+                              - generic [ref=e2850]: Stop
+                            - generic [ref=e2852]: 事件里需要 loop 时，务必返回
+                            - code [ref=e2853]:
+                              - generic [ref=e2855]: reason
+                      - list [ref=e2857]:
+                        - listitem [ref=e2858]:
+                          - generic: •
+                          - generic [ref=e2859]:
+                            - generic [ref=e2861]: 需要模型理解额外信息时，用
+                            - code [ref=e2862]:
+                              - generic [ref=e2864]: additionalContext
+                      - list [ref=e2866]:
+                        - listitem [ref=e2867]:
+                          - generic: •
+                          - generic [ref=e2868]:
+                            - generic [ref=e2870]: 需要拦用户消息时，用
+                            - code [ref=e2871]:
+                              - generic [ref=e2873]: UserPromptSubmit + block
+                      - list [ref=e2875]:
+                        - listitem [ref=e2876]:
+                          - generic: •
+                          - generic [ref=e2877]:
+                            - generic [ref=e2879]: 需要持续迭代时，用
+                            - code [ref=e2880]:
+                              - generic [ref=e2882]: Stop + block + reason
+                      - list [ref=e2884]:
+                        - listitem [ref=e2885]:
+                          - generic: •
+                          - generic [ref=e2886]:
+                            - generic [ref=e2888]: 需要真正停止 loop 时，用
+                            - code [ref=e2889]:
+                              - generic [ref=e2891]: continue:false
+                      - list [ref=e2893]:
+                        - listitem [ref=e2894]:
+                          - generic: •
+                          - generic [ref=e2897]: 脚本中尽量输出稳定 JSON，不要混合过多日志
+                      - list [ref=e2899]:
+                        - listitem [ref=e2900]:
+                          - generic: •
+                          - generic [ref=e2903]: 若一定要输出日志，建议把最终 JSON 放在 stdout 最后一行
+                      - separator [ref=e2909]
+                      - heading "15. 一页总结" [level=2] [ref=e2911]:
+                        - button [ref=e2913] [cursor=pointer]:
+                          - img [ref=e2914]
+                        - img [ref=e2922] [cursor=pointer]
+                        - generic [ref=e2929]: 15. 一页总结
+                      - generic [ref=e2932]: 如果你只记一页，请记住下面这组规则：
+                      - list [ref=e2934]:
+                        - listitem [ref=e2935]:
+                          - generic: •
+                          - generic [ref=e2936]:
+                            - generic [ref=e2938]: 想拦一个工具，但允许模型换方案继续：
+                            - code [ref=e2939]:
+                              - generic [ref=e2941]: deny
+                      - list [ref=e2943]:
+                        - listitem [ref=e2944]:
+                          - generic: •
+                          - generic [ref=e2945]:
+                            - generic [ref=e2947]: 想拦用户这条消息：
+                            - code [ref=e2948]:
+                              - generic [ref=e2950]: UserPromptSubmit + block + reason（可选）
+                      - list [ref=e2952]:
+                        - listitem [ref=e2953]:
+                          - generic: •
+                          - generic [ref=e2954]:
+                            - generic [ref=e2956]: 想让 Agent 再跑一轮：
+                            - code [ref=e2957]:
+                              - generic [ref=e2959]: Stop + block + reason（必须）
+                      - list [ref=e2961]:
+                        - listitem [ref=e2962]:
+                          - generic: •
+                          - generic [ref=e2963]:
+                            - generic [ref=e2965]: 想立刻结束整个流程：
+                            - code [ref=e2966]:
+                              - generic [ref=e2968]: continue:false + stopReason
+                      - list [ref=e2970]:
+                        - listitem [ref=e2971]:
+                          - generic: •
+                          - generic [ref=e2972]:
+                            - generic [ref=e2974]: 想给模型补充说明：
+                            - code [ref=e2975]:
+                              - generic [ref=e2977]: additionalContext
+                      - list [ref=e2979]:
+                        - listitem [ref=e2980]:
+                          - generic: •
+                          - generic [ref=e2981]:
+                            - generic [ref=e2983]: 想要 Claude 风格兼容：
+                            - code [ref=e2984]:
+                              - generic [ref=e2986]: hookSpecificOutput.permissionDecision
+                      - generic [ref=e2989]: 最核心的三句话：
+                      - list [ref=e2991]:
+                        - listitem [ref=e2992]:
+                          - generic: •
+                          - generic [ref=e2993]:
+                            - code [ref=e2994]:
+                              - generic [ref=e2996]: "permissionDecision: \"deny\""
+                            - generic [ref=e2998]: ：
+                            - strong [ref=e3001]: 别用这个工具，但可以继续想办法
+                      - list [ref=e3003]:
+                        - listitem [ref=e3004]:
+                          - generic: •
+                          - generic [ref=e3005]:
+                            - code [ref=e3006]:
+                              - generic [ref=e3008]: "decision: \"block\""
+                            - generic [ref=e3010]: ：
+                            - strong [ref=e3013]: 现在先不要往下走，拦一下或者再来一轮
+                      - list [ref=e3015]:
+                        - listitem [ref=e3016]:
+                          - generic: •
+                          - generic [ref=e3017]:
+                            - code [ref=e3018]:
+                              - generic [ref=e3020]: "continue: false"
+                            - generic [ref=e3022]: ：
+                            - strong [ref=e3025]: 整个流程到此为止，立即停止
+                    - generic [ref=e3028]:
+                      - generic [ref=e3029]:
+                        - generic [ref=e3032]:
+                          - img [ref=e3036] [cursor=pointer]
+                          - paragraph [ref=e3043]: 点赞
+                        - generic [ref=e3047]:
+                          - img [ref=e3052] [cursor=pointer]
+                          - generic [ref=e3054]:
+                            - generic [ref=e3055]:
+                              - generic [ref=e3056]: 赠送知识币
+                              - img [ref=e3058] [cursor=pointer]
+                            - generic [ref=e3066]: 来做第一个送币的同学吧～
+                      - generic [ref=e3067]:
+                        - generic [ref=e3068]:
+                          - generic [ref=e3069]: 全文评论（0）
+                          - generic [ref=e3070] [cursor=pointer]: 正序
+                          - generic [ref=e3072] [cursor=pointer]: 倒序
+                        - generic [ref=e3073]:
+                          - img [ref=e3075]
+                          - generic [ref=e3076]:
+                            - generic [ref=e3079]:
+                              - generic:
+                                - generic: 发表看法
+                              - textbox [ref=e3080]
+                            - generic [ref=e3082]:
+                              - generic [ref=e3083]: 0/1500
+                              - button "回复" [disabled] [ref=e3084]:
+                                - generic [ref=e3085]: 回复
+                              - generic [ref=e3086] [cursor=pointer]:
+                                - img [ref=e3088]
+                                - generic [ref=e3093]: 图片
+            - generic [ref=e3096]:
+              - generic [ref=e3100]:
+                - img [ref=e3102]
+                - generic [ref=e3107]: 无标签
+              - generic [ref=e3108]:
+                - generic [ref=e3110]: 3576 个字
+                - generic [ref=e3112]:
+                  - img [ref=e3114]
+                  - generic [ref=e3119]: "40"
+                - generic [ref=e3120]:
+                  - img [ref=e3122]
+                  - generic [ref=e3127]: "0"
+                - generic [ref=e3128] [cursor=pointer]:
+                  - img [ref=e3131]
+                  - generic [ref=e3142]: "0"
+              - generic [ref=e3146] [cursor=pointer]: 投诉
+          - generic [ref=e3147]:
+            - tree [ref=e3151]:
+              - generic:
+                - textbox "for screen reader"
+              - generic [ref=e3153]:
+                - link "TA的主页" [ref=e3155] [cursor=pointer]:
+                  - /url: /home/sunhao22
+                  - img [ref=e3157]
+                  - generic [ref=e3164]: TA的主页
+                - link "成员" [ref=e3166] [cursor=pointer]:
+                  - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/members
+                  - img [ref=e3168]
+                  - generic [ref=e3173]: 成员
+                - link "标签" [ref=e3175] [cursor=pointer]:
+                  - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/homeTag/
+                  - img [ref=e3177]
+                  - generic [ref=e3182]: 标签
+                - generic [ref=e3184]:
+                  - img [ref=e3186]
+                  - generic [ref=e3189]:
+                    - generic [ref=e3190]: 有权限目录
+                    - img [ref=e3192]
+                  - img [ref=e3199] [cursor=pointer]
+                - generic [ref=e3203]:
+                  - link "tokenizer耗时优化" [ref=e3205] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/l1cOrAhtSl2EXS?source=144
+                    - generic [ref=e3212]: tokenizer耗时优化
+                  - link "claude不报超限异常fix" [ref=e3214] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/S06YouCshHtFnI?source=144
+                    - generic [ref=e3221]: claude不报超限异常fix
+                  - link "回滚丢失消息" [ref=e3223] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/NNjFh48d1utnnx?source=144
+                    - generic [ref=e3230]: 回滚丢失消息
+                  - link "大文件写入超时问题" [ref=e3232] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/IgF9_7DymDsgE-?source=144
+                    - generic [ref=e3239]: 大文件写入超时问题
+                  - link "如何在既定策略中优化压缩" [ref=e3241] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/NzWIUsyelVjtNj?source=144
+                    - generic [ref=e3248]: 如何在既定策略中优化压缩
+                  - link "List.of不可变问题" [ref=e3250] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/uoVKhf3NAZKEk0?source=144
+                    - generic [ref=e3257]: List.of不可变问题
+                  - link "切换模型报错" [ref=e3259] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/1iO8AVsr-c0xfR?source=144
+                    - generic [ref=e3266]: 切换模型报错
+                  - link "hooks" [ref=e3268] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/EpD2_6fE_ecdg7?source=144
+                    - generic [ref=e3275]: hooks
+                  - link "auto选择模型在spec模式不生效" [ref=e3277] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/IYmk5ELSGOkyLT?source=144
+                    - generic [ref=e3284]: auto选择模型在spec模式不生效
+                  - link "read读图能力" [ref=e3286] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/fFgrL_-IO5Nxc4?source=144
+                    - generic [ref=e3293]: read读图能力
+                  - link "abort问题" [ref=e3295] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/Gcrak9vcdZz6eC?source=144
+                    - generic [ref=e3302]: abort问题
+                  - link "kibina如何查超时数据" [ref=e3304] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/yVZHwFa35-P00U?source=144
+                    - generic [ref=e3311]: kibina如何查超时数据
+                  - link "压缩主要报错" [ref=e3313] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/adfDkllOdwQIaG?source=144
+                    - generic [ref=e3320]: 压缩主要报错
+                  - link "hooks验证" [ref=e3322] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/vV9I0pfF9Cx1-k?source=144
+                    - generic [ref=e3329]: hooks验证
+                  - link "Session Memory 压缩流程与原理" [ref=e3331] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/Qm40_NS0MF2vLI?source=144
+                    - generic [ref=e3338]: Session Memory 压缩流程与原理
+                  - link "微压缩（Microcompact）完整流程与原理" [ref=e3340] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/T43qRqATBLFVnM?source=144
+                    - generic [ref=e3347]: 微压缩（Microcompact）完整流程与原理
+                  - link "Full LLM Compact流程与原理" [ref=e3349] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/xdlOmidLvwWlyp?source=144
+                    - generic [ref=e3356]: Full LLM Compact流程与原理
+                  - link "压缩前哨：Tool Result Budget 与 Snip Compact 详解" [ref=e3358] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/xKoUZbgwOmFI5S?source=144
+                    - generic [ref=e3365]: 压缩前哨：Tool Result Budget 与 Snip Compact 详解
+                  - link "Context Collapse（上下文折叠）" [ref=e3367] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/rpMwWHBwrO7nhm?source=144
+                    - generic [ref=e3374]: Context Collapse（上下文折叠）
+                  - link "CC压缩(1)" [ref=e3376] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/y9JZU1PWuM4zMg?source=144
+                    - generic [ref=e3383]: CC压缩(1)
+                  - link "Comate Hooks 决策控制详解：deny / block / continue:false 的区别" [ref=e3385] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/flniOe486LZd7L?source=144
+                    - generic [ref=e3392]: Comate Hooks 决策控制详解：deny / block / continue:false 的区别
+                  - link "Comate Agent Hooks 完整指南（最新版）" [ref=e3394] [cursor=pointer]:
+                    - /url: /knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y?source=144
+                    - generic [ref=e3401]: Comate Agent Hooks 完整指南（最新版）
+            - img [ref=e3408] [cursor=pointer]
+    - generic [ref=e3412]:
+      - img [ref=e3415] [cursor=pointer]
+      - text: /
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic: 确定删除标签吗？
+          - generic:
+            - generic: 取消
+            - generic: 确定
+  - generic [ref=e3424]:
+    - button "取消" [ref=e3425] [cursor=pointer]
+    - button "确定" [ref=e3426] [cursor=pointer]
+  - textbox
+  - generic [ref=e3430]:
+    - button "取消" [ref=e3431] [cursor=pointer]
+    - button "确定" [ref=e3432] [cursor=pointer]
+  - textbox

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .breathe {
+        transform-origin: 8px 15px;
+        animation: breathe-squash 4.5s infinite ease-in-out;
+      }
+      .shadow-breathe {
+        transform-origin: 8px 22px;
+        animation: shadow-pulse 4.5s infinite ease-in-out;
+      }
+      .z-particle { opacity: 0; }
+      .z1 { animation: float-1 6s infinite ease-in-out; }
+      .z2 { animation: float-2 6s infinite ease-in-out; animation-delay: 2s; }
+      .z3 { animation: float-3 6s infinite ease-in-out; animation-delay: 4s; }
+      @keyframes breathe-squash {
+        0%, 80%, 100% { transform: scale(1, 1); }
+        30%, 40% { transform: scale(1.02, 0.95); }
+      }
+      @keyframes shadow-pulse {
+        0%, 80%, 100% { transform: scaleX(1); opacity: 0.25; }
+        30%, 40% { transform: scaleX(1.08); opacity: 0.35; }
+      }
+      @keyframes float-1 {
+        0% { transform: translate(15px, 0px) scale(0.4); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translate(20px, -15px) scale(1.1); opacity: 0; }
+      }
+      @keyframes float-2 {
+        0% { transform: translate(18px, 2px) scale(0.3); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translate(22px, -12px) scale(1.0); opacity: 0; }
+      }
+      @keyframes float-3 {
+        0% { transform: translate(14px, -2px) scale(0.5); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translate(18px, -18px) scale(1.2); opacity: 0; }
+      }
+    </style>
+    <clipPath id="bodyClip"><ellipse cx="8" cy="14" rx="16" ry="7"/></clipPath>
+    <g id="pixel-z">
+      <rect x="0" y="0" width="4" height="1"/>
+      <rect x="2" y="1" width="1" height="1"/>
+      <rect x="1" y="2" width="1" height="1"/>
+      <rect x="0" y="3" width="4" height="1"/>
+    </g>
+    <g id="pixel-z-small">
+      <rect x="0" y="0" width="3" height="1"/>
+      <rect x="1" y="1" width="1" height="1"/>
+      <rect x="0" y="2" width="3" height="1"/>
+    </g>
+  </defs>
+  <ellipse class="shadow-breathe" cx="8" cy="22" rx="14" ry="2.5" fill="#000000"/>
+  <g class="zzz-particles">
+    <use href="#pixel-z" class="z-particle z1" fill="#90A4AE"/>
+    <use href="#pixel-z-small" class="z-particle z2" fill="#B0BEC5"/>
+    <use href="#pixel-z" class="z-particle z3" fill="#CFD8DC"/>
+  </g>
+  <g class="breathe">
+    <g clip-path="url(#bodyClip)">
+      <ellipse cx="-8" cy="10" rx="24" ry="12" fill="#E65100"/>
+      <ellipse cx="16" cy="16" rx="22" ry="10" fill="#2D2D2D"/>
+    </g>
+    <g fill="#FFFFFF">
+      <rect x="3" y="12" width="3" height="0.8" rx="0.4"/>
+      <rect x="10" y="12" width="3" height="0.8" rx="0.4"/>
+    </g>
+    <path d="M 6.5 15 Q 8 15.8 9.5 15" stroke="#FFFFFF" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.6"/>
+  </g>
+</svg>

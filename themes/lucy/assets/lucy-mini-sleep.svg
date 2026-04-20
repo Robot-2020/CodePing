@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .sleep-breathe { transform-origin: 8px 15px; animation: sleep-breath 4s infinite ease-in-out; }
+      .z-particle { opacity: 0; }
+      .z1 { animation: float-z 5s infinite ease-in-out; }
+      .z2 { animation: float-z 5s infinite ease-in-out; animation-delay: 1.7s; }
+      .z3 { animation: float-z 5s infinite ease-in-out; animation-delay: 3.4s; }
+      @keyframes sleep-breath { 0%, 100% { transform: rotate(-12deg) scale(1, 1); } 50% { transform: rotate(-12deg) scale(1.02, 0.96); } }
+      @keyframes float-z { 0% { transform: translate(18px, 0px) scale(0.4); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translate(25px, -15px) scale(1); opacity: 0; } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+    <g id="pixel-z"><rect x="0" y="0" width="4" height="1"/><rect x="2" y="1" width="1" height="1"/><rect x="1" y="2" width="1" height="1"/><rect x="0" y="3" width="4" height="1"/></g>
+    <g id="pixel-z-small"><rect x="0" y="0" width="3" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="0" y="2" width="3" height="1"/></g>
+  </defs>
+  <g class="zzz-particles">
+    <use href="#pixel-z" class="z-particle z1" fill="#90A4AE"/>
+    <use href="#pixel-z-small" class="z-particle z2" fill="#B0BEC5"/>
+    <use href="#pixel-z" class="z-particle z3" fill="#CFD8DC"/>
+  </g>
+  <g class="sleep-breathe">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g fill="#FFFFFF"><rect x="3" y="6" width="3" height="0.8" rx="0.4"/><rect x="10" y="6" width="3" height="0.8" rx="0.4"/></g>
+        <path d="M 6.5 11 Q 8 12 9.5 11" stroke="#FFFFFF" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.6"/>
+  </g>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .body-exhausted {
+        transform-origin: 8px 15px;
+        animation: heavy-breathe 2.5s infinite ease-in-out;
+      }
+      .smoke { opacity: 0; animation: puff-smoke 3s infinite ease-out; }
+      .sm1 { animation-delay: 0s; }
+      .sm2 { animation-delay: 1s; }
+      .sm3 { animation-delay: 2s; }
+      .error-warning { animation: error-flash 0.8s infinite ease-in-out; }
+      .sweat { animation: sweat-drop 2s infinite ease-in; }
+      @keyframes heavy-breathe {
+        0%, 100% { transform: scale(1, 1) translateY(0); }
+        50% { transform: scale(1.05, 0.92) translateY(1px); }
+      }
+      @keyframes puff-smoke {
+        0% { transform: translate(8px, 0px) scale(0.5); opacity: 0; }
+        20% { opacity: 0.6; }
+        100% { transform: translate(8px, -20px) scale(2); opacity: 0; }
+      }
+      @keyframes error-flash {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.15; }
+      }
+      @keyframes sweat-drop {
+        0% { transform: translateY(0); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(10px); opacity: 0; }
+      }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+    <g id="smoke-puff">
+      <circle cx="0" cy="0" r="2" fill="#B0BEC5"/>
+      <circle cx="2" cy="-1" r="2" fill="#CFD8DC"/>
+    </g>
+  </defs>
+  <ellipse cx="8" cy="22" rx="12" ry="2" fill="#000000" opacity="0.3"/>
+  <g>
+    <use href="#smoke-puff" class="smoke sm1"/>
+    <use href="#smoke-puff" class="smoke sm2" transform="translate(-2, 0)"/>
+    <use href="#smoke-puff" class="smoke sm3" transform="translate(2, 0)"/>
+  </g>
+  <g class="body-exhausted">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round">
+      <line x1="3" y1="5" x2="6" y2="8"/>
+      <line x1="6" y1="5" x2="3" y2="8"/>
+      <line x1="10" y1="5" x2="13" y2="8"/>
+      <line x1="13" y1="5" x2="10" y2="8"/>
+    </g>
+    <path d="M 5 12 Q 6.5 10.5 8 12 Q 9.5 13.5 11 12" stroke="#FFFFFF" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+    <path class="sweat" d="M 18 2 Q 19 4 18 6 Q 17 4 18 2 Z" fill="#64B5F6"/>
+  </g>
+  <g class="error-warning">
+    <text x="8" y="-8" text-anchor="middle" font-family="Arial" font-size="4" font-weight="700" fill="#FF3B30">ERROR</text>
+  </g>
+</svg>

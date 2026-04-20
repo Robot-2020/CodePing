@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .carry-wobble { transform-origin: 8px 20px; animation: carry-walk 0.6s infinite ease-in-out; }
+      .box-bounce { animation: box-bob 0.6s infinite ease-in-out; }
+      .eyes-strain { animation: strain-squint 2s infinite ease-in-out; }
+      @keyframes carry-walk { 0%, 100% { transform: translateX(-1px) rotate(-2deg); } 50% { transform: translateX(1px) rotate(2deg); } }
+      @keyframes box-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+      @keyframes strain-squint { 0%, 90%, 100% { transform: scaleY(0.5); } 95% { transform: scaleY(0.1); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g class="box-bounce" transform="translate(0, -18)">
+    <rect x="0" y="0" width="16" height="12" fill="#8B4513" rx="1"/>
+    <rect x="2" y="2" width="12" height="8" fill="#A0522D"/>
+    <line x1="8" y1="0" x2="8" y2="12" stroke="#6B3E26" stroke-width="1"/>
+    <line x1="0" y1="6" x2="16" y2="6" stroke="#6B3E26" stroke-width="1"/>
+  </g>
+  <g class="carry-wobble">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g class="eyes-strain" fill="#FFFFFF"><ellipse cx="5" cy="6" rx="1" ry="0.6"/><ellipse cx="11" cy="6" rx="1" ry="0.6"/></g>
+    <path d="M 5 11 Q 8 9.5 11 11" stroke="#FFFFFF" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

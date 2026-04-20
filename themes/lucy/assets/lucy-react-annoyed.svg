@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .annoyed-shake {
+        transform-origin: 8px 8px;
+        animation: shake 0.15s infinite ease-in-out;
+      }
+
+      .sweat { animation: sweat-drop 1.5s infinite ease-in; }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(-1px); }
+        50% { transform: translateX(1px); }
+      }
+
+      @keyframes sweat-drop {
+        0% { transform: translateY(0); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(8px); opacity: 0; }
+      }
+    </style>
+    <clipPath id="bodyClip">
+      <circle cx="8" cy="8" r="14"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+
+  <g class="annoyed-shake">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    
+    <g fill="#FFFFFF">
+      <ellipse cx="5" cy="6" rx="1" ry="0.5"/>
+      <ellipse cx="11" cy="6" rx="1" ry="0.5"/>
+    </g>
+    
+    <path d="M 5 11 L 11 11" stroke="#FFFFFF" stroke-width="0.9" stroke-linecap="round"/>
+    
+    <path d="M 16 -2 L 18 0 L 16 2 L 18 0 L 20 -2 L 18 0 L 20 2" stroke="#FF6B6B" stroke-width="0.8" fill="none"/>
+  </g>
+
+  <path class="sweat" d="M -6 4 Q -5 6 -6 8 Q -7 6 -6 4 Z" fill="#64B5F6"/>
+</svg>

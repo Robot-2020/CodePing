@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .think-pulse { transform-origin: 8px 8px; animation: think 2s infinite ease-in-out; }
+      .thought-bubble { opacity: 0; animation: bubble-float 3s infinite ease-out; }
+      .tb1 { animation-delay: 0s; }
+      .tb2 { animation-delay: 1s; }
+      .tb3 { animation-delay: 2s; }
+      .eyes-think { animation: look-up 4s infinite ease-in-out; }
+      @keyframes think { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.02, 0.98); } }
+      @keyframes bubble-float {
+        0% { transform: translate(18px, 2px) scale(0.3); opacity: 0; }
+        20% { opacity: 0.8; }
+        100% { transform: translate(22px, -12px) scale(1); opacity: 0; }
+      }
+      @keyframes look-up { 0%, 100% { transform: translateY(-0.5px); } 50% { transform: translateY(-1px); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g fill="#FFFFFF" opacity="0.6">
+    <circle class="thought-bubble tb1" r="1.5"/>
+    <circle class="thought-bubble tb2" r="2"/>
+    <circle class="thought-bubble tb3" r="1"/>
+  </g>
+  <g class="think-pulse">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g class="eyes-think" fill="#FFFFFF">
+      <circle cx="5" cy="5" r="1"/>
+      <circle cx="11" cy="5" r="1"/>
+    </g>
+    <ellipse cx="8" cy="12" rx="1" ry="0.5" fill="#FFFFFF" opacity="0.5"/>
+  </g>
+  <text x="22" y="-5" font-family="Arial" font-size="6" fill="#FFC107">?</text>
+</svg>

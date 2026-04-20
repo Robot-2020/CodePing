@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .double-squash {
+        transform-origin: 8px 20px;
+        animation: double-react 0.5s ease-out forwards;
+      }
+
+      @keyframes double-react {
+        0% { transform: scale(1, 1); }
+        30% { transform: scale(1.15, 0.85); }
+        60% { transform: scale(0.9, 1.1); }
+        100% { transform: scale(1, 1); }
+      }
+    </style>
+    <clipPath id="bodyClip">
+      <circle cx="8" cy="8" r="14"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+
+  <g class="double-squash">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    
+    <g fill="#FFFFFF">
+      <circle cx="5" cy="6" r="1.5"/>
+      <circle cx="11" cy="6" r="1.5"/>
+    </g>
+    
+    <ellipse cx="8" cy="12" rx="2" ry="2" fill="#3D3D3D"/>
+  </g>
+
+  <g fill="#FFD700" opacity="0.8">
+    <circle cx="-8" cy="0" r="1.2"/>
+    <circle cx="24" cy="-2" r="0.8"/>
+    <circle cx="-6" cy="12" r="0.8"/>
+  </g>
+</svg>

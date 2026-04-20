@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .breathe-anim {
+        transform-origin: 8px 8px;
+        animation: breathe 3.2s infinite ease-in-out;
+      }
+      .eyes-doze {
+        transform-origin: 8px 6px;
+        animation: doze-blink 5s infinite ease-in-out;
+      }
+      #eyes-js, #body-js, #shadow-js { transition: transform 0.2s ease-out; }
+      #shadow-js { transform-origin: 8px 22px; }
+      @keyframes breathe {
+        0%, 100% { transform: scale(1, 1); }
+        50% { transform: scale(1.02, 0.98); }
+      }
+      @keyframes doze-blink {
+        0%, 80%, 100% { transform: scaleY(0.3); }
+        85% { transform: scaleY(0.1); }
+        90% { transform: scaleY(0.3); }
+      }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <g id="shadow-js"><ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/></g>
+  <g id="body-js">
+    <g class="breathe-anim">
+      <g clip-path="url(#bodyClip)">
+        <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+        <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+      </g>
+      <g id="eyes-js" fill="#FFFFFF">
+        <g id="eyes-doze" class="eyes-doze">
+          <ellipse cx="5" cy="6" rx="1" ry="0.5"/>
+          <ellipse cx="11" cy="6" rx="1" ry="0.5"/>
+        </g>
+      </g>
+      <ellipse cx="8" cy="11" rx="1.2" ry="0.6" fill="#FFFFFF" opacity="0.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .enter-slide { animation: slide-in 0.5s ease-out forwards; }
+      @keyframes slide-in { 0% { transform: translateX(20px) rotate(-12deg); opacity: 0; } 100% { transform: translateX(0) rotate(-12deg); opacity: 1; } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <g class="enter-slide">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g fill="#FFFFFF"><circle cx="5" cy="6" r="1"/><circle cx="11" cy="6" r="1"/></g>
+    <path d="M 6 11 Q 8 13 10 11" stroke="#FFFFFF" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

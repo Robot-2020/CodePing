@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .build-body { transform-origin: 8px 20px; animation: build-bounce 0.5s infinite ease-in-out; }
+      .block { animation: block-place 2s infinite ease-out; }
+      .b1 { animation-delay: 0s; } .b2 { animation-delay: 0.5s; } .b3 { animation-delay: 1s; }
+      .eyes-build { animation: build-focus 2s infinite ease-in-out; }
+      @keyframes build-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+      @keyframes block-place { 0%, 10% { transform: translateY(-10px); opacity: 0; } 20%, 90% { transform: translateY(0); opacity: 1; } 100% { opacity: 1; } }
+      @keyframes build-focus { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.5px); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g transform="translate(20, 10)">
+    <rect class="block b1" x="0" y="6" width="6" height="4" fill="#FF6B6B" rx="0.5"/>
+    <rect class="block b2" x="0" y="2" width="6" height="4" fill="#4ECDC4" rx="0.5"/>
+    <rect class="block b3" x="0" y="-2" width="6" height="4" fill="#FFE66D" rx="0.5"/>
+  </g>
+  <g class="build-body">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g class="eyes-build" fill="#FFFFFF"><circle cx="5" cy="5" r="1"/><circle cx="11" cy="5" r="1"/></g>
+    <path d="M 6 11 L 10 11" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,180 @@
+[     306ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/user/name:0
+[     315ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/sitemessage/latest?active=true:0
+[     401ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/review/changes/N/quantity?repoName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     401ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/repo/info?repoFullName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     448ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/repo/getRepoSetting?repoFullName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     453ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/announcement/repo?repo=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     306ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/user/name:0
+[     315ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/sitemessage/latest?active=true:0
+[     401ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/review/changes/N/quantity?repoName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     401ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/repo/info?repoFullName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     448ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/repo/getRepoSetting?repoFullName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     453ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/announcement/repo?repo=baidu%2Fdevops-ai%2Fcomate-copet:0
+[     689ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://console.cloud.baidu-int.com/api/icode/rest/git/branch/all?repo=baidu%2Fdevops-ai%2Fcomate-copet&withDetails=false:0
+[    1571ms] [LOG] %cPerformance%cdns 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       0 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%ctcp 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       0 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%creq 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       1 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cres 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       0 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cdct 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       321 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cload 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       0 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cdomready 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       195 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cfinish 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       510 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%cwhiteScreen 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       192 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%csubAppStart 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       533 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1572ms] [LOG] %cPerformance%clogin 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       327 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    1578ms] [LOG] %cPerformance%cfp 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       212 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    2188ms] [LOG] 
+    ^ ^      |             Hi, wuzhiao             |
+|    o    .:[I]:_       Welcome to iCode        ,:[I]:.
+|       .: :[C]: :-.     _= ET@baidu =_      ,-: :[C]: :.
+|     .: : :[O]: : :`._                   ,.': : :[O]: : :.
+| _..: : : :[D]: : : : : :-._________.-: : : : : :[D]: : : :-._
+| ^^^^^^^^^^[E]^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[E]^^^^^^^^^^
+|           [|]                                   [|]
+|  ~~^-_~^~~|||~^-~^~_~^-~_^~-^~_^~~-^~_~^~-^~_^~~|||~^-~_~^--
+| @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:9984
+[    2429ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2429ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2604ms] [WARNING] ⚠️ React Router Future Flag Warning: The persistence behavior of fetchers is changing in v7. You can use the `v7_fetcherPersist` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_fetcherpersist. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2604ms] [WARNING] ⚠️ React Router Future Flag Warning: Casing of `formMethod` fields is being normalized to uppercase in v7. You can use the `v7_normalizeFormMethod` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_normalizeformmethod. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2604ms] [WARNING] ⚠️ React Router Future Flag Warning: `RouterProvider` hydration behavior is changing in v7. You can use the `v7_partialHydration` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_partialhydration. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2604ms] [WARNING] ⚠️ React Router Future Flag Warning: The revalidation behavior after 4xx/5xx `action` responses is changing in v7. You can use the `v7_skipActionErrorRevalidation` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_skipactionerrorrevalidation. @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.7729508c8b8f947e0057.js:410
+[    2683ms] [LOG] %cPerformance%cfcp 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       688 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    2683ms] [LOG] %cPerformance%clcp 
+        background: #606060;
+        color: white;
+        padding: 1px 10px;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+       
+        background: #1475b2; color: white; padding: 1px 10px;
+        border-top-right-radius: 3px;border-bottom-right-radius: 3px;
+       1812 @ https://icloud-static.cdn.bcebos.com/framework/assets/performance.96f2c185c2fc32a0a496.js:1
+[    2741ms] [INFO] WebSocket 建立连接： null @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/websocketRefs.54586c1d4db49edbb29c.js:50
+[    3021ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://baidu-ide.bj.bcebos.com/codeSearch/doc/goDoc/baidu/devops-ai/comate-copet/package.json:0
+[    3022ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://console.cloud.baidu-int.com/api/icode/rest/ai/wiki/wikiManagement/getLatestWikiTaskInfo?repoName=baidu%2Fdevops-ai%2Fcomate-copet:0
+[    3025ms] [ERROR] iCode 请求报错，x-bce-request-id: 0a871b7d-970c-4123-995c-0bed7d2acb14 @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:9848
+[    3025ms] [ERROR] IcodeRequestError: [404] wiki task not found
+    at Xp (https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:9863:15)
+    at UP (https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:9879:14)
+    at P (https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:9282:138)
+    at async bA (https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:3158:17)
+    at async https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:3254:20 @ https://now.bdstatic.com/store/v2/f61bb8b/comate-stack-fe/ab809ed/index.js:3196
+[    3109ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://console.cloud.baidu-int.com/api/icode/rest/files/blob/get/fileraw?repo=baidu%2Fdevops-ai%2Fcomate-copet&commit=main&path=package.json:0

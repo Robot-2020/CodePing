@@ -1,0 +1,81 @@
+[     615ms] [WARNING] KU_QUERY配置表中的 from 字段重复设置，请在@/constants/common/searchParamKeys中检查 @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4077.698939d7.js:0
+[     668ms] [WARNING] [morpho] duplicated identifier name static. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     668ms] [LOG] %cInfo%c%s background-color:#3C9DFF;color:#fff;padding:2px 3px;border-radius:3px;margin-right:7px color:#3C9DFF;margin-right:7px 未开启info日志打印 @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     669ms] [WARNING] [morpho] expected 0 non-injected parameters but 1 parameters are provided. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     724ms] [WARNING] [morpho] duplicated identifier name hyperLinkService. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     725ms] [WARNING] [morpho] duplicated identifier name morpho-context-menu. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     726ms] [WARNING] [morpho] duplicated identifier name static. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     726ms] [WARNING] [morpho] duplicated identifier name microEditorService. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[     766ms] [INFO] [33m[Infoflow-Logger:ClientReportAPI][0m window.BdHiJs.service.channel.report isn't exist or not a function. @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/1291.790ca447.js:0
+[     785ms] [LOG] ReactDOM.render---------------- @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[     851ms] [LOG] 日志：query接口失败, 触发loginWithAuth: ---------------- null https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/Q9PgJKH-wy/4bcyl5G1QLO3-Y @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:0
+[    1374ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1375ms] [INFO] 收到RTE通知，数据是: {type: keyboard, action: hide, data: Object, info: 文档标题变更} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1398ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1398ms] [INFO] 收到RTE通知，数据是: {type: init, action: start, data: Object, info: 文档初始化开始} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1398ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1398ms] [INFO] 收到RTE通知，数据是: {type: init, action: pageStart, data: Object, info: 切换文档初始化} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1400ms] [LOG] kuPiper wideScreenDefault-原有逻辑--------------- @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1400ms] [INFO] trigger set document scroll position, position: null @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:0
+[    1554ms] [LOG] WizNoPermissionError: "need permission ur or ur-mv"
+    at operateAxiosResult (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:1:124700)
+    at _callee$ (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:1:128045)
+    at https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:167097
+    at Generator.<anonymous> (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:163151)
+    at Generator.next (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:165641)
+    at asyncGeneratorStep (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:237349)
+    at _next (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:237572) @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1626ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1626ms] [INFO] 收到RTE通知，数据是: {type: ws, action: connect:success, data: Object, info: ws连接成功} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1626ms] [LOG] 日志：ws--success------- 0 false undefined  @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1626ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1626ms] [INFO] 收到RTE通知，数据是: {type: log, action: special, data: Object, info: ws连接成功} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1697ms] [LOG] script load @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[    1815ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1816ms] [INFO] 收到RTE通知，数据是: {type: init, action: doc:end, data: Object, info: RTE获取文档内容完成，编辑器开始渲染} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1906ms] [LOG] %cWarn%c%s %o background-color:#F39019;color:#fff;padding:2px 3px;border-radius:3px;margin-right:7px color:#F39019;margin-right:7px [morpho][collaboration-gaze]: Element not rendered {type: paragraph, blockId: docyg-da4906c7-36e7-11f1-8600-bf1f07b2cc37, children: Array(2), diffId: cqD8zD0K} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[    1908ms] [LOG] %cWarn%c%s %o background-color:#F39019;color:#fff;padding:2px 3px;border-radius:3px;margin-right:7px color:#F39019;margin-right:7px [morpho][collaboration-gaze]: Element not rendered {type: paragraph, blockId: docyg-da4906c7-36e7-11f1-8600-bf1f07b2cc37, children: Array(2), diffId: cqD8zD0K} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/realtime.2f0f88b7.js:0
+[    1925ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1925ms] [INFO] 收到RTE通知，数据是: {type: editor, action: slide:init, data: Object, info: 卡片模式状态} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1930ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1931ms] [INFO] 收到RTE通知，数据是: {type: init, action: end, data: Object, info: 文档初始化完毕} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1996ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1996ms] [INFO] 收到RTE通知，数据是: {type: perfInfo, action: , data: Object, info: } @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1996ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    1996ms] [INFO] 收到RTE通知，数据是: {type: dom, action: fsDomReady, data: Object, info: 首屏dom渲染完成} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    2168ms] [ERROR] get meeting docs error: WizKnownError: Forbidden
+    at operateAxiosResult (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:1:124958)
+    at _callee$ (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:1:128045)
+    at https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:167097
+    at Generator.<anonymous> (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:163151)
+    at Generator.next (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:165641)
+    at asyncGeneratorStep (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:237349)
+    at _next (https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/4679.be2d9b21.js:1:237572) @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/8540.aa716e2b.js:0
+[    2398ms] [INFO] ======>check docIsEmpty: false @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    2398ms] [INFO] ======>check docIsEmptyWithSpace: false @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    2518ms] [LOG] [ku-tool-sdk]: 方法 on 被调用了， 参数是: [NEW_VERSION, ] 工具 ID 为：dc7e64f5 @ https://ops-wps.cdn.bcebos.com/rlkb-extension/EE-iAPI%E5%B7%A5%E5%85%B7/bundle.js?v=1776600666:1
+[    2561ms] [LOG] [ku-tool-sdk]: 方法 createContentExtension 被调用了， 参数是: [Array(1)] 工具 ID 为：schedule-list @ https://ops-wps.cdn.bcebos.com/rlkb-extension/schedule-list/bundle.js?v=1776600666:1
+[    2785ms] [LOG] 创建cmd的实力 @ https://developer.baidu-int.com/workflow/api/engine-pre/js-rcv/flowSDK.js?sceneId=knowledge&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzVG9rZW4iOiJTVC0xMjUyNzE3MjQ0ODExMTczODkxLU5Wa2ZTcU1GcmFMaWZFUlZKWndJLXNlc3Npb24iLCJmcm9tQXBwS2V5IjoidXVhcGNsaWVudC01ODQ3MjkzMDQ2NDM0MDM3Nzcta3NkT2ciLCJpc3MiOiJ1dWFwIiwicFRva2VuIjoiUFQtMTI1MjcxNzI0NDgxMTE3Mzg5MC1lMDVMYkIydGpKVmZmTGR6V2NLWC1zZXNzaW9uIiwiZXhwIjoxNzc2NjA0MjY1LCJpYXQiOjE3NzY2MDA1NzUsInR0bCI6IjM2MDAiLCJqdGkiOiIxMjUyNzE3MjQ0ODExMTczODkyIn0.WeDC6kySunMtMIcKh8nccFuUfW7yZe6pwKnZ_CQuU-Q:0
+[    2799ms] [INFO] [33m[Infoflow-Logger:init][0m 没有初始化。请调用 init 函数进行初始化 @ https://developer.baidu-int.com/workflow/api/engine-pre/js-rcv/flowSDK.js?sceneId=knowledge&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzVG9rZW4iOiJTVC0xMjUyNzE3MjQ0ODExMTczODkxLU5Wa2ZTcU1GcmFMaWZFUlZKWndJLXNlc3Npb24iLCJmcm9tQXBwS2V5IjoidXVhcGNsaWVudC01ODQ3MjkzMDQ2NDM0MDM3Nzcta3NkT2ciLCJpc3MiOiJ1dWFwIiwicFRva2VuIjoiUFQtMTI1MjcxNzI0NDgxMTE3Mzg5MC1lMDVMYkIydGpKVmZmTGR6V2NLWC1zZXNzaW9uIiwiZXhwIjoxNzc2NjA0MjY1LCJpYXQiOjE3NzY2MDA1NzUsInR0bCI6IjM2MDAiLCJqdGkiOiIxMjUyNzE3MjQ0ODExMTczODkyIn0.WeDC6kySunMtMIcKh8nccFuUfW7yZe6pwKnZ_CQuU-Q:0
+[    2841ms] [LOG] [ku-tool-sdk]: 方法 lodash 被调用了， 参数是: [] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2841ms] [LOG] [ku-tool-sdk]: 方法 createServiceExtensionWithVersion 被调用了， 参数是: [Array(1)] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2842ms] [LOG] [ku-tool-sdk]: 方法 isInKuShare 被调用了， 参数是: [] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2842ms] [LOG] [ku-tool-sdk]: 方法 lodash 被调用了， 参数是: [] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2842ms] [LOG] [ku-tool-sdk]: 方法 getRegisteredHotkeys 被调用了， 参数是: [] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2842ms] [LOG] [ku-tool-sdk]: 方法 hotkeyTrim 被调用了， 参数是: [esc] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    2842ms] [LOG] [ku-tool-sdk]: 方法 registerKuHotKey 被调用了， 参数是: [Object] 工具 ID 为：find-replace @ https://ops-wps.cdn.bcebos.com/rlkb-extension/find-replace/bundle.js?v=1776600666:1
+[    3082ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    3082ms] [INFO] 收到RTE通知，数据是: {type: dom, action: domReady, data: Object, info: 全量dom渲染完成} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    3115ms] [LOG] [Object] @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    3115ms] [INFO] 收到RTE通知，数据是: {type: comment, action: init, data: Object} @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    3514ms] [INFO] ======>check docIsEmpty: false @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    3514ms] [INFO] ======>check docIsEmptyWithSpace: false @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/main.feb2b600.js:0
+[    4067ms] [INFO] [system] tcp (ssl): 52 ms (24ms) @ https://ops-wps.cdn.bcebos.com/rlkb-wiki/249386383/static/js/6353.af238ca2.js:0
+[    4134ms] [INFO] Download the Vue Devtools extension for a better development experience:
+https://github.com/vuejs/vue-devtools @ https://dongting.cdn.bcebos.com/dongting-front/prod/dongting.min.js?t=1776600666852:1
+[    4134ms] [INFO] You are running Vue in development mode.
+Make sure to turn on production mode when deploying for production.
+See more tips at https://vuejs.org/guide/deployment.html @ https://dongting.cdn.bcebos.com/dongting-front/prod/dongting.min.js?t=1776600666852:1
+[    4321ms] [LOG] {__ob__: t} @ https://dongting.cdn.bcebos.com/dongting-front/prod/20260206185746/script/main.0a180f9d.min.js:0
+[    6687ms] [LOG] AIGC多模渲染引擎--check---initLogged---- false @ https://ops-wps.cdn.bcebos.com/AIChatPluginV4/index.js?v=1768483768976:0
+[    7774ms] [LOG] AIGC多模渲染引擎--check---initLogged---- false @ :2

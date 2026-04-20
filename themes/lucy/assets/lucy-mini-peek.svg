@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .peek-anim { transform-origin: 8px 15px; animation: peek 2s infinite ease-in-out; }
+      .eyes-peek { animation: peek-look 2s infinite ease-in-out; }
+      @keyframes peek { 0%, 100% { transform: rotate(-15deg) translateX(5px); } 50% { transform: rotate(-8deg) translateX(0px); } }
+      @keyframes peek-look { 0%, 100% { transform: translate(-0.5px, 0); } 50% { transform: translate(0.5px, 0); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <g class="peek-anim">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g class="eyes-peek" fill="#FFFFFF"><circle cx="5" cy="6" r="1"/><circle cx="11" cy="6" r="1"/></g>
+    <ellipse cx="8" cy="11" rx="1" ry="0.6" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+</svg>

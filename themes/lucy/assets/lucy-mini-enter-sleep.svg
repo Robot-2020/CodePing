@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .sleep-enter { animation: enter-sleep 1s ease-out forwards; }
+      @keyframes enter-sleep { 0% { transform: rotate(-12deg) scale(1, 1); } 50% { transform: rotate(-12deg) scale(1.05, 0.95); } 100% { transform: rotate(-12deg) scale(1.1, 0.8); } }
+    </style>
+    <clipPath id="bodyClip"><circle cx="8" cy="8" r="14"/></clipPath>
+  </defs>
+  <g class="sleep-enter">
+    <g clip-path="url(#bodyClip)">
+      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    </g>
+    <g fill="#FFFFFF"><rect x="3" y="6" width="3" height="0.8" rx="0.4"/><rect x="10" y="6" width="3" height="0.8" rx="0.4"/></g>
+    <ellipse cx="8" cy="11" rx="1" ry="0.5" fill="#FFFFFF" opacity="0.5"/>
+  </g>
+</svg>

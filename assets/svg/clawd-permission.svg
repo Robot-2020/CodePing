@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15 -25 45 45" width="500" height="500">
+  <defs>
+    <style>
+      /* 2s loop: frantic jumping + shaking */
+
+      .body-anim {
+        transform-origin: 7.5px 15px;
+        animation: body-jump 2s infinite ease-in-out;
+      }
+
+      .shadow-anim {
+        transform-origin: 7.5px 15.5px;
+        animation: shadow-pulse 2s infinite ease-in-out;
+      }
+
+      .eyes-look {
+        transform-origin: 7.5px 9px;
+        animation: eye-panic 2s infinite ease-in-out;
+      }
+
+      .arm-l {
+        transform-origin: 1px 10px;
+        animation: arm-frantic-l 2s infinite ease-in-out;
+      }
+      .arm-r {
+        transform-origin: 14px 10px;
+        animation: arm-frantic-r 2s infinite ease-in-out;
+      }
+
+      .alert-pop {
+        transform-origin: 16px -1px;
+        animation: alert-bounce 0.5s infinite ease-in-out;
+      }
+
+      .whole-body {
+        animation: body-shake 0.15s infinite ease-in-out;
+        transform-origin: 7.5px 10px;
+      }
+
+      /* --- Keyframes --- */
+
+      @keyframes body-shake {
+        0%, 100% { transform: rotate(-3deg); }
+        50% { transform: rotate(3deg); }
+      }
+
+      @keyframes body-jump {
+        0%          { transform: translate(0, 0) scale(1, 1); }
+        5%          { transform: translate(0, 2px) scale(1.08, 0.92); }
+        15%         { transform: translate(0, -15px) scale(0.92, 1.08); }
+        25%         { transform: translate(0, 2px) scale(1.08, 0.92); }
+        35%         { transform: translate(0, -12px) scale(0.94, 1.06); }
+        45%         { transform: translate(0, 2px) scale(1.06, 0.94); }
+        55%         { transform: translate(0, -10px) scale(0.95, 1.05); }
+        65%         { transform: translate(0, 2px) scale(1.05, 0.95); }
+        75%         { transform: translate(0, -8px) scale(0.96, 1.04); }
+        85%         { transform: translate(0, 1px) scale(1.03, 0.97); }
+        100%        { transform: translate(0, 0) scale(1, 1); }
+      }
+
+      @keyframes shadow-pulse {
+        0%          { transform: scale(1); opacity: 0.5; }
+        5%          { transform: scale(1.15); opacity: 0.6; }
+        15%         { transform: scale(0.3); opacity: 0.1; }
+        25%         { transform: scale(1.2); opacity: 0.6; }
+        35%         { transform: scale(0.35); opacity: 0.1; }
+        45%         { transform: scale(1.15); opacity: 0.55; }
+        55%         { transform: scale(0.4); opacity: 0.15; }
+        65%         { transform: scale(1.1); opacity: 0.5; }
+        75%         { transform: scale(0.5); opacity: 0.2; }
+        85%         { transform: scale(1.05); opacity: 0.5; }
+        100%        { transform: scale(1); opacity: 0.5; }
+      }
+
+      @keyframes eye-panic {
+        0%, 100%    { transform: translate(0, 0) scaleY(1); }
+        10%         { transform: translate(-2px, 0) scaleY(0.3); }
+        20%         { transform: translate(2px, 0) scaleY(1); }
+        30%         { transform: translate(-2px, 0) scaleY(0.3); }
+        40%         { transform: translate(2px, 0) scaleY(1); }
+        50%         { transform: translate(0, 0) scaleY(0.3); }
+        60%         { transform: translate(0, 0) scaleY(1); }
+      }
+
+      @keyframes arm-frantic-l {
+        0%          { transform: rotate(0deg); }
+        10%         { transform: rotate(160deg); }
+        20%         { transform: rotate(100deg); }
+        30%         { transform: rotate(170deg); }
+        40%         { transform: rotate(90deg); }
+        50%         { transform: rotate(160deg); }
+        60%         { transform: rotate(80deg); }
+        70%         { transform: rotate(140deg); }
+        80%         { transform: rotate(60deg); }
+        90%         { transform: rotate(30deg); }
+        100%        { transform: rotate(0deg); }
+      }
+
+      @keyframes arm-frantic-r {
+        0%          { transform: rotate(0deg); }
+        10%         { transform: rotate(-160deg); }
+        20%         { transform: rotate(-100deg); }
+        30%         { transform: rotate(-170deg); }
+        40%         { transform: rotate(-90deg); }
+        50%         { transform: rotate(-160deg); }
+        60%         { transform: rotate(-80deg); }
+        70%         { transform: rotate(-140deg); }
+        80%         { transform: rotate(-60deg); }
+        90%         { transform: rotate(-30deg); }
+        100%        { transform: rotate(0deg); }
+      }
+
+      @keyframes alert-bounce {
+        0%, 100%    { opacity: 1; transform: scale(1) rotate(-5deg); }
+        25%         { opacity: 1; transform: scale(1.3) rotate(5deg); }
+        50%         { opacity: 0.8; transform: scale(0.9) rotate(-5deg); }
+        75%         { opacity: 1; transform: scale(1.2) rotate(5deg); }
+      }
+    </style>
+  </defs>
+
+  <!-- Mirrored character with shake -->
+  <g class="whole-body">
+    <g transform="translate(15, 0) scale(-1, 1)">
+      <rect class="shadow-anim" x="3" y="15" width="9" height="1" fill="#000000"/>
+
+      <g class="body-anim">
+        <g fill="#DE886D">
+          <rect x="3" y="13" width="1" height="2"/>
+          <rect x="5" y="13" width="1" height="2"/>
+          <rect x="9" y="13" width="1" height="2"/>
+          <rect x="11" y="13" width="1" height="2"/>
+          <rect x="2" y="6" width="11" height="7"/>
+          <g class="arm-l">
+            <rect x="0" y="9" width="2" height="2"/>
+          </g>
+          <g class="arm-r">
+            <rect x="13" y="9" width="2" height="2"/>
+          </g>
+        </g>
+        <g class="eyes-look" fill="#000000">
+          <rect x="4" y="8" width="1" height="2"/>
+          <rect x="10" y="8" width="1" height="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Larger exclamation mark with bounce -->
+  <g class="alert-pop" fill="#FF3D00">
+    <rect x="14" y="-10" width="3" height="8"/>
+    <rect x="14" y="0" width="3" height="3"/>
+  </g>
+</svg>

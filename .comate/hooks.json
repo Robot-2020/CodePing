@@ -1,0 +1,52 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): SessionStart\" >> /tmp/comate-hooks.log && cat >> /tmp/comate-hooks.log",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): UserPromptSubmit\" >> /tmp/comate-hooks.log && cat >> /tmp/comate-hooks.log",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): PreToolUse\" >> /tmp/comate-hooks.log && cat >> /tmp/comate-hooks.log",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$(date): Stop\" >> /tmp/comate-hooks.log && cat >> /tmp/comate-hooks.log",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
