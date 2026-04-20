@@ -17,7 +17,7 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 - 🎭 **Real-time status sync** - Shows live states (thinking, typing, working, done)
 - 🔔 **Permission prompts** - Surfaces important decisions on your desktop
 - 🎨 **Theme system** - Multiple built-in themes + custom support
-- 🌐 **Multilingual** - English / 中文 / 한국어
+- 🌐 **Multilingual** - English / 中文
 - 😴 **Smart sleep** - Automatic idle animations
 - 📏 **Mini mode** - Edge-snapping compact view
 
@@ -38,8 +38,8 @@ Download the appropriate version for your Mac:
 
 | Platform | Download | Size |
 |----------|----------|------|
-| **Apple Silicon (M1/M2/M3)** | [CodePing-0.6.0-arm64.dmg](https://github.com/YOUR_USERNAME/codeping/releases/latest) | 138 MB |
-| **Intel Mac** | [CodePing-0.6.0.dmg](https://github.com/YOUR_USERNAME/codeping/releases/latest) | 142 MB |
+| **Apple Silicon (M1/M2/M3)** | [CodePing-0.6.0-arm64.dmg](https://github.com/Robot-2020/codeping/releases/latest) | 138 MB |
+| **Intel Mac** | [CodePing-0.6.0.dmg](https://github.com/Robot-2020/codeping/releases/latest) | 142 MB |
 
 **System Requirements**: macOS 10.15+
 
@@ -62,7 +62,7 @@ xattr -cr /Applications/CodePing.app
 
 ```bash
 # Clone repository
-git clone https://github.com/YOUR_USERNAME/codeping.git
+git clone https://github.com/Robot-2020/codeping.git
 cd codeping
 
 # Install dependencies
