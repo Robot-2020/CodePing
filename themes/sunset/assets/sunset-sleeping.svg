@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .breathe { transform-origin: 8px 15px; animation: breathe-squash 4.5s infinite ease-in-out; }
+      .shadow-breathe { transform-origin: 8px 22px; animation: shadow-pulse 4.5s infinite ease-in-out; }
+      .z-particle { opacity: 0; }
+      .z1 { animation: float-1 6s infinite ease-in-out; }
+      .z2 { animation: float-2 6s infinite ease-in-out; animation-delay: 2s; }
+      .z3 { animation: float-3 6s infinite ease-in-out; animation-delay: 4s; }
+      .star { opacity: 0; animation: twinkle 3s infinite ease-in-out; }
+      .st1 { animation-delay: 0s; } .st2 { animation-delay: 1s; } .st3 { animation-delay: 2s; }
+      @keyframes breathe-squash { 0%, 80%, 100% { transform: scale(1, 1); } 30%, 40% { transform: scale(1.02, 0.95); } }
+      @keyframes shadow-pulse { 0%, 80%, 100% { transform: scaleX(1); opacity: 0.25; } 30%, 40% { transform: scaleX(1.08); opacity: 0.35; } }
+      @keyframes float-1 { 0% { transform: translate(15px, 0px) scale(0.4); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(20px, -15px) scale(1.1); opacity: 0; } }
+      @keyframes float-2 { 0% { transform: translate(18px, 2px) scale(0.3); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(22px, -12px) scale(1.0); opacity: 0; } }
+      @keyframes float-3 { 0% { transform: translate(14px, -2px) scale(0.5); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(18px, -18px) scale(1.2); opacity: 0; } }
+      @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.8; transform: scale(1); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <ellipse cx="8" cy="12" rx="16" ry="8" fill="#FFFFFF"/>
+    </mask>
+    <g id="pixel-z">
+      <rect x="0" y="0" width="4" height="1"/>
+      <rect x="2" y="1" width="1" height="1"/>
+      <rect x="1" y="2" width="1" height="1"/>
+      <rect x="0" y="3" width="4" height="1"/>
+    </g>
+  </defs>
+  <ellipse class="shadow-breathe" cx="8" cy="22" rx="14" ry="2.5" fill="#000000"/>
+  <!-- Twinkling stars -->
+  <g fill="#ffb238">
+    <text class="star st1" x="-8" y="-5" font-size="4">★</text>
+    <text class="star st2" x="22" y="-8" font-size="3">★</text>
+    <text class="star st3" x="-5" y="5" font-size="3">★</text>
+  </g>
+  <!-- Z particles -->
+  <g class="zzz-particles">
+    <use href="#pixel-z" class="z-particle z1" fill="#90A4AE"/>
+    <use href="#pixel-z" class="z-particle z2" fill="#B0BEC5"/>
+    <use href="#pixel-z" class="z-particle z3" fill="#CFD8DC"/>
+  </g>
+  <g class="breathe">
+    <g mask="url(#faceMask)">
+      <ellipse cx="-6" cy="8" rx="22" ry="14" fill="#ff005b"/>
+      <ellipse cx="18" cy="16" rx="18" ry="10" fill="#ffb238"/>
+    </g>
+    <g transform="rotate(-5 8 10)">
+      <path d="M3 10 L6 10" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+      <path d="M11 10 L14 10" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+      <path d="M6 13 Q8.5 14 11 13" stroke="#000000" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.6"/>
+    </g>
+  </g>
+</svg>

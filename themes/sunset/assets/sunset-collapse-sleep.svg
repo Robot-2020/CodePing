@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .collapse { animation: collapse 2s ease-out forwards; transform-origin: 8px 8px; }
+      @keyframes collapse { 0% { transform: scale(1, 1); } 50% { transform: scale(1.05, 0.9); } 100% { transform: scale(1.15, 0.7); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g class="collapse">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.3 3 0.3 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <path d="M3 6 L5 6" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+      <path d="M12 6 L14 6" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

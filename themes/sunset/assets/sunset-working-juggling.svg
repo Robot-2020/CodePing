@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .juggle { animation: juggle 0.6s infinite ease-in-out; transform-origin: 8px 8px; }
+      .ball { animation: ball-juggle 1.2s infinite ease-in-out; }
+      .ball1 { animation-delay: 0s; } .ball2 { animation-delay: 0.4s; } .ball3 { animation-delay: 0.8s; }
+      .eyes-focus { animation: focus-track 1.2s infinite ease-in-out; }
+      .shadow-juggle { animation: shadow-pulse 0.6s infinite ease-in-out; transform-origin: 8px 22px; }
+      @keyframes juggle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+      @keyframes ball-juggle { 0% { transform: translate(-8px, -5px); } 33% { transform: translate(0px, -15px); } 66% { transform: translate(8px, -5px); } 100% { transform: translate(-8px, -5px); } }
+      @keyframes focus-track { 0%, 100% { transform: translateX(-0.5px); } 50% { transform: translateX(0.5px); } }
+      @keyframes shadow-pulse { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.9); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse class="shadow-juggle" cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <!-- Juggling balls -->
+  <g transform="translate(8, 0)">
+    <circle class="ball ball1" r="2.5" fill="#ff005b"/>
+    <circle class="ball ball2" r="2.5" fill="#ffb238"/>
+    <circle class="ball ball3" r="2.5" fill="#FFD700"/>
+  </g>
+  <g class="juggle">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g class="eyes-focus" transform="rotate(-9 8 8)">
+      <rect x="3" y="4.5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <rect x="12" y="4.5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11 L11 11" stroke="#000000" stroke-width="0.8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

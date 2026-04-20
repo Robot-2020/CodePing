@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .mini-idle { animation: mini-breathe 3s infinite ease-in-out; transform-origin: 8px 8px; }
+      .sparkle { opacity: 0; animation: twinkle 4s infinite ease-in-out; }
+      .sp1 { animation-delay: 0s; } .sp2 { animation-delay: 1.3s; } .sp3 { animation-delay: 2.6s; }
+      @keyframes mini-breathe { 0%, 100% { transform: scale(1) rotate(-12deg); } 50% { transform: scale(1.02, 0.98) rotate(-12deg); } }
+      @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 0.6; transform: scale(1); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <!-- Ambient sparkles -->
+  <g fill="#ffb238">
+    <circle class="sparkle sp1" cx="20" cy="-3" r="0.6"/>
+    <circle class="sparkle sp2" cx="22" cy="5" r="0.5"/>
+    <circle class="sparkle sp3" cx="18" cy="10" r="0.4"/>
+  </g>
+  <g class="mini-idle">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.8 3 0.8 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <rect x="3" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <rect x="12" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+    </g>
+  </g>
+</svg>

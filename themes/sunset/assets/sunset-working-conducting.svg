@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .conduct { animation: conduct 1.5s infinite ease-in-out; transform-origin: 8px 8px; }
+      .baton { transform-origin: 22px 5px; animation: baton-wave 1.5s infinite ease-in-out; }
+      .note { opacity: 0; animation: note-float 2s infinite ease-out; }
+      .n1 { animation-delay: 0s; } .n2 { animation-delay: 0.7s; } .n3 { animation-delay: 1.4s; }
+      .ring { animation: ring-pulse 1.5s infinite ease-in-out; }
+      @keyframes conduct { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+      @keyframes baton-wave { 0%, 100% { transform: rotate(-30deg); } 25% { transform: rotate(20deg); } 50% { transform: rotate(-20deg); } 75% { transform: rotate(30deg); } }
+      @keyframes note-float { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(5px, -15px); opacity: 0; } }
+      @keyframes ring-pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.1); opacity: 0.5; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <!-- Musical notes -->
+  <g fill="#ffb238">
+    <text class="note n1" x="-8" y="-5" font-size="6">♪</text>
+    <text class="note n2" x="24" y="-8" font-size="5">♫</text>
+    <text class="note n3" x="-5" y="0" font-size="5">♪</text>
+  </g>
+  <!-- Sound rings -->
+  <circle class="ring" cx="8" cy="8" r="18" stroke="#ffb238" stroke-width="0.5" fill="none"/>
+  <g class="conduct">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M3 5.5 Q4 4 5 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M12 5.5 Q13 4 14 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M4.5 10 Q8 14 11.5 10" stroke="#000000" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+  <!-- Baton -->
+  <g class="baton">
+    <line x1="20" y1="5" x2="28" y2="-5" stroke="#000000" stroke-width="0.8" stroke-linecap="round"/>
+    <circle cx="28" cy="-5" r="1" fill="#ffb238"/>
+  </g>
+</svg>

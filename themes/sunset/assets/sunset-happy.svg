@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .bounce-anim { transform-box: fill-box; transform-origin: 50% 100%; animation: bounce 1s infinite ease-in-out; }
+      .shadow-anim { transform-box: fill-box; transform-origin: 50% 50%; animation: shadow 1s infinite ease-in-out; }
+      .spark-center { opacity: 0; animation: flash-center 1.5s infinite step-end; animation-delay: var(--delay, 0s); }
+      .spark-outer { opacity: 0; animation: flash-outer 1.5s infinite step-end; animation-delay: var(--delay, 0s); }
+      .confetti { animation: confetti-fall 2s infinite ease-out; }
+      .cf1 { animation-delay: 0s; } .cf2 { animation-delay: 0.3s; } .cf3 { animation-delay: 0.6s; } .cf4 { animation-delay: 0.9s; }
+      @keyframes bounce { 0%, 15%, 100% { transform: translateY(0) scaleY(1); } 20% { transform: translateY(0) scaleY(0.88); } 40% { transform: translateY(-8px) scaleY(1.05); } 50% { transform: translateY(-10px) scaleY(1); } 60% { transform: translateY(-8px) scaleY(1.05); } 80% { transform: translateY(0) scaleY(0.88); } 85% { transform: translateY(0) scaleY(1); } }
+      @keyframes shadow { 0%, 15%, 100% { transform: scale(1); opacity: 0.3; } 40%, 60% { transform: scale(0.5); opacity: 0.1; } 80% { transform: scale(1.1); opacity: 0.4; } }
+      @keyframes flash-center { 0% { opacity: 0; } 10% { opacity: 1; } 30%, 100% { opacity: 0; } }
+      @keyframes flash-outer { 0% { opacity: 0; } 20% { opacity: 1; } 40%, 100% { opacity: 0; } }
+      @keyframes confetti-fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(25px) rotate(360deg); opacity: 0; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+    <g id="px-sparkle">
+      <circle class="spark-center" cx="0" cy="0" r="0.7"/>
+      <g class="spark-outer">
+        <circle cx="0" cy="-2" r="0.5"/>
+        <circle cx="0" cy="2" r="0.5"/>
+        <circle cx="-2" cy="0" r="0.5"/>
+        <circle cx="2" cy="0" r="0.5"/>
+      </g>
+    </g>
+  </defs>
+  <ellipse class="shadow-anim" cx="8" cy="22" rx="10" ry="2" fill="#000000"/>
+  <!-- Sparkles -->
+  <g class="sparkles">
+    <use href="#px-sparkle" x="-8" y="-2" fill="#FFD700" style="--delay: 0.0s"/>
+    <use href="#px-sparkle" x="24" y="-4" fill="#ff005b" style="--delay: 0.3s"/>
+    <use href="#px-sparkle" x="26" y="14" fill="#ffb238" style="--delay: 0.6s"/>
+    <use href="#px-sparkle" x="-10" y="16" fill="#FFD700" style="--delay: 0.9s"/>
+    <use href="#px-sparkle" x="8" y="-12" fill="#ff005b" style="--delay: 1.2s"/>
+  </g>
+  <!-- Confetti -->
+  <g>
+    <rect class="confetti cf1" x="-5" y="-15" width="2" height="2" fill="#ff005b" rx="0.3"/>
+    <rect class="confetti cf2" x="20" y="-15" width="2" height="2" fill="#ffb238" rx="0.3"/>
+    <rect class="confetti cf3" x="5" y="-18" width="2" height="2" fill="#FFD700" rx="0.3"/>
+    <rect class="confetti cf4" x="12" y="-12" width="2" height="2" fill="#ff005b" rx="0.3"/>
+  </g>
+  <g class="bounce-anim">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M3 5.5 Q4 4 5 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M12 5.5 Q13 4 14 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M4 10 Q8 15 12 10" stroke="#000000" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

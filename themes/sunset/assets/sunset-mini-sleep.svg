@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .mini-sleep { animation: sleep-breath 4s infinite ease-in-out; transform-origin: 8px 8px; }
+      .zzz { animation: zzz-float 5s infinite ease-in-out; }
+      @keyframes sleep-breath { 0%, 100% { transform: rotate(-12deg) scale(1, 1); } 50% { transform: rotate(-12deg) scale(1.02, 0.96); } }
+      @keyframes zzz-float { 0% { transform: translate(0, 0) scale(0.4); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translate(5px, -10px) scale(1); opacity: 0; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <text class="zzz" x="18" y="-2" font-size="4" fill="#90A4AE" font-family="Arial">z</text>
+  <g class="mini-sleep">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.3 3 0.3 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <path d="M3 6 L5 6" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+      <path d="M12 6 L14 6" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

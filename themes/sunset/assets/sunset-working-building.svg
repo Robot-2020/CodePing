@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .build { animation: build 0.5s infinite ease-in-out; transform-origin: 8px 8px; }
+      .block { animation: block-place 2s infinite ease-out; }
+      .b1 { animation-delay: 0s; } .b2 { animation-delay: 0.5s; } .b3 { animation-delay: 1s; }
+      .gear { animation: gear-spin 3s linear infinite; transform-origin: 24px -8px; }
+      .gear2 { animation: gear-spin-reverse 3s linear infinite; transform-origin: -8px -5px; }
+      @keyframes build { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-0.5px); } }
+      @keyframes block-place { 0%, 10% { transform: translateY(-10px); opacity: 0; } 20%, 90% { transform: translateY(0); opacity: 1; } 100% { opacity: 1; } }
+      @keyframes gear-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      @keyframes gear-spin-reverse { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <!-- Building blocks -->
+  <g transform="translate(20, 10)">
+    <rect class="block b1" x="0" y="6" width="6" height="4" fill="#ff005b" rx="0.5"/>
+    <rect class="block b2" x="0" y="2" width="6" height="4" fill="#ffb238" rx="0.5"/>
+    <rect class="block b3" x="0" y="-2" width="6" height="4" fill="#ff005b" rx="0.5"/>
+  </g>
+  <!-- Gears -->
+  <text class="gear" x="24" y="-8" font-size="6" fill="#ffb238">⚙</text>
+  <text class="gear2" x="-8" y="-5" font-size="5" fill="#ff005b">⚙</text>
+  <g class="build">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <rect x="3" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <rect x="12" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <path d="M5 11 L11 11" stroke="#000000" stroke-width="0.8" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

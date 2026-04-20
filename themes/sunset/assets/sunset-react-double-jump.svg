@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .jump { animation: jump 0.8s ease-out; transform-origin: 8px 20px; }
+      .shadow-jump { animation: shadow-shrink 0.8s ease-out; transform-origin: 8px 22px; }
+      .sparkle { opacity: 0; animation: sparkle-pop 1.5s infinite ease-out; }
+      .sp1 { animation-delay: 0s; } .sp2 { animation-delay: 0.3s; } .sp3 { animation-delay: 0.6s; } .sp4 { animation-delay: 0.9s; } .sp5 { animation-delay: 1.2s; }
+      .heart { opacity: 0; animation: heart-float 2s infinite ease-out; }
+      .h1 { animation-delay: 0s; } .h2 { animation-delay: 0.7s; }
+      @keyframes jump { 0% { transform: translateY(0) scale(1, 1); } 20% { transform: translateY(0) scale(1.1, 0.8); } 50% { transform: translateY(-15px) scale(0.95, 1.1); } 70% { transform: translateY(-12px) scale(1, 1); } 90% { transform: translateY(0) scale(1.05, 0.9); } 100% { transform: translateY(0) scale(1, 1); } }
+      @keyframes shadow-shrink { 0% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(0.4); opacity: 0.1; } 100% { transform: scale(1); opacity: 0.3; } }
+      @keyframes sparkle-pop { 0% { transform: scale(0); opacity: 0; } 20% { transform: scale(1.5); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
+      @keyframes heart-float { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-20px) scale(1.2); opacity: 0; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse class="shadow-jump" cx="8" cy="22" rx="10" ry="2" fill="#000000"/>
+  <!-- Sparkles -->
+  <g fill="#FFD700">
+    <circle class="sparkle sp1" cx="-10" cy="-5" r="1.2"/>
+    <circle class="sparkle sp2" cx="26" cy="-3" r="1.5"/>
+    <circle class="sparkle sp3" cx="8" cy="-15" r="1.2"/>
+    <circle class="sparkle sp4" cx="-8" cy="10" r="1"/>
+    <circle class="sparkle sp5" cx="24" cy="8" r="1.5"/>
+  </g>
+  <!-- Hearts -->
+  <g fill="#ff005b">
+    <text class="heart h1" x="22" y="-8" font-size="6">♥</text>
+    <text class="heart h2" x="-10" y="0" font-size="5">♥</text>
+  </g>
+  <g class="jump">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M3 5.5 Q4 3.5 5 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M12 5.5 Q13 3.5 14 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M4 10 Q8 16 12 10" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

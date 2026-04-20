@@ -76,7 +76,7 @@ const VISUAL_FALLBACK_STATES = new Set([
   "carrying",
   "sleeping",
 ]);
-const EXPOSED_THEME_IDS = new Set(["lucy"]);
+const EXPOSED_THEME_IDS = new Set(["lucy", "sunset"]);
 
 // ── Variant support (Phase 3b-swap) ──
 // Allow-list of fields a variant may override. Anything else → ignored + warned

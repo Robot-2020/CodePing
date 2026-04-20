@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .doze { animation: doze 3s infinite ease-in-out; transform-origin: 8px 8px; }
+      .eyes-doze { animation: doze-blink 4s infinite ease-in-out; }
+      @keyframes doze { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(2deg); } }
+      @keyframes doze-blink { 0%, 80%, 100% { transform: scaleY(0.5); } 85% { transform: scaleY(0.1); } 90% { transform: scaleY(0.5); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g class="doze">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.5 3 0.5 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <g class="eyes-doze">
+        <rect x="3" y="5.5" width="1.5" height="0.8" rx="0.4" fill="#000000"/>
+        <rect x="12" y="5.5" width="1.5" height="0.8" rx="0.4" fill="#000000"/>
+      </g>
+    </g>
+  </g>
+</svg>

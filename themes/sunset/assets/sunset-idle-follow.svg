@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .breathe { animation: breathe 3.2s infinite ease-in-out; transform-origin: 8px 8px; }
+      .eyes-follow { animation: follow 4s infinite ease-in-out; }
+      @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02, 0.98); } }
+      @keyframes follow { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(1px, 0); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g class="breathe">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g class="eyes-follow" transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.8 3 0.8 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <rect x="3" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <rect x="12" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+    </g>
+  </g>
+</svg>

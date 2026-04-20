@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .notify-shake { transform-origin: 8px 8px; animation: notify-shake 0.15s infinite ease-in-out; }
+      .bell { transform-origin: 20px -5px; animation: bell-ring 0.2s infinite alternate ease-in-out; }
+      .exclaim { animation: exclaim-bounce 0.4s infinite ease-in-out; }
+      .ex1 { animation-delay: 0s; } .ex2 { animation-delay: 0.15s; } .ex3 { animation-delay: 0.3s; }
+      .ring-wave { transform-origin: 8px 8px; animation: ring-expand 1s infinite ease-out; }
+      .rw1 { animation-delay: 0s; } .rw2 { animation-delay: 0.33s; } .rw3 { animation-delay: 0.66s; }
+      .eyes-alert { animation: alert-blink 0.3s infinite ease-in-out; }
+      .body-jump { animation: body-bounce 0.3s infinite ease-in-out; }
+      @keyframes notify-shake { 0%, 100% { transform: translateX(-2px) rotate(-3deg); } 50% { transform: translateX(2px) rotate(3deg); } }
+      @keyframes bell-ring { 0% { transform: rotate(-25deg); } 100% { transform: rotate(25deg); } }
+      @keyframes exclaim-bounce { 0%, 100% { transform: translateY(0) scale(1); opacity: 1; } 50% { transform: translateY(-5px) scale(1.3); opacity: 0.8; } }
+      @keyframes ring-expand { 0% { transform: scale(0.8); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
+      @keyframes alert-blink { 0%, 40%, 100% { transform: scaleY(1); } 20% { transform: scaleY(0.1); } }
+      @keyframes body-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <!-- Ring waves -->
+  <g stroke="#ffb238" stroke-width="0.7" fill="none">
+    <circle class="ring-wave rw1" cx="8" cy="8" r="16"/>
+    <circle class="ring-wave rw2" cx="8" cy="8" r="16"/>
+    <circle class="ring-wave rw3" cx="8" cy="8" r="16"/>
+  </g>
+  <!-- Bell -->
+  <g class="bell">
+    <path d="M 14 -2 Q 14 -10 20 -10 Q 26 -10 26 -2 L 26 4 L 14 4 Z" fill="#ffb238"/>
+    <circle cx="20" cy="5" r="2" fill="#ffb238"/>
+    <circle cx="20" cy="-11" r="1" fill="#ffb238"/>
+    <ellipse cx="17" cy="-5" rx="1" ry="2" fill="#FFF8E1" opacity="0.6"/>
+  </g>
+  <!-- Exclaims -->
+  <g font-family="Arial" font-weight="bold" fill="#ff005b">
+    <text class="exclaim ex1" x="-10" y="0" font-size="10">!</text>
+    <text class="exclaim ex2" x="26" y="5" font-size="8">!</text>
+    <text class="exclaim ex3" x="-8" y="15" font-size="7">!</text>
+  </g>
+  <g class="body-jump">
+    <g class="notify-shake">
+      <g mask="url(#faceMask)">
+        <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+        <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+      </g>
+      <g class="eyes-alert" transform="rotate(-9 8 8)">
+        <rect x="3" y="4" width="1.5" height="2.5" rx="0.75" fill="#000000"/>
+        <rect x="12" y="4" width="1.5" height="2.5" rx="0.75" fill="#000000"/>
+      </g>
+      <g transform="rotate(-9 8 8)">
+        <ellipse cx="8" cy="11" rx="1.5" ry="2" fill="#000000"/>
+      </g>
+    </g>
+  </g>
+</svg>

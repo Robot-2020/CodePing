@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .mini-peek { animation: peek 2s infinite ease-in-out; transform-origin: 8px 8px; }
+      @keyframes peek { 0%, 100% { transform: rotate(-15deg) translateX(3px); } 50% { transform: rotate(-10deg) translateX(0px); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <g class="mini-peek">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.5 3 0.5 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <rect x="3" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+      <rect x="12" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+    </g>
+  </g>
+</svg>

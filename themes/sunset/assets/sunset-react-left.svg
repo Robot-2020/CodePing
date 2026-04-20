@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .lean-left { animation: lean-l 0.3s ease-out forwards; transform-origin: 8px 8px; }
+      @keyframes lean-l { 0% { transform: rotate(0deg); } 50% { transform: rotate(-6deg); } 100% { transform: rotate(-3deg); } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <g class="lean-left">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M5 11c1.5 0.8 3 0.8 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <path d="M3 6 L5 6" stroke="#000000" stroke-width="1" stroke-linecap="round"/>
+      <rect x="12" y="5" width="1.2" height="1.6" rx="0.6" fill="#000000"/>
+    </g>
+  </g>
+</svg>

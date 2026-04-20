@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .mini-happy { animation: bounce 0.8s infinite ease-in-out; transform-origin: 8px 8px; }
+      .sparkle { opacity: 0; animation: sparkle-pop 2s infinite ease-out; }
+      .sp1 { animation-delay: 0s; } .sp2 { animation-delay: 0.5s; } .sp3 { animation-delay: 1s; }
+      .heart { opacity: 0; animation: heart-float 2.5s infinite ease-out; }
+      @keyframes bounce { 0%, 100% { transform: translateY(0) rotate(-12deg); } 50% { transform: translateY(-3px) rotate(-12deg); } }
+      @keyframes sparkle-pop { 0% { transform: scale(0); opacity: 0; } 20% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0); opacity: 0; } }
+      @keyframes heart-float { 0% { transform: translateY(0) scale(0.5); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-12px) scale(1); opacity: 0; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <!-- Sparkles -->
+  <g fill="#FFD700">
+    <circle class="sparkle sp1" cx="20" cy="-5" r="0.8"/>
+    <circle class="sparkle sp2" cx="24" cy="5" r="0.6"/>
+    <circle class="sparkle sp3" cx="18" cy="12" r="0.5"/>
+  </g>
+  <!-- Heart -->
+  <text class="heart" x="22" y="-2" font-size="4" fill="#ff005b">♥</text>
+  <g class="mini-happy">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <path d="M4.5 10c1.5 2 4.5 2 6 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+      <path d="M3 5.5 Q4 4 5 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M12 5.5 Q13 4 14 5.5" stroke="#000000" stroke-width="1" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

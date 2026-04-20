@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55 55" width="500" height="500">
+  <defs>
+    <style>
+      .carry { animation: carry 0.6s infinite ease-in-out; transform-origin: 8px 8px; }
+      .box { animation: box-bob 0.6s infinite ease-in-out; }
+      .sweat { animation: sweat-drop 1.5s infinite ease-in; }
+      .sw1 { animation-delay: 0s; } .sw2 { animation-delay: 0.5s; }
+      .strain-lines { animation: strain 0.3s infinite ease-in-out; }
+      @keyframes carry { 0%, 100% { transform: translateX(-0.5px) rotate(-2deg); } 50% { transform: translateX(0.5px) rotate(2deg); } }
+      @keyframes box-bob { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-1px) rotate(1deg); } }
+      @keyframes sweat-drop { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(8px); opacity: 0; } }
+      @keyframes strain { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.8; } }
+    </style>
+    <mask id="faceMask" maskUnits="userSpaceOnUse" x="-6" y="-6" width="28" height="28">
+      <circle cx="8" cy="8" r="14" fill="#FFFFFF"/>
+    </mask>
+  </defs>
+  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
+  <!-- Heavy box -->
+  <g class="box" transform="translate(0, -18)">
+    <rect x="0" y="0" width="16" height="12" fill="#8B4513" rx="1"/>
+    <rect x="2" y="2" width="12" height="8" fill="#A0522D"/>
+    <line x1="8" y1="0" x2="8" y2="12" stroke="#6B3E26" stroke-width="1"/>
+    <line x1="0" y1="6" x2="16" y2="6" stroke="#6B3E26" stroke-width="1"/>
+    <text x="8" y="8" text-anchor="middle" font-size="3" fill="#6B3E26" font-weight="bold">HEAVY</text>
+  </g>
+  <!-- Strain lines -->
+  <g class="strain-lines" stroke="#ff005b" stroke-width="0.5">
+    <line x1="-8" y1="5" x2="-5" y2="5"/>
+    <line x1="-8" y1="8" x2="-4" y2="8"/>
+    <line x1="21" y1="5" x2="24" y2="5"/>
+    <line x1="20" y1="8" x2="24" y2="8"/>
+  </g>
+  <g class="carry">
+    <g mask="url(#faceMask)">
+      <rect x="-6" y="-6" width="28" height="28" fill="#ff005b"/>
+      <rect x="-6" y="-6" width="28" height="28" transform="translate(7 -4) rotate(219 8 8)" fill="#ffb238" rx="5"/>
+    </g>
+    <g transform="rotate(-9 8 8)">
+      <rect x="3" y="5.5" width="2" height="0.8" rx="0.4" fill="#000000"/>
+      <rect x="12" y="5.5" width="2" height="0.8" rx="0.4" fill="#000000"/>
+      <path d="M5 11.5c1.5 -0.5 3 -0.5 4.5 0" stroke="#000000" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+  <!-- Sweat drops -->
+  <path class="sweat sw1" d="M -4 4 Q -3 6 -4 8 Q -5 6 -4 4 Z" fill="#64B5F6"/>
+  <path class="sweat sw2" d="M 20 5 Q 21 7 20 9 Q 19 7 20 5 Z" fill="#64B5F6"/>
+</svg>
