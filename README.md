@@ -23,14 +23,12 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 
 ### Supported AI Coding Agents
 
-- ✅ Claude Code - Full support (hooks + permission bubbles)
+- ✅ Ducc - Full support
 - ✅ Comate - Optimized state sync with latency fix
-- ✅ Codex CLI, Copilot CLI, Cursor Agent
-- ✅ Gemini CLI, Kiro CLI, CodeBuddy, opencode
 
 ## 📥 Installation
 
-### For macOS Users (Recommended)
+### For macOS Users
 
 **Latest Release: v1.0.0** 🎉
 
@@ -56,16 +54,6 @@ Download the appropriate version for your Mac:
 xattr -cr /Applications/CodePing.app
 ```
 
-📖 **Detailed Guide**: See [Installation Guide](docs/guides/setup-guide.md)
-
-### For Windows & Linux Users
-
-| Platform | Download | Size |
-|----------|----------|------|
-| **Windows** | [CodePing-Setup-1.0.0.exe](https://github.com/Robot-2020/CodePing/releases/latest) | 118 MB |
-| **Linux AppImage** | [CodePing-1.0.0.AppImage](https://github.com/Robot-2020/CodePing/releases/latest) | 143 MB |
-| **Linux Debian** | [codeping_1.0.0_amd64.deb](https://github.com/Robot-2020/CodePing/releases/latest) | 111 MB |
-
 ### For Developers (Build from Source)
 
 ```bash
@@ -79,8 +67,8 @@ npm install
 # Run in development
 npm start
 
-# Build for all platforms
-npm run build:all
+# Build for macOS
+npm run build:mac
 ```
 
 ## Stack
@@ -89,13 +77,6 @@ npm run build:all
 - Node.js - Runtime environment
 - Local hooks for AI coding agents
 - SVG/APNG animations
-
-## 📚 Documentation
-
-- [Installation Guide](docs/guides/setup-guide.md) - Step-by-step setup instructions
-- [Theme Creation Guide](docs/guides/guide-theme-creation.md) - Create custom themes
-- [State Mapping](docs/guides/state-mapping.md) - Animation states reference
-- [Release Notes](RELEASE_NOTES_v1.0.0.md) - What's new in v1.0.0
 
 ## 🙏 Contributing
 
