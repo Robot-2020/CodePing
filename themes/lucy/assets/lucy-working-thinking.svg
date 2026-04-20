@@ -19,18 +19,18 @@
   </defs>
   <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
   <g fill="#FFFFFF" opacity="0.6">
-    <circle class="thought-bubble tb1" r="1.5"/>
+    <circle class="thought-bubble tb1" r="1"/>
     <circle class="thought-bubble tb2" r="2"/>
-    <circle class="thought-bubble tb3" r="1"/>
+    <circle class="thought-bubble tb3" r="0.7"/>
   </g>
   <g class="think-pulse">
     <g clip-path="url(#bodyClip)">
-      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
-      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+      <circle cx="-8" cy="2" r="22" fill="#ff7d10"/>
+      <circle cx="17" cy="13" r="19" fill="#0a0310"/>
     </g>
     <g class="eyes-think" fill="#FFFFFF">
-      <circle cx="5" cy="5" r="1"/>
-      <circle cx="11" cy="5" r="1"/>
+      <circle cx="5" cy="5" r="0.7"/>
+      <circle cx="11" cy="5" r="0.7"/>
     </g>
     <ellipse cx="8" cy="12" rx="1" ry="0.5" fill="#FFFFFF" opacity="0.5"/>
   </g>

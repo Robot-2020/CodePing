@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/tray-icon.png" width="128" alt="CodePing">
+  <svg viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="80" height="80"><defs><clipPath id="bodyClip"><circle cx="18" cy="18" r="14"/></clipPath></defs><g clip-path="url(#bodyClip)"><circle cx="2" cy="12" r="22" fill="#ff7d10"/><circle cx="27" cy="23" r="19" fill="#0a0310"/></g><g fill="#FFFFFF"><circle cx="15" cy="16" r="1.2"/><circle cx="21" cy="16" r="1.2"/></g><path d="M 16 21 Q 18 23 20 21" stroke="#FFFFFF" stroke-width="0.8" fill="none" stroke-linecap="round"/></svg>
 </p>
 
 <h1 align="center">CodePing</h1>

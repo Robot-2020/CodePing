@@ -15,25 +15,22 @@ const SVG_CONTENT = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -25 55
     </clipPath>
   </defs>
 
-  <!-- Ground Shadow -->
-  <ellipse cx="8" cy="22" rx="10" ry="2" fill="#000000" opacity="0.3"/>
-
   <!-- Main Body -->
   <g clip-path="url(#bodyClip)">
     <!-- Orange-red crescent -->
-    <circle cx="-8" cy="2" r="22" fill="#E65100"/>
+    <circle cx="-8" cy="2" r="22" fill="#ff7d10"/>
     <!-- Dark body -->
-    <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+    <circle cx="17" cy="13" r="19" fill="#0a0310"/>
   </g>
 
-  <!-- Happy eyes -->
-  <g fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round">
-    <path d="M 3.5 6 Q 5 4 6.5 6"/>
-    <path d="M 9.5 6 Q 11 4 12.5 6"/>
+  <!-- Eyes -->
+  <g fill="#FFFFFF">
+    <circle cx="5" cy="6" r="0.7"/>
+    <circle cx="11" cy="6" r="0.7"/>
   </g>
 
-  <!-- Happy smile -->
-  <path d="M 5 10.5 Q 8 13.5 11 10.5" stroke="#FFFFFF" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+  <!-- Smile -->
+  <path d="M 6.5 11 Q 8 12.5 9.5 11" stroke="#FFFFFF" stroke-width="0.5" fill="none" stroke-linecap="round"/>
 </svg>`;
 
 const SIZES = [16, 32, 48, 64, 128, 256, 512];

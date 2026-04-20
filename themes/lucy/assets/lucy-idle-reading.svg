@@ -28,10 +28,10 @@
   </g>
   <g class="breathe-anim">
     <g clip-path="url(#bodyClip)">
-      <circle cx="-8" cy="2" r="22" fill="#E65100"/>
-      <circle cx="16" cy="12" r="20" fill="#2D2D2D"/>
+      <circle cx="-8" cy="2" r="22" fill="#ff7d10"/>
+      <circle cx="17" cy="13" r="19" fill="#0a0310"/>
     </g>
-    <g class="eyes-read" fill="#FFFFFF"><circle cx="5" cy="6" r="1"/><circle cx="11" cy="6" r="1"/></g>
+    <g class="eyes-read" fill="#FFFFFF"><circle cx="5" cy="6" r="0.7"/><circle cx="11" cy="6" r="0.7"/></g>
     <ellipse cx="8" cy="11" rx="1" ry="0.5" fill="#FFFFFF" opacity="0.5"/>
   </g>
 </svg>
