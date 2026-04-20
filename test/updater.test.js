@@ -145,6 +145,7 @@ describe("updater visual flow", () => {
       },
     });
     const updater = initUpdater(ctx, makeDeps({
+      platform: "win32",
       autoUpdaterFactory: () => ({
         autoDownload: false,
         autoInstallOnAppQuit: true,
@@ -197,6 +198,7 @@ describe("updater visual flow", () => {
         },
       });
       const updater = initUpdater(ctx, makeDeps({
+        platform: "darwin",
         shell: {
           openExternal(url) {
             openedUrls.push(url);
@@ -231,7 +233,7 @@ describe("updater visual flow", () => {
       await handlers["update-available"]({ version: "0.5.11" });
 
       assert.deepStrictEqual(bubbles.map((bubble) => bubble.mode), ["checking", "available", "ready"]);
-      assert.strictEqual(openedUrls[0], "https://github.com/rullerzhou-afk/clawd-on-desk/releases/latest");
+      assert.strictEqual(openedUrls[0], "https://github.com/Robot-2020/CodePing/releases/latest");
       assert.match(bubbles[2].message, /opened/i);
     } finally {
       Object.defineProperty(process, "platform", { value: originalPlatform });
@@ -297,6 +299,7 @@ describe("updater visual flow", () => {
       },
     });
     const updater = initUpdater(ctx, makeDeps({
+      platform: "win32",
       autoUpdaterFactory: () => ({
         autoDownload: false,
         autoInstallOnAppQuit: true,

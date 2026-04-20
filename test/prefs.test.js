@@ -10,8 +10,8 @@ const prefs = require("../src/prefs");
 
 const tempDirs = [];
 
-function makeTempPath(name = "clawd-prefs.json") {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "clawd-prefs-"));
+function makeTempPath(name = "codeping-prefs.json") {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "codeping-prefs-"));
   tempDirs.push(dir);
   return path.join(dir, name);
 }
@@ -87,7 +87,7 @@ describe("prefs.validate", () => {
 
   it("keeps valid fields verbatim", () => {
     const v = prefs.validate({
-      lang: "ko",
+      lang: "zh",
       soundMuted: true,
       bubbleFollowPet: true,
       allowEdgePinning: true,
@@ -95,9 +95,9 @@ describe("prefs.validate", () => {
       y: -50,
       size: "P:15",
       miniEdge: "left",
-      theme: "calico",
+      theme: "lucy",
     });
-    assert.strictEqual(v.lang, "ko");
+    assert.strictEqual(v.lang, "zh");
     assert.strictEqual(v.soundMuted, true);
     assert.strictEqual(v.bubbleFollowPet, true);
     assert.strictEqual(v.allowEdgePinning, true);
@@ -105,7 +105,7 @@ describe("prefs.validate", () => {
     assert.strictEqual(v.y, -50);
     assert.strictEqual(v.size, "P:15");
     assert.strictEqual(v.miniEdge, "left");
-    assert.strictEqual(v.theme, "calico");
+    assert.strictEqual(v.theme, "lucy");
   });
 
   it("normalizes agents (drops malformed entries)", () => {

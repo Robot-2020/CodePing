@@ -3,9 +3,9 @@
 
 module.exports = {
   id: "comate",
-  name: "Comate",
+  name: "Zulu / Comate",
   processNames: { win: ["comate.exe", "node.exe"], mac: ["comate", "node"], linux: ["comate", "node"] },
-  eventSource: "hook",
+  eventSource: "log-poll",
   // PascalCase event names — matches Comate hook system
   eventMap: {
     SessionStart: "idle",

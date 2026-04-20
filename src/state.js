@@ -119,7 +119,7 @@ const UPDATE_VISUAL_STATE_MAP = {
   downloading: "carrying",
 };
 const UPDATE_VISUAL_SVG_MAP = {
-  checking: "clawd-working-debugger.svg",
+  checking: "lucy-working-thinking.svg",
 };
 
 // ── Wake poll ──
@@ -838,6 +838,14 @@ function stopStaleCleanup() {
 }
 
 function resolveDisplayState() {
+  // When there are pending permission requests, keep showing notification
+  // state so the user knows there's something waiting for their attention.
+  // This prevents the pet from returning to idle/attention while a permission
+  // bubble is still on screen.
+  if (ctx.pendingPermissions && ctx.pendingPermissions.length > 0) {
+    return "notification";
+  }
+
   let best;
   if (sessions.size === 0) {
     best = "idle";

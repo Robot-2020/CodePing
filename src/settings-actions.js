@@ -229,7 +229,7 @@ const updateRegistry = {
   positionVariantId: requireString("positionVariantId", { allowEmpty: true }),
 
   // ── Pure data prefs (function-form: validator only) ──
-  lang: requireEnum("lang", ["en", "zh", "ko"]),
+  lang: requireEnum("lang", ["en", "zh"]),
   soundMuted: requireBoolean("soundMuted"),
   bubbleFollowPet: requireBoolean("bubbleFollowPet"),
   hideBubbles: requireBoolean("hideBubbles"),
@@ -338,7 +338,7 @@ const updateRegistry = {
     if (!value && snapshot && snapshot.showDock === false) {
       return {
         status: "error",
-        message: "Cannot hide Menu Bar while Dock is also hidden — Clawd would become unquittable.",
+        message: "Cannot hide Menu Bar while Dock is also hidden — CodePing would become unquittable.",
       };
     }
     return { status: "ok" };
@@ -350,7 +350,7 @@ const updateRegistry = {
     if (!value && snapshot && snapshot.showTray === false) {
       return {
         status: "error",
-        message: "Cannot hide Dock while Menu Bar is also hidden — Clawd would become unquittable.",
+        message: "Cannot hide Dock while Menu Bar is also hidden — CodePing would become unquittable.",
       };
     }
     return { status: "ok" };

@@ -28,9 +28,9 @@ function launchApp() {
     if (isPackaged) {
       if (isWin) {
         // __dirname: <install>/resources/app.asar.unpacked/hooks
-        // exe:       <install>/Clawd on Desk.exe
+        // exe:       <install>/CodePing.exe
         const installDir = path.resolve(__dirname, "..", "..", "..");
-        const exe = path.join(installDir, "Clawd on Desk.exe");
+        const exe = path.join(installDir, "CodePing.exe");
         spawn(exe, [], { detached: true, stdio: "ignore" }).unref();
       } else if (isMac) {
         // __dirname: <name>.app/Contents/Resources/app.asar.unpacked/hooks
@@ -43,7 +43,7 @@ function launchApp() {
       } else {
         // Linux packaged app:
         // AppImage: process.env.APPIMAGE holds the .AppImage file path.
-        // deb/dir:  executable is <install>/clawd-on-desk, same depth as Windows.
+        // deb/dir:  executable is <install>/codeping, same depth as Windows.
         //   __dirname: <install>/resources/app.asar.unpacked/hooks
         //   install:   3 levels up
         const appImage = process.env.APPIMAGE;
@@ -51,7 +51,7 @@ function launchApp() {
           spawn(appImage, [], { detached: true, stdio: "ignore" }).unref();
         } else {
           const installDir = path.resolve(__dirname, "..", "..", "..");
-          const exe = path.join(installDir, "clawd-on-desk");
+          const exe = path.join(installDir, "codeping");
           spawn(exe, [], { detached: true, stdio: "ignore" }).unref();
         }
       }

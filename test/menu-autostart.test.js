@@ -23,8 +23,8 @@ describe("login item settings", () => {
     const settings = getLoginItemSettings({
       isPackaged: true,
       openAtLogin: true,
-      execPath: "C:\\Program Files\\Clawd on Desk\\Clawd on Desk.exe",
-      appPath: "C:\\Program Files\\Clawd on Desk\\resources\\app.asar",
+      execPath: "C:\\Program Files\\CodePing\\CodePing.exe",
+      appPath: "C:\\Program Files\\CodePing\\resources\\app.asar",
     });
 
     assert.deepStrictEqual(settings, { openAtLogin: true });

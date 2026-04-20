@@ -2,8 +2,8 @@
 
 const path = require("path");
 
-const WINDOWS_APP_USER_MODEL_ID = "com.clawd.on-desk";
-const SETTINGS_WINDOW_TITLE = "Clawd Settings";
+const WINDOWS_APP_USER_MODEL_ID = "com.robot2020.codeping";
+const SETTINGS_WINDOW_TITLE = "CodePing Settings";
 const SETTINGS_WINDOW_LAUNCH_ARG = "--open-settings-window";
 
 function quoteWindowsCommandArg(value) {

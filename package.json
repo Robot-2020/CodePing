@@ -1,7 +1,7 @@
 {
-  "name": "clawd-on-desk",
+  "name": "codeping",
   "version": "0.6.0",
-  "description": "A desktop pet that reacts to your Claude Code and Comate sessions in real-time.",
+  "description": "Ping stays on, so you don't have to. A desktop companion for AI coding sessions.",
   "main": "src/main.js",
   "scripts": {
     "start": "node launch.js",
@@ -16,8 +16,8 @@
     "install:comate-hooks": "node hooks/comate-install.js"
   },
   "keywords": [
-    "clawd",
-    "desktop-pet",
+    "codeping",
+    "desktop-companion",
     "electron",
     "claude-code",
     "comate"
@@ -26,8 +26,8 @@
   "license": "MIT",
   "type": "commonjs",
   "build": {
-    "appId": "com.clawd.on-desk",
-    "productName": "Clawd on Desk",
+    "appId": "com.robot2020.codeping",
+    "productName": "CodePing",
     "mac": {
       "icon": "assets/icon.png",
       "target": [
@@ -47,7 +47,7 @@
     "win": {
       "icon": "assets/icon.ico",
       "signAndEditExecutable": false,
-      "artifactName": "Clawd-on-Desk-Setup-${version}.${ext}",
+      "artifactName": "CodePing-Setup-${version}.${ext}",
       "target": [
         {
           "target": "nsis",
@@ -110,8 +110,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "rullerzhou-afk",
-        "repo": "clawd-on-desk"
+        "owner": "Robot-2020",
+        "repo": "CodePing"
       }
     ]
   },

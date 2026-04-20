@@ -76,6 +76,7 @@ const VISUAL_FALLBACK_STATES = new Set([
   "carrying",
   "sleeping",
 ]);
+const EXPOSED_THEME_IDS = new Set(["lucy"]);
 
 // ── Variant support (Phase 3b-swap) ──
 // Allow-list of fields a variant may override. Anything else → ignored + warned
@@ -178,6 +179,7 @@ function _scanThemesDir(dir, builtin, themes, seen) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;
       if (seen.has(entry.name)) continue;
+      if (!EXPOSED_THEME_IDS.has(entry.name)) continue;
       const jsonPath = path.join(dir, entry.name, "theme.json");
       let cfg;
       try {
@@ -193,7 +195,7 @@ function _scanThemesDir(dir, builtin, themes, seen) {
 /**
  * Load and activate a theme by ID.
  *
- * Strict mode throws on missing/invalid; lenient falls back to "clawd".
+ * Strict mode throws on missing/invalid; lenient falls back to "lucy".
  * Callers detect fallback by comparing the requested id against
  * `returnedTheme._id` / `returnedTheme._variantId` — no synthetic flag needed.
  *
@@ -214,8 +216,8 @@ function loadTheme(themeId, opts = {}) {
     const msg = `Theme "${themeId}" not found`;
     if (strict) throw new Error(msg);
     console.error(`[theme-loader] ${msg}`);
-    if (themeId !== "clawd") return loadTheme("clawd");
-    throw new Error("Default theme 'clawd' not found");
+    if (themeId !== "lucy") return loadTheme("lucy");
+    throw new Error("Default theme 'lucy' not found");
   }
 
   const errors = validateTheme(raw);
@@ -223,7 +225,7 @@ function loadTheme(themeId, opts = {}) {
     const msg = `Theme "${themeId}" validation errors: ${errors.join("; ")}`;
     if (strict) throw new Error(msg);
     console.error(`[theme-loader] ${msg}`);
-    if (themeId !== "clawd") return loadTheme("clawd");
+    if (themeId !== "lucy") return loadTheme("lucy");
   }
 
   // Resolve variant + apply patch BEFORE mergeDefaults so that geometry
@@ -1506,6 +1508,7 @@ function _scanMetadata(dir, builtin, themes, seen) {
   try {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       if (!entry.isDirectory() || seen.has(entry.name)) continue;
+      if (!EXPOSED_THEME_IDS.has(entry.name)) continue;
       const jsonPath = path.join(dir, entry.name, "theme.json");
       let raw;
       try { raw = JSON.parse(fs.readFileSync(jsonPath, "utf8")); } catch { continue; }

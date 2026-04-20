@@ -1,0 +1,18 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="codepingShell" x1="64" y1="48" x2="256" y2="272" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="codepingRing" x1="106" y1="102" x2="214" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E0F2FE"/>
+      <stop offset="1" stop-color="#67E8F9"/>
+    </linearGradient>
+  </defs>
+  <circle cx="160" cy="160" r="124" fill="#0F172A" fill-opacity="0.08"/>
+  <path d="M160 44C95.934 44 44 95.934 44 160C44 224.066 95.934 276 160 276C177.842 276 194.739 271.983 209.836 264.81L250.667 281.667L237.764 238.498C257.038 217.47 268 189.44 268 160C268 95.934 216.066 44 160 44Z" fill="url(#codepingShell)"/>
+  <circle cx="146" cy="146" r="20" fill="white"/>
+  <circle cx="146" cy="146" r="52" stroke="url(#codepingRing)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M146 76C184.66 76 216 107.34 216 146" stroke="url(#codepingRing)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M146 46C201.228 46 246 90.772 246 146" stroke="#BAE6FD" stroke-width="12" stroke-linecap="round" opacity="0.92"/>
+</svg>

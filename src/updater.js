@@ -4,8 +4,6 @@ const path = require("path");
 const fs = require("fs");
 const electron = require("electron");
 
-const isMac = process.platform === "darwin";
-
 function makeTranslate(ctx) {
   return (key, fallback) => {
     const value = typeof ctx.t === "function" ? ctx.t(key) : key;
@@ -71,6 +69,7 @@ function initUpdater(ctx, deps = {}) {
   const httpsGet = deps.httpsGetImpl || https.get;
   const execFileFn = deps.execFileImpl || execFile;
   const fsApi = deps.fsImpl || fs;
+  const isMac = (deps.platform || process.platform) === "darwin";
   const t = makeTranslate(ctx);
 
   let updateStatus = "idle";
@@ -182,7 +181,7 @@ function initUpdater(ctx, deps = {}) {
     return showInfoBubble(
       "up-to-date",
       t("updateNotAvailable", "You're Up to Date"),
-      t("updateNotAvailableMsg", "Clawd v{version} is the latest version.").replace("{version}", version),
+      t("updateNotAvailableMsg", "CodePing v{version} is the latest version.").replace("{version}", version),
       {
         version,
         actions: [{ id: "dismiss", label: t("dismiss", "Dismiss"), variant: "secondary" }],
@@ -236,8 +235,8 @@ function initUpdater(ctx, deps = {}) {
     return new Promise((resolve, reject) => {
       const req = httpsGet({
         hostname: "api.github.com",
-        path: "/repos/rullerzhou-afk/clawd-on-desk/releases/latest",
-        headers: { "User-Agent": "Clawd-on-Desk" },
+        path: "/repos/Robot-2020/CodePing/releases/latest",
+        headers: { "User-Agent": "CodePing" },
       }, (res) => {
         let data = "";
         res.on("data", (chunk) => { data += chunk; });
@@ -373,7 +372,7 @@ function initUpdater(ctx, deps = {}) {
 
     await showSuccessBubble({
       title: t("updateReady", "Update Ready"),
-      message: t("gitUpdateRestarting", "Update complete. Restarting Clawd now..."),
+      message: t("gitUpdateRestarting", "Update complete. Restarting CodePing now..."),
     });
     await new Promise((resolve) => setTimeout(resolve, 1200));
     hideBubble();
@@ -488,7 +487,7 @@ function initUpdater(ctx, deps = {}) {
         version: info.version,
         onPrimary: async () => {
           if (isMac) {
-            shell.openExternal("https://github.com/rullerzhou-afk/clawd-on-desk/releases/latest");
+            shell.openExternal("https://github.com/Robot-2020/CodePing/releases/latest");
             updateStatus = "idle";
             manualUpdateCheck = false;
             rebuildMenus();
@@ -632,7 +631,7 @@ function initUpdater(ctx, deps = {}) {
           failureType: "Updater Unavailable",
           operation: "Check for Updates",
           reason: "AutoUpdater not available",
-          nextStep: "Restart Clawd or reinstall the packaged app, then try again.",
+          nextStep: "Restart CodePing or reinstall the packaged app, then try again.",
           detail: "AutoUpdater not available",
         });
       }

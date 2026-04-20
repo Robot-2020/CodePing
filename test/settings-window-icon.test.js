@@ -41,7 +41,7 @@ describe("settings window icon path", () => {
   });
 
   it("prefers unpacked packaged assets before falling back to icon.ico", () => {
-    const resourcesPath = "C:\\Program Files\\Clawd on Desk\\resources";
+    const resourcesPath = "C:\\Program Files\\CodePing\\resources";
     const expected = path.join(resourcesPath, "app.asar.unpacked", "assets", "icons", "256x256.png");
     const actual = getSettingsWindowIconPath({
       platform: "win32",
@@ -89,7 +89,7 @@ describe("windows shell icon path", () => {
   });
 
   it("prefers the extra resource icon for packaged Windows shell surfaces", () => {
-    const resourcesPath = "C:\\Program Files\\Clawd on Desk\\resources";
+    const resourcesPath = "C:\\Program Files\\CodePing\\resources";
     const expected = path.join(resourcesPath, "icon.ico");
     const actual = getWindowsShellIconPath({
       isPackaged: true,
@@ -124,8 +124,8 @@ describe("settings window taskbar details", () => {
   });
 
   it("builds Windows taskbar metadata for packaged runs", () => {
-    const resourcesPath = "C:\\Program Files\\Clawd on Desk\\resources";
-    const execPath = "C:\\Program Files\\Clawd on Desk\\Clawd on Desk.exe";
+    const resourcesPath = "C:\\Program Files\\CodePing\\resources";
+    const execPath = "C:\\Program Files\\CodePing\\CodePing.exe";
     const iconPath = path.join(resourcesPath, "icon.ico");
     const actual = getSettingsWindowTaskbarDetails({
       platform: "win32",

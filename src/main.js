@@ -50,7 +50,7 @@ if (isWin) {
     const user32 = koffi.load("user32.dll");
     _allowSetForeground = user32.func("bool __stdcall AllowSetForegroundWindow(int dwProcessId)");
   } catch (err) {
-    console.warn("Clawd: koffi/AllowSetForegroundWindow not available:", err.message);
+    console.warn("CodePing: koffi/AllowSetForegroundWindow not available:", err.message);
   }
 }
 
@@ -77,7 +77,7 @@ const {
   SHORTCUT_ACTION_IDS,
 } = require("./shortcut-actions");
 const loginItemHelpers = require("./login-item");
-const PREFS_PATH = path.join(app.getPath("userData"), "clawd-prefs.json");
+const PREFS_PATH = path.join(app.getPath("userData"), "codeping-prefs.json");
 const _initialPrefsLoad = prefsModule.load(PREFS_PATH);
 
 // Lazy helpers — these run inside the action `effect` callbacks at click time,
@@ -208,14 +208,14 @@ function hydrateSystemBackedSettings() {
   try {
     systemValue = !!_readSystemOpenAtLogin();
   } catch (err) {
-    console.warn("Clawd: failed to read system openAtLogin during hydration:", err && err.message);
+    console.warn("CodePing: failed to read system openAtLogin during hydration:", err && err.message);
   }
   const result = _settingsController.hydrate({
     openAtLogin: systemValue,
     openAtLoginHydrated: true,
   });
   if (result && result.status === "error") {
-    console.warn("Clawd: openAtLogin hydration failed:", result.message);
+    console.warn("CodePing: openAtLogin hydration failed:", result.message);
   }
 }
 
@@ -250,14 +250,14 @@ const { isPlainObject: _isPlainObject } = themeLoader;
 themeLoader.init(__dirname, app.getPath("userData"));
 
 // Lenient load so a missing/corrupt user-selected theme can't brick boot.
-// If lenient fell back to "clawd" OR the variant fell back to "default",
+// If lenient fell back to "lucy" OR the variant fell back to "default",
 // hydrate prefs to match so the store stays truth.
 //
 // Startup runs BEFORE the window is ready, so we call themeLoader.loadTheme
 // directly — not activateTheme (which requires ready windows) and not the
 // setThemeSelection command (which goes through activateTheme). The runtime
 // switch path via UI goes through setThemeSelection post-window-ready.
-const _requestedThemeId = _settingsController.get("theme") || "clawd";
+const _requestedThemeId = _settingsController.get("theme") || "lucy";
 const _initialVariantMap = _settingsController.get("themeVariant") || {};
 const _requestedVariantId = _initialVariantMap[_requestedThemeId] || "default";
 const _initialThemeOverrides = _settingsController.get("themeOverrides") || {};
@@ -279,7 +279,7 @@ if (activeTheme._id !== _requestedThemeId || activeTheme._variantId !== _request
     themeVariant: nextVariantMap,
   });
   if (result && result.status === "error") {
-    console.warn("Clawd: theme hydrate after fallback failed:", result.message);
+    console.warn("CodePing: theme hydrate after fallback failed:", result.message);
   }
 }
 
@@ -435,7 +435,7 @@ function registerPersistentShortcutsFromSettings() {
     }
     if (!ok) {
       reportShortcutFailure(actionId, "system conflict");
-      console.warn(`Clawd: failed to register shortcut ${actionId}: ${accelerator}`);
+      console.warn(`CodePing: failed to register shortcut ${actionId}: ${accelerator}`);
       continue;
     }
     clearShortcutFailure(actionId);
@@ -1074,7 +1074,7 @@ const _menuCtx = {
   getNearestWorkArea,
   reapplyMacVisibility,
   discoverThemes: () => themeLoader.discoverThemes(),
-  getActiveThemeId: () => activeTheme ? activeTheme._id : "clawd",
+  getActiveThemeId: () => activeTheme ? activeTheme._id : "lucy",
   getActiveThemeCapabilities: () => activeTheme ? activeTheme._capabilities : null,
   ensureUserThemesDir: () => themeLoader.ensureUserThemesDir(),
   openSettingsWindow: () => openSettingsWindow(),
@@ -1106,13 +1106,13 @@ function wireSettingsSubscribers() {
     if ("showTray" in changes) {
       showTray = changes.showTray;
       try { changes.showTray ? createTray() : destroyTray(); } catch (err) {
-        console.warn("Clawd: tray toggle failed:", err && err.message);
+        console.warn("CodePing: tray toggle failed:", err && err.message);
       }
     }
     if ("showDock" in changes) {
       showDock = changes.showDock;
       try { applyDockVisibility(); } catch (err) {
-        console.warn("Clawd: applyDockVisibility failed:", err && err.message);
+        console.warn("CodePing: applyDockVisibility failed:", err && err.message);
       }
     }
     if ("manageClaudeHooksAutomatically" in changes) {
@@ -1138,12 +1138,12 @@ function wireSettingsSubscribers() {
     // 2. Reactive side effects (mirror what the legacy setters / click handlers used to do).
     if ("hideBubbles" in changes) {
       try { syncPermissionShortcuts(); } catch (err) {
-        console.warn("Clawd: syncPermissionShortcuts failed:", err && err.message);
+        console.warn("CodePing: syncPermissionShortcuts failed:", err && err.message);
       }
     }
     if ("bubbleFollowPet" in changes) {
       try { repositionFloatingBubbles(); } catch (err) {
-        console.warn("Clawd: repositionFloatingBubbles failed:", err && err.message);
+        console.warn("CodePing: repositionFloatingBubbles failed:", err && err.message);
       }
     }
     if ("allowEdgePinning" in changes) {
@@ -1162,7 +1162,7 @@ function wireSettingsSubscribers() {
           repositionFloatingBubbles();
         }
       } catch (err) {
-        console.warn("Clawd: allowEdgePinning re-clamp failed:", err && err.message);
+        console.warn("CodePing: allowEdgePinning re-clamp failed:", err && err.message);
       }
     }
 
@@ -1171,7 +1171,7 @@ function wireSettingsSubscribers() {
     for (const key of Object.keys(changes)) {
       if (MENU_AFFECTING_KEYS.has(key)) {
         try { rebuildAllMenus(); } catch (err) {
-          console.warn("Clawd: rebuildAllMenus failed:", err && err.message);
+          console.warn("CodePing: rebuildAllMenus failed:", err && err.message);
         }
         break;
       }
@@ -1185,7 +1185,7 @@ function wireSettingsSubscribers() {
         }
       }
     } catch (err) {
-      console.warn("Clawd: settings-changed broadcast failed:", err && err.message);
+      console.warn("CodePing: settings-changed broadcast failed:", err && err.message);
     }
   });
 }
@@ -1195,7 +1195,7 @@ _settingsController.subscribeKey("shortcuts", (_value, snapshot) => {
   if (nextTogglePetShortcut === lastTogglePetShortcut) return;
   lastTogglePetShortcut = nextTogglePetShortcut;
   try { rebuildAllMenus(); } catch (err) {
-    console.warn("Clawd: rebuildAllMenus failed:", err && err.message);
+    console.warn("CodePing: rebuildAllMenus failed:", err && err.message);
   }
 });
 
@@ -1210,7 +1210,7 @@ function _runPendingPostReloadTasks() {
   const tasks = _pendingPostReloadTasks;
   _pendingPostReloadTasks = [];
   for (const task of tasks) {
-    try { task(); } catch (err) { console.warn("Clawd: post-reload task threw:", err && err.message); }
+    try { task(); } catch (err) { console.warn("CodePing: post-reload task threw:", err && err.message); }
   }
 }
 
@@ -1910,23 +1910,16 @@ const ANIMATION_OVERRIDES_EXPORT_DIALOG_STRINGS = {
   en: {
     saveTitle: "Export Animation Overrides",
     openTitle: "Import Animation Overrides",
-    defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd Animation Overrides",
+    defaultName: (ts) => `codeping-animation-overrides-${ts}.json`,
+    jsonFilter: "CodePing Animation Overrides",
     nothingToExport: "No animation overrides to export. Override something first.",
   },
   zh: {
     saveTitle: "导出动画覆盖",
     openTitle: "导入动画覆盖",
-    defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd 动画覆盖",
+    defaultName: (ts) => `codeping-animation-overrides-${ts}.json`,
+    jsonFilter: "CodePing 动画覆盖",
     nothingToExport: "没有可导出的动画覆盖。先自定义几个动画试试。",
-  },
-  ko: {
-    saveTitle: "애니메이션 덮어쓰기 내보내기",
-    openTitle: "애니메이션 덮어쓰기 가져오기",
-    defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd 애니메이션 덮어쓰기",
-    nothingToExport: "내보낼 애니메이션 덮어쓰기가 없습니다. 먼저 무언가를 덮어써 보세요.",
   },
 };
 
@@ -1947,10 +1940,10 @@ ipcMain.handle("settings:export-animation-overrides", async (event) => {
       return { status: "cancel" };
     }
     const payload = {
-      clawdAnimationOverrides: ANIMATION_OVERRIDES_EXPORT_VERSION,
+      codepingAnimationOverrides: ANIMATION_OVERRIDES_EXPORT_VERSION,
       version: ANIMATION_OVERRIDES_EXPORT_VERSION,
       exportedAt: new Date().toISOString(),
-      clawdVersion: app.getVersion(),
+      codepingVersion: app.getVersion(),
       themes: overrides,
     };
     fs.writeFileSync(result.filePath, JSON.stringify(payload, null, 2), "utf8");
@@ -1960,7 +1953,7 @@ ipcMain.handle("settings:export-animation-overrides", async (event) => {
       themeCount: Object.keys(overrides).length,
     };
   } catch (err) {
-    console.warn("Clawd: export-animation-overrides failed:", err && err.message);
+    console.warn("CodePing: export-animation-overrides failed:", err && err.message);
     return { status: "error", message: (err && err.message) || "export failed" };
   }
 });
@@ -1980,7 +1973,7 @@ ipcMain.handle("settings:import-animation-overrides", async (event) => {
     }
     filePath = result.filePaths[0];
   } catch (err) {
-    console.warn("Clawd: import-animation-overrides dialog failed:", err && err.message);
+    console.warn("CodePing: import-animation-overrides dialog failed:", err && err.message);
     return { status: "error", message: (err && err.message) || "dialog failed" };
   }
 
@@ -1993,11 +1986,11 @@ ipcMain.handle("settings:import-animation-overrides", async (event) => {
   }
 
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-    return { status: "error", message: "file is not a Clawd animation overrides export" };
+    return { status: "error", message: "file is not a CodePing animation overrides export" };
   }
-  const magic = parsed.clawdAnimationOverrides;
+  const magic = parsed.codepingAnimationOverrides;
   if (typeof magic !== "number") {
-    return { status: "error", message: "file is not a Clawd animation overrides export" };
+    return { status: "error", message: "file is not a CodePing animation overrides export" };
   }
 
   const commandResult = await _settingsController.applyCommand("importAnimationOverrides", {
@@ -2022,13 +2015,13 @@ ipcMain.handle("settings:import-animation-overrides", async (event) => {
 // re-fetch.
 ipcMain.handle("settings:list-themes", () => {
   try {
-    const activeId = activeTheme ? activeTheme._id : "clawd";
+    const activeId = activeTheme ? activeTheme._id : "lucy";
     return themeLoader.listThemesWithMetadata().map((t) => ({
       ...t,
       active: t.id === activeId,
     }));
   } catch (err) {
-    console.warn("Clawd: settings:list-themes failed:", err && err.message);
+    console.warn("CodePing: settings:list-themes failed:", err && err.message);
     return [];
   }
 });
@@ -2046,12 +2039,6 @@ const REMOVE_THEME_DIALOG_STRINGS = {
     cancel: "取消",
     message: (name) => `确认删除主题 "${name}"？`,
     detail: "此操作不可撤销。主题的所有文件将从磁盘移除。",
-  },
-  ko: {
-    delete: "삭제",
-    cancel: "취소",
-    message: (name) => `테마 "${name}"을(를) 삭제할까요?`,
-    detail: "이 작업은 되돌릴 수 없습니다. 이 테마의 모든 파일이 디스크에서 제거됩니다.",
   },
 };
 ipcMain.handle("settings:confirm-remove-theme", async (event, themeId) => {
@@ -2072,7 +2059,7 @@ ipcMain.handle("settings:confirm-remove-theme", async (event, themeId) => {
     });
     return { confirmed: response === 0 };
   } catch (err) {
-    console.warn("Clawd: confirm-remove-theme dialog failed:", err && err.message);
+    console.warn("CodePing: confirm-remove-theme dialog failed:", err && err.message);
     return { confirmed: false };
   }
 });
@@ -2085,7 +2072,7 @@ const CLAUDE_HOOKS_DIALOG_STRINGS = {
     disableAndRemove: "Disable and remove installed hooks",
     cancel: "Cancel",
     disconnectTitle: "Disconnect Claude hooks?",
-    disconnectDetail: "This removes Clawd-managed Claude hooks from ~/.claude/settings.json and turns off automatic management. Your Start with Claude preference will be kept for later re-enable.",
+    disconnectDetail: "This removes CodePing-managed Claude hooks from ~/.claude/settings.json and turns off automatic management. Your Start with Claude preference will be kept for later re-enable.",
     disconnect: "Disconnect hooks",
   },
   zh: {
@@ -2095,18 +2082,8 @@ const CLAUDE_HOOKS_DIALOG_STRINGS = {
     disableAndRemove: "关闭并移除当前 hooks",
     cancel: "取消",
     disconnectTitle: "断开 Claude hooks？",
-    disconnectDetail: "这会从 `~/.claude/settings.json` 移除 Clawd 管理的 Claude hooks，并关闭自动管理。`随 Claude Code 启动` 的偏好会保留，方便以后重新启用。",
+    disconnectDetail: "这会从 `~/.claude/settings.json` 移除 CodePing 管理的 Claude hooks，并关闭自动管理。`随 Claude Code 启动` 的偏好会保留，方便以后重新启用。",
     disconnect: "断开 hooks",
-  },
-  ko: {
-    disableTitle: "Claude hooks 자동 관리를 끌까요?",
-    disableDetail: "지금 제거하지 않으면 `~/.claude/settings.json`에 설치된 Claude hooks는 그대로 유지됩니다.",
-    disableOnly: "자동 관리만 끄기",
-    disableAndRemove: "끄고 설치된 hooks 제거",
-    cancel: "취소",
-    disconnectTitle: "Claude hooks 연결을 해제할까요?",
-    disconnectDetail: "`~/.claude/settings.json`에서 Clawd가 관리하는 Claude hooks를 제거하고 자동 관리를 끕니다. `Claude Code와 함께 시작` 설정은 나중에 다시 켤 수 있도록 유지됩니다.",
-    disconnect: "hooks 연결 해제",
   },
 };
 function _getSettingsDialogParent(event) {
@@ -2128,7 +2105,7 @@ ipcMain.handle("settings:confirm-disable-claude-hooks", async (event) => {
     if (response === 1) return { choice: "disable" };
     return { choice: "cancel" };
   } catch (err) {
-    console.warn("Clawd: confirm-disable-claude-hooks dialog failed:", err && err.message);
+    console.warn("CodePing: confirm-disable-claude-hooks dialog failed:", err && err.message);
     return { choice: "cancel" };
   }
 });
@@ -2146,7 +2123,7 @@ ipcMain.handle("settings:confirm-disconnect-claude-hooks", async (event) => {
     });
     return { confirmed: response === 0 };
   } catch (err) {
-    console.warn("Clawd: confirm-disconnect-claude-hooks dialog failed:", err && err.message);
+    console.warn("CodePing: confirm-disconnect-claude-hooks dialog failed:", err && err.message);
     return { confirmed: false };
   }
 });
@@ -2161,7 +2138,7 @@ ipcMain.handle("settings:list-agents", () => {
       capabilities: a.capabilities || {},
     }));
   } catch (err) {
-    console.warn("Clawd: settings:list-agents failed:", err && err.message);
+    console.warn("CodePing: settings:list-agents failed:", err && err.message);
     return [];
   }
 });
@@ -2189,20 +2166,23 @@ const { setupAutoUpdater, checkForUpdates, getUpdateMenuItem, getUpdateMenuLabel
 // loads are blocked. Inlining keeps CSP strict while letting the renderer
 // access #shake-slot to drive the click reaction.
 ipcMain.handle("settings:get-about-info", () => {
-  const heroSvgAbsPath = path.join(__dirname, "..", "assets", "svg", "clawd-about-hero.svg");
+  // Use current theme's idle-follow svg as the hero image
+  const themeName = prefs.get("theme") || "lucy";
+  const heroSvgAbsPath = path.join(__dirname, "..", "themes", themeName, "assets", `${themeName}-idle-follow.svg`);
   let heroSvgContent = "";
   try {
     heroSvgContent = fs.readFileSync(heroSvgAbsPath, "utf8");
   } catch (err) {
-    console.warn("Clawd: failed to read about hero SVG:", err && err.message);
+    // Fallback to lucy theme if current theme's asset is missing
+    try {
+      const fallbackPath = path.join(__dirname, "..", "themes", "lucy", "assets", "lucy-idle-follow.svg");
+      heroSvgContent = fs.readFileSync(fallbackPath, "utf8");
+    } catch (fallbackErr) {
+      console.warn("CodePing: failed to read about hero SVG:", err && err.message);
+    }
   }
   return {
     version: app.getVersion(),
-    repoUrl: "https://github.com/rullerzhou-afk/clawd-on-desk",
-    license: "MIT",
-    copyright: "\u00a9 2026 Ruller_Lulu",
-    authorName: "Ruller_Lulu / \u9e7f\u9e7f",
-    authorUrl: "https://github.com/rullerzhou-afk",
     heroSvgContent,
   };
 });
@@ -2560,7 +2540,7 @@ function createWindow() {
     });
     win.on("unresponsive", () => {
       if (isQuitting) return;
-      console.warn("Clawd: renderer unresponsive — reloading");
+      console.warn("CodePing: renderer unresponsive — reloading");
       win.webContents.reload();
     });
   }
@@ -3077,7 +3057,7 @@ function installTerminalFocusExtension() {
   extSrc = extSrc.replace("app.asar" + path.sep, "app.asar.unpacked" + path.sep);
 
   if (!fs.existsSync(extSrc)) {
-    console.log("Clawd: terminal-focus extension source not found, skipping auto-install");
+    console.log("CodePing: terminal-focus extension source not found, skipping auto-install");
     return;
   }
 
@@ -3100,13 +3080,13 @@ function installTerminalFocusExtension() {
         fs.copyFileSync(path.join(extSrc, file), path.join(dest, file));
       }
       installed++;
-      console.log(`Clawd: installed terminal-focus extension to ${dest}`);
+      console.log(`CodePing: installed terminal-focus extension to ${dest}`);
     } catch (err) {
-      console.warn(`Clawd: failed to install extension to ${dest}:`, err.message);
+      console.warn(`CodePing: failed to install extension to ${dest}:`, err.message);
     }
   }
   if (installed > 0) {
-    console.log(`Clawd: terminal-focus extension installed to ${installed} editor(s). Restart VS Code/Cursor to activate.`);
+    console.log(`CodePing: terminal-focus extension installed to ${installed} editor(s). Restart VS Code/Cursor to activate.`);
   }
 }
 
@@ -3157,7 +3137,7 @@ if (!gotTheLock) {
 
     // Auto-install VS Code/Cursor terminal-focus extension
     try { installTerminalFocusExtension(); } catch (err) {
-      console.warn("Clawd: failed to auto-install terminal-focus extension:", err.message);
+      console.warn("CodePing: failed to auto-install terminal-focus extension:", err.message);
     }
 
     // Auto-updater: setup event handlers (user triggers check via tray menu)

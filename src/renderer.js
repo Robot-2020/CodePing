@@ -21,7 +21,7 @@ function initWithConfig(cfg) {
   _shadowShift = (tc.eyeTracking && tc.eyeTracking.shadowShift) || 0.3;
   _eyeTrackingStates = (tc.eyeTrackingStates) || ["idle", "dozing", "mini-idle"];
   _dragSvg = tc.dragSvg || null;
-  _idleFollowSvg = tc.idleFollowSvg || "clawd-idle-follow.svg";
+  _idleFollowSvg = tc.idleFollowSvg || "lucy-idle-follow.svg";
   _glyphFlipDefs = tc.glyphFlips || { "pixel-z": 4, "pixel-z-small": 3 };
 
   // Layered tracking: detect if theme uses multi-layer config

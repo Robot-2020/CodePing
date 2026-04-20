@@ -183,10 +183,10 @@ function syncClawdHooks() {
       port: getHookServerPort(),
     });
     if (added > 0 || updated > 0 || removed > 0) {
-      console.log(`Clawd: synced hooks (added ${added}, updated ${updated}, removed ${removed})`);
+      console.log(`CodePing: synced hooks (added ${added}, updated ${updated}, removed ${removed})`);
     }
   } catch (err) {
-    console.warn("Clawd: failed to sync hooks:", err.message);
+    console.warn("CodePing: failed to sync hooks:", err.message);
   }
 }
 
@@ -196,10 +196,10 @@ function syncComateHooks() {
     const { registerComateHooks } = require("../hooks/comate-install.js");
     const { added, updated } = registerComateHooks({ silent: true });
     if (added > 0 || updated > 0) {
-      console.log(`Clawd: synced Comate hooks (added ${added}, updated ${updated})`);
+      console.log(`CodePing: synced Comate hooks (added ${added}, updated ${updated})`);
     }
   } catch (err) {
-    console.warn("Clawd: failed to sync Comate hooks:", err.message);
+    console.warn("CodePing: failed to sync Comate hooks:", err.message);
   }
 }
 
@@ -217,7 +217,7 @@ function startComateMonitor() {
   try {
     const monitorScript = pathApi.resolve(__dirname, "..", "hooks", "comate-monitor.js");
     if (!fsApi.existsSync(monitorScript)) {
-      console.warn("Clawd: comate-monitor.js not found, skipping Comate monitor");
+      console.warn("CodePing: comate-monitor.js not found, skipping Comate monitor");
       return;
     }
 
@@ -238,14 +238,14 @@ function startComateMonitor() {
 
     comateMonitorProcess.on("exit", (code) => {
       if (code !== 0 && code !== null) {
-        console.warn(`Clawd: Comate monitor exited with code ${code}`);
+        console.warn(`CodePing: Comate monitor exited with code ${code}`);
       }
       comateMonitorProcess = null;
     });
 
-    console.log("Clawd: Comate session monitor started");
+    console.log("CodePing: Comate session monitor started");
   } catch (err) {
-    console.warn("Clawd: failed to start Comate monitor:", err.message);
+    console.warn("CodePing: failed to start Comate monitor:", err.message);
   }
 }
 
@@ -302,7 +302,7 @@ function startClaudeSettingsWatcher() {
         try {
           const raw = fsApi.readFileSync(settingsPath, "utf-8");
           if (!raw.includes(HOOK_MARKER)) {
-            console.log("Clawd: hooks wiped from settings.json — re-registering");
+            console.log("CodePing: hooks wiped from settings.json — re-registering");
             settingsWatchLastSyncTime = nowFn();
             syncClawdHooks();
           }
@@ -310,11 +310,11 @@ function startClaudeSettingsWatcher() {
       }, settingsWatchDebounceMs);
     });
     if (settingsWatcher && typeof settingsWatcher.on === "function") settingsWatcher.on("error", (err) => {
-      console.warn("Clawd: settings watcher error:", err.message);
+      console.warn("CodePing: settings watcher error:", err.message);
     });
     return true;
   } catch (err) {
-    console.warn("Clawd: failed to watch settings directory:", err.message);
+    console.warn("CodePing: failed to watch settings directory:", err.message);
     settingsWatcher = null;
     return false;
   }
@@ -431,7 +431,7 @@ function startHttpServer() {
       req.on("end", () => {
         if (tooLarge) {
           ctx.permLog("SKIPPED: permission payload too large");
-          ctx.sendPermissionResponse(res, "deny", "Permission request too large for Clawd bubble; answer in terminal");
+          ctx.sendPermissionResponse(res, "deny", "Permission request too large for CodePing bubble; answer in terminal");
           return;
         }
 
