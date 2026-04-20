@@ -211,39 +211,57 @@ function startComateMonitor() {
   const storeDir = pathApi.join(osApi.homedir(), ".comate-engine", "store");
   if (!fsApi.existsSync(storeDir)) {
     // Comate not installed or not used, skip
+    console.log("CodePing: Comate store directory not found, skipping monitor");
     return;
   }
 
   try {
     const monitorScript = pathApi.resolve(__dirname, "..", "hooks", "comate-monitor.js");
+    // Electron asar: resolve to unpacked path for child_process
+    const actualScript = monitorScript.replace(/app\.asar([\/\\])/, "app.asar.unpacked$1");
     if (!fsApi.existsSync(monitorScript)) {
-      console.warn("CodePing: comate-monitor.js not found, skipping Comate monitor");
+      console.warn("CodePing: comate-monitor.js not found at", monitorScript);
       return;
     }
 
-    // Start monitor process
-    comateMonitorProcess = spawnFn(process.execPath, [monitorScript], {
+    console.log("CodePing: starting Comate monitor:", actualScript);
+
+    // Start monitor process — set ELECTRON_RUN_AS_NODE to ensure Node.js mode
+    const env = Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: "1" });
+    comateMonitorProcess = spawnFn(process.execPath, [actualScript], {
       stdio: ["ignore", "pipe", "pipe"],
       detached: false,
+      env,
     });
 
     comateMonitorProcess.stdout.on("data", (data) => {
-      // Optionally log monitor output
-      // console.log(`[Comate Monitor] ${data.toString().trim()}`);
+      const msg = data.toString().trim();
+      if (msg) console.log(`[Comate Monitor] ${msg}`);
     });
 
     comateMonitorProcess.stderr.on("data", (data) => {
       console.warn(`[Comate Monitor] ${data.toString().trim()}`);
     });
 
-    comateMonitorProcess.on("exit", (code) => {
-      if (code !== 0 && code !== null) {
-        console.warn(`CodePing: Comate monitor exited with code ${code}`);
-      }
+    comateMonitorProcess.on("error", (err) => {
+      console.warn("CodePing: Comate monitor spawn error:", err.message);
       comateMonitorProcess = null;
+      // Retry after 5 seconds
+      setTimeoutFn(() => startComateMonitor(), 5000);
     });
 
-    console.log("CodePing: Comate session monitor started");
+    comateMonitorProcess.on("exit", (code, signal) => {
+      if (code !== 0 && code !== null) {
+        console.warn(`CodePing: Comate monitor exited with code ${code} signal ${signal}`);
+        comateMonitorProcess = null;
+        // Retry after 5 seconds
+        setTimeoutFn(() => startComateMonitor(), 5000);
+      } else {
+        comateMonitorProcess = null;
+      }
+    });
+
+    console.log("CodePing: Comate session monitor started (pid:", comateMonitorProcess.pid + ")");
   } catch (err) {
     console.warn("CodePing: failed to start Comate monitor:", err.message);
   }
@@ -696,12 +714,24 @@ function startHttpServer() {
     // Defer hook registration off the startup path so the HTTP server can
     // start accepting traffic before we touch agent config files.
     setImmediateFn(() => {
-      if (shouldManageClaudeHooks()) {
-        syncClawdHooks();
-        startClaudeSettingsWatcher();
+      try {
+        if (shouldManageClaudeHooks()) {
+          syncClawdHooks();
+          startClaudeSettingsWatcher();
+        }
+      } catch (err) {
+        console.warn("CodePing: Claude hooks setup error:", err.message);
       }
-      syncComateHooks();
-      startComateMonitor();
+      try {
+        syncComateHooks();
+      } catch (err) {
+        console.warn("CodePing: Comate hooks sync error:", err.message);
+      }
+      try {
+        startComateMonitor();
+      } catch (err) {
+        console.warn("CodePing: Comate monitor start error:", err.message);
+      }
     });
   });
 
