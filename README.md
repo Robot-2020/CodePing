@@ -17,7 +17,7 @@ CodePing is a desktop companion for AI coding workflows. It lives on your deskto
 - 🎭 **Real-time status sync** - Shows live states (thinking, typing, working, done) with improved Comate latency
 - 🔔 **Permission prompts** - Surfaces important decisions on your desktop
 - 🎨 **Theme system** - Multiple built-in themes (Sunset, Calico, Lucy) + custom support
-- 🌐 **Multilingual** - English / 中文 / 한국어
+- 🌐 **Multilingual** - English / 中文
 - 😴 **Smart sleep** - Automatic idle animations with smart sleep sequences
 - 📏 **Mini mode** - Edge-snapping compact view with smooth animations
 
