@@ -12,6 +12,7 @@ const STORE_DIR = path.join(os.homedir(), ".comate-engine", "store");
 const POLL_INTERVAL_MS = 5000;      // 轮询兜底（5秒）
 const WATCH_DEBOUNCE_MS = 150;      // 文件监听防抖（150ms）
 const ACTIVE_TIMEOUT_MS = 30000;    // 文件超时（30秒）
+const COMPLETION_CONFIRMATION_MS = 2000;  // 会话完成推迟确认（2秒）
 const CLAWD_PORT = 23333;
 const TOP_N_FILES = 5;
 
@@ -28,6 +29,7 @@ let fileCache = new Map();
 let hasBeenActive = false;
 let permissionReminderTimer = null;  // 权限提醒定时器
 let permissionReminderCount = 0;     // 提醒次数
+let completionLockTimer = null;      // 会话完成锁定（防止缓存复用导致状态反复）
 const PERMISSION_REMINDER_INTERVAL = 60000;  // 60秒提醒一次
 
 // Watch state
@@ -163,6 +165,11 @@ function parseSessionFile(filePath) {
 }
 
 function poll() {
+  // 在完成确认窗口内，跳过轮询（防止缓存复用导致状态反复）
+  if (completionLockTimer) {
+    return;
+  }
+
   if (!fs.existsSync(STORE_DIR)) {
     updateState("idle", null);
     return;
@@ -292,7 +299,21 @@ function updateState(newState, pendingTool) {
       if (lastState === "working" || lastState === "notification") {
         log(`State changed: ${lastState} -> attention (task completed, will auto-return to idle)`);
         postStateToClawdSync("attention", "Stop");
-        lastState = "idle";  // 直接设为 idle，因为 attention 会自动回退
+        lastState = "idle";
+
+        // 启动完成确认窗口：2 秒内不再轮询，防止缓存复用导致状态反复
+        // （类似 Gemini 的 4s 完成延迟窗口机制）
+        if (completionLockTimer) {
+          clearTimeout(completionLockTimer);
+        }
+        completionLockTimer = setTimeout(() => {
+          completionLockTimer = null;
+          log("Completion confirmation window closed, monitoring resumed");
+        }, COMPLETION_CONFIRMATION_MS);
+
+        // 完成后也清空文件缓存，强制下次重新读取（防止卡在旧状态）
+        fileCache.clear();
+        return;
       } else {
         log(`State changed: ${lastState} -> idle`);
         postStateToClawdSync("idle", "SessionEnd");
@@ -368,6 +389,9 @@ function main() {
     }
     if (watchDebounceTimer) {
       clearTimeout(watchDebounceTimer);
+    }
+    if (completionLockTimer) {
+      clearTimeout(completionLockTimer);
     }
     if (permissionReminderTimer) {
       clearInterval(permissionReminderTimer);
