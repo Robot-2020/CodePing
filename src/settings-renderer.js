@@ -2185,6 +2185,122 @@ function renderGeneralTab(parent) {
       descKey: "rowShowSessionIdDesc",
     }),
   ]));
+
+  // Section: Comate Monitor
+  const comateConfig = snapshot && snapshot.comateMonitor;
+  const comateApiUrl = (comateConfig && comateConfig.apiUrl) || "";
+  const comateUsername = (comateConfig && comateConfig.username) || "";
+  const comatePollInterval = (comateConfig && comateConfig.pollIntervalMs) || 5000;
+  const comateEnabled = !!(comateConfig && comateConfig.enabled);
+
+  const comateRows = [];
+
+  // Enable switch
+  const enableRow = buildSwitchRow({
+    key: "comateMonitor.enabled",
+    labelKey: "rowComateEnable",
+    descKey: "rowComateEnableDesc",
+  });
+  comateRows.push(enableRow);
+
+  // API URL input
+  const apiUrlRow = document.createElement("div");
+  apiUrlRow.className = "row";
+  apiUrlRow.innerHTML =
+    `<div class="row-text">` +
+      `<span class="row-label">API URL</span>` +
+      `<span class="row-desc">Comate API 端点地址</span>` +
+    `</div>` +
+    `<div class="row-control"><input type="text" class="text-input" id="comate-api-url" placeholder="https://oneapi-comate.baidu-int.com" /></div>`;
+  const apiUrlInput = apiUrlRow.querySelector("#comate-api-url");
+  apiUrlInput.value = comateApiUrl;
+  apiUrlInput.addEventListener("change", (e) => {
+    const newVal = e.target.value.trim();
+    if (newVal !== comateApiUrl) {
+      window.settingsAPI.update("comateMonitor", {
+        enabled: comateEnabled,
+        apiUrl: newVal,
+        username: comateUsername,
+        pollIntervalMs: comatePollInterval,
+      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
+    }
+  });
+  comateRows.push(apiUrlRow);
+
+  // Username input
+  const usernameRow = document.createElement("div");
+  usernameRow.className = "row";
+  usernameRow.innerHTML =
+    `<div class="row-text">` +
+      `<span class="row-label">Username</span>` +
+      `<span class="row-desc">Comate 用户名</span>` +
+    `</div>` +
+    `<div class="row-control"><input type="text" class="text-input" id="comate-username" placeholder="wuzhiao" /></div>`;
+  const usernameInput = usernameRow.querySelector("#comate-username");
+  usernameInput.value = comateUsername;
+  usernameInput.addEventListener("change", (e) => {
+    const newVal = e.target.value.trim();
+    if (newVal !== comateUsername) {
+      window.settingsAPI.update("comateMonitor", {
+        enabled: comateEnabled,
+        apiUrl: comateApiUrl,
+        username: newVal,
+        pollIntervalMs: comatePollInterval,
+      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
+    }
+  });
+  comateRows.push(usernameRow);
+
+  // Poll interval input
+  const pollRow = document.createElement("div");
+  pollRow.className = "row";
+  pollRow.innerHTML =
+    `<div class="row-text">` +
+      `<span class="row-label">Poll Interval (ms)</span>` +
+      `<span class="row-desc">轮询间隔，最小 1000ms</span>` +
+    `</div>` +
+    `<div class="row-control"><input type="number" class="text-input" id="comate-poll-interval" placeholder="5000" min="1000" step="1000" /></div>`;
+  const pollInput = pollRow.querySelector("#comate-poll-interval");
+  pollInput.value = comatePollInterval;
+  pollInput.addEventListener("change", (e) => {
+    const newVal = parseInt(e.target.value) || 5000;
+    if (newVal !== comatePollInterval && newVal >= 1000) {
+      window.settingsAPI.update("comateMonitor", {
+        enabled: comateEnabled,
+        apiUrl: comateApiUrl,
+        username: comateUsername,
+        pollIntervalMs: newVal,
+      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
+    }
+  });
+  comateRows.push(pollRow);
+
+  // Test Connection button
+  const testRow = document.createElement("div");
+  testRow.className = "row";
+  testRow.innerHTML =
+    `<div class="row-text">` +
+      `<span class="row-label">Test Connection</span>` +
+      `<span class="row-desc">验证 API 是否可访问</span>` +
+    `</div>` +
+    `<div class="row-control"><button class="action-btn" id="comate-test-btn">Test</button></div>`;
+  const testBtn = testRow.querySelector("#comate-test-btn");
+  attachActivation(testBtn, () =>
+    window.settingsAPI.command("testComateConnection", {
+      apiUrl: comateApiUrl || "",
+      username: comateUsername || "",
+    }).then((result) => {
+      if (result && result.status === "ok") {
+        showToast("✓ " + (result.message || "Connection successful"), { error: false });
+      } else {
+        showToast("✗ " + (result && result.message || "Connection failed"), { error: true });
+      }
+      return result;
+    })
+  );
+  comateRows.push(testRow);
+
+  parent.appendChild(buildSection("Comate Monitor", comateRows));
 }
 
 function buildSection(title, rows) {
