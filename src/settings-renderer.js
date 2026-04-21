@@ -2283,7 +2283,25 @@ function renderGeneralTab(parent) {
       `<span class="row-label">Test Connection</span>` +
       `<span class="row-desc">验证 API 是否可访问</span>` +
     `</div>` +
-    `<div class="row-control"><button class="action-btn" id="comate-test-btn">Test</button></div>`;
+    `<div class="row-control">` +
+      `<button class="action-btn" id="comate-login-btn">Login</button>` +
+      `<button class="action-btn" id="comate-test-btn">Test</button>` +
+    `</div>`;
+
+  const loginBtn = testRow.querySelector("#comate-login-btn");
+  attachActivation(loginBtn, () =>
+    window.settingsAPI.command("openComateAuthUrl", {
+      apiUrl: comateApiUrl || "",
+    }).then((result) => {
+      if (result && result.status === "ok") {
+        showToast("📱 " + (result.message || "Opening browser..."), { error: false });
+      } else {
+        showToast("✗ " + (result && result.message || "Failed to open"), { error: true });
+      }
+      return result;
+    })
+  );
+
   const testBtn = testRow.querySelector("#comate-test-btn");
   attachActivation(testBtn, () =>
     window.settingsAPI.command("testComateConnection", {

@@ -8,17 +8,51 @@ const http = require("http");
 
 class ComateMonitor {
   constructor(config, onQuotaChanged) {
-    this._config = config;              // { enabled, apiUrl, username, pollIntervalMs }
+    this._config = config;              // { enabled, apiUrl, username, pollIntervalMs, cookies }
     this._onQuotaChanged = onQuotaChanged; // 数据变化回调
     this._interval = null;              // 轮询定时器
     this._lastData = null;              // 缓存的上一次数据
     this._isPolling = false;            // 是否正在轮询中
     this._failureCount = 0;             // 连续失败次数（用于指数退避）
     this._maxFailures = 5;              // 最多重试 5 次后停止
+    this._cookies = {};                 // 保存的 Cookie 信息
+
+    // 如果配置中有 cookies，加载到内存
+    if (config.cookies) {
+      this._cookies = { ...config.cookies };
+    }
 
     // 确保轮询间隔至少 1000ms
     const interval = config.pollIntervalMs || 5000;
     this._pollIntervalMs = Math.max(1000, interval);
+  }
+
+  /**
+   * 设置 Cookie（用于认证）
+   */
+  setCookies(cookieDict) {
+    this._cookies = { ...cookieDict };
+    console.log("[ComateMonitor] Cookies updated");
+  }
+
+  /**
+   * 获取当前 Cookie
+   */
+  getCookies() {
+    return { ...this._cookies };
+  }
+
+  /**
+   * 从 Set-Cookie 头解析 Cookie
+   */
+  _parseCookieFromHeader(setCookieHeader) {
+    // Set-Cookie 格式: "name=value; Path=/; Domain=...; Secure; HttpOnly"
+    if (!setCookieHeader) return null;
+    const parts = setCookieHeader.split(";");
+    if (parts.length === 0) return null;
+
+    const [nameValue] = parts[0].trim().split("=");
+    return nameValue ? parts[0].trim() : null;
   }
 
   /**
@@ -82,7 +116,7 @@ class ComateMonitor {
   }
 
   /**
-   * 获取配额数据
+   * 获取配额数据（支持 Cookie 认证）
    */
   _fetchQuotaData() {
     return new Promise((resolve, reject) => {
@@ -102,12 +136,46 @@ class ComateMonitor {
         reject(new Error("Request timeout"));
       }, timeoutMs);
 
-      const req = protocol.get(urlString, { timeout: timeoutMs }, (res) => {
+      // 构建请求选项，支持 Cookie
+      const options = {
+        timeout: timeoutMs,
+        headers: {},
+      };
+
+      // 如果有 Cookie，添加到请求头
+      if (Object.keys(this._cookies).length > 0) {
+        const cookieString = Object.entries(this._cookies)
+          .map(([name, value]) => `${name}=${value}`)
+          .join("; ");
+        options.headers["Cookie"] = cookieString;
+      }
+
+      const req = protocol.get(urlString, options, (res) => {
         clearTimeout(timeoutHandle);
+
+        // 如果返回 302 或其他重定向，可能需要更新 Cookie
+        if (res.statusCode === 302 || res.statusCode === 301) {
+          // 尝试从响应头获取 Set-Cookie（虽然 302 通常不会包含数据）
+          if (res.headers["set-cookie"]) {
+            res.headers["set-cookie"].forEach(setCookie => {
+              const cookiePart = this._parseCookieFromHeader(setCookie);
+              if (cookiePart) {
+                const [name, value] = cookiePart.split("=");
+                if (name && value !== undefined) {
+                  this._cookies[name] = value;
+                }
+              }
+            });
+            console.warn("[ComateMonitor] Got 302, updated cookies from response");
+          }
+          reject(new Error(`HTTP ${res.statusCode} - Need authentication`));
+          res.resume();
+          return;
+        }
 
         if (res.statusCode !== 200) {
           reject(new Error(`HTTP ${res.statusCode}`));
-          res.resume(); // 消费响应体
+          res.resume();
           return;
         }
 

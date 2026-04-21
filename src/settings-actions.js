@@ -1493,12 +1493,34 @@ function testComateConnection(payload, deps) {
   });
 }
 
+
+function openComateAuthUrl(payload) {
+  // 打开 Comate 认证 URL，让用户登录后获取 Cookie
+  const { apiUrl } = payload || {};
+  if (!apiUrl || typeof apiUrl !== "string") {
+    return { status: "error", message: "API URL is required" };
+  }
+
+  try {
+    const { shell } = require("electron");
+    // 打开 Comate 首页，用户登录后会自动设置 Cookie
+    shell.openExternal(apiUrl);
+    return {
+      status: "ok",
+      message: "Opening browser... Please login and return to test connection.",
+    };
+  } catch (err) {
+    return { status: "error", message: err.message };
+  }
+}
+
 const commandRegistry = {
   removeTheme,
   installHooks,
   uninstallHooks,
   resizePet,
   testComateConnection,
+  openComateAuthUrl,
   registerShortcut,
   resetShortcut,
   resetAllShortcuts,
