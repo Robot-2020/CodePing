@@ -1,6 +1,0 @@
-This is a test file to trigger permission request.
-Created at: 2026-04-21
-
-=== Permission Test ===
-Testing Clawd permission bubble feature.
-This edit should trigger a permission request!
