@@ -15,7 +15,8 @@ const STORE_DIR = path.join(os.homedir(), ".comate-engine", "store");
 const POLL_INTERVAL_MS = 1000;
 const CLAWD_PORT = 23333;
 const TOP_N_FILES = 5;
-const COMPLETION_GRACE_MS = 15000;        // 15s: inProgress + file stale → infer completion
+// Stale file inference is DISABLED for long-running tasks.
+// Completion is only detected via explicit status="success" or "cancelled".
 const SESSION_IDLE_TIMEOUT_MS = 300000;   // 5min: idle session → send SessionEnd
 const PROCESS_CHECK_INTERVAL_MS = 10000;  // 10s: check if Comate process is alive
 const PERMISSION_REMINDER_INTERVAL_MS = 60000; // 60s: re-send notification for pending permission
@@ -563,21 +564,12 @@ function poll() {
       tracked.lastAssistantStatus = parsed.lastAssistantStatus;
 
     } else {
-      // File not changed
-      const fileAge = now - tracked.lastMtime;
+      // File not changed - only check permission reminders and idle timeout
 
-      // Working/thinking + file stale → infer completion
-      if ((tracked.inferredState === "working" || tracked.inferredState === "thinking") &&
-          fileAge > COMPLETION_GRACE_MS) {
-        log(`File stale ${Math.round(fileAge / 1000)}s, inferring completion: ${path.basename(file.path)}`);
-        const extra = {};
-        if (tracked.cwd) extra.cwd = tracked.cwd;
-        if (tracked.title) extra.session_title = tracked.title;
-        postState("attention", "Stop", tracked.sessionId, extra);
-        tracked.inferredState = "idle";
-        tracked.lastReportedFailedTools.clear();
-        continue;
-      }
+      // ========== DISABLED: Stale file inference ==========
+      // For long-running tasks, trust only explicit Comate status changes.
+      // Completion is only detected via Priority 6 in inferState() when
+      // Comate writes status="success" or "cancelled".
 
       // Notification + reminder interval elapsed → re-send permission notification
       if (tracked.inferredState === "notification" &&
@@ -614,9 +606,10 @@ function poll() {
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 function main() {
-  log("Comate Monitor v2 started");
+  log("Comate Monitor v2 started (Trust Explicit Status Only)");
   log(`Watching: ${STORE_DIR}`);
-  log(`Poll: ${POLL_INTERVAL_MS}ms | Grace: ${COMPLETION_GRACE_MS / 1000}s | Idle timeout: ${SESSION_IDLE_TIMEOUT_MS / 1000}s`);
+  log(`Poll: ${POLL_INTERVAL_MS}ms | Stale inference: DISABLED | Idle timeout: ${SESSION_IDLE_TIMEOUT_MS / 1000}s`);
+  log("💡 Only status='success' or 'cancelled' triggers completion (no timeout inference)");
 
   if (DIAGNOSTIC_MODE) {
     log("DIAGNOSTIC MODE ENABLED");

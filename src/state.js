@@ -581,6 +581,7 @@ function updateSession(sessionId, state, event, opts = {}) {
     headless = false,
     displayHint = undefined,
     sessionTitle = null,
+    tokenUsage = null,
   } = opts;
   if (startupRecoveryActive) {
     startupRecoveryActive = false;
@@ -605,6 +606,8 @@ function updateSession(sessionId, state, event, opts = {}) {
   // ever been named keeps that name until the user explicitly renames it.
   const srcSessionTitle = normalizeTitle(sessionTitle) || (existing && existing.sessionTitle) || null;
   const srcResumeState = (existing && existing.resumeState) || null;
+  // Token usage: update if new data provided, otherwise keep existing
+  const srcTokenUsage = tokenUsage || (existing && existing.tokenUsage) || null;
   const isSubagentStart = event === "SubagentStart" || event === "subagentStart";
   const isSubagentStop = event === "SubagentStop" || event === "subagentStop";
 
@@ -614,7 +617,7 @@ function updateSession(sessionId, state, event, opts = {}) {
     (srcAgentPid ? isProcessAlive(srcAgentPid) : (srcPid ? isProcessAlive(srcPid) : false));
 
   const recentEvents = pushRecentEvent(existing, state, event);
-  const base = { sourcePid: srcPid, cwd: srcCwd, editor: srcEditor, pidChain: srcPidChain, agentPid: srcAgentPid, agentId: srcAgentId, host: srcHost, headless: srcHeadless, sessionTitle: srcSessionTitle, recentEvents, pidReachable };
+  const base = { sourcePid: srcPid, cwd: srcCwd, editor: srcEditor, pidChain: srcPidChain, agentPid: srcAgentPid, agentId: srcAgentId, host: srcHost, headless: srcHeadless, sessionTitle: srcSessionTitle, tokenUsage: srcTokenUsage, recentEvents, pidReachable };
 
   // Evict oldest session if at capacity and this is a new session
   if (!existing && sessions.size >= MAX_SESSIONS) {
@@ -711,6 +714,11 @@ function updateSession(sessionId, state, event, opts = {}) {
     }
   }
   cleanStaleSessions();
+
+  // Notify main process if token usage data changed
+  if (tokenUsage && typeof ctx.onTokenUsageChanged === "function") {
+    ctx.onTokenUsageChanged();
+  }
 
   if (ONESHOT_STATES.has(state)) {
     setState(state);
@@ -1070,6 +1078,55 @@ function getCurrentSvg() { return currentSvg; }
 function getCurrentHitBox() { return currentHitBox; }
 function getStartupRecoveryActive() { return startupRecoveryActive; }
 
+// Get aggregated token usage across all active sessions
+function getAggregatedTokenUsage() {
+  let totalInput = 0;
+  let totalOutput = 0;
+  let totalCacheCreation = 0;
+  let totalCacheRead = 0;
+  let totalCost = 0;
+  let sessionCount = 0;
+
+  for (const [sessionId, session] of sessions) {
+    if (session.tokenUsage) {
+      sessionCount++;
+      if (typeof session.tokenUsage.input_tokens === "number") {
+        totalInput += session.tokenUsage.input_tokens;
+      }
+      if (typeof session.tokenUsage.output_tokens === "number") {
+        totalOutput += session.tokenUsage.output_tokens;
+      }
+      if (typeof session.tokenUsage.cache_creation_tokens === "number") {
+        totalCacheCreation += session.tokenUsage.cache_creation_tokens;
+      }
+      if (typeof session.tokenUsage.cache_read_tokens === "number") {
+        totalCacheRead += session.tokenUsage.cache_read_tokens;
+      }
+      if (typeof session.tokenUsage.cost_usd === "number") {
+        totalCost += session.tokenUsage.cost_usd;
+      }
+    }
+  }
+
+  if (sessionCount === 0) return null;
+
+  return {
+    input_tokens: totalInput,
+    output_tokens: totalOutput,
+    total_tokens: totalInput + totalOutput,
+    cache_creation_tokens: totalCacheCreation,
+    cache_read_tokens: totalCacheRead,
+    cost_usd: totalCost > 0 ? totalCost : null,
+    session_count: sessionCount,
+  };
+}
+
+// Get token usage for a specific session
+function getSessionTokenUsage(sessionId) {
+  const session = sessions.get(sessionId);
+  return session?.tokenUsage || null;
+}
+
 function cleanup() {
   if (pendingTimer) clearTimeout(pendingTimer);
   if (autoReturnTimer) clearTimeout(autoReturnTimer);
@@ -1088,6 +1145,7 @@ return {
   clearSessionsByAgent,
   deriveSessionBadge,
   getCurrentState, getCurrentSvg, getCurrentHitBox, getStartupRecoveryActive,
+  getAggregatedTokenUsage, getSessionTokenUsage,
   sessions, STATE_PRIORITY, ONESHOT_STATES, SLEEP_SEQUENCE,
   get STATE_SVGS() { return STATE_SVGS; },
   get HIT_BOXES() { return HIT_BOXES; },

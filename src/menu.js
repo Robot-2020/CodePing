@@ -295,6 +295,12 @@ module.exports = function initMenu(ctx) {
         label: `${t("sessions")} (${ctx.sessions.size})`,
         submenu: ctx.buildSessionSubmenu(),
       },
+      {
+        label: t("tokenStats") || "Token Stats",
+        type: "checkbox",
+        checked: ctx.showTokenStats,
+        click: () => ctx.toggleTokenStats(),
+      },
     ];
     // sendToDisplay is a multi-display-only tail entry. Push dynamically
     // (rather than visible:false) — Electron leaves a phantom gap for

@@ -379,6 +379,8 @@ function startHttpServer() {
           const agentId = typeof data.agent_id === "string" ? data.agent_id : "claude-code";
           const host = typeof data.host === "string" ? data.host : null;
           const headless = data.headless === true;
+          // Token usage statistics from transcript
+          const tokenUsage = data.token_usage && typeof data.token_usage === "object" ? data.token_usage : null;
           // Session title (Claude Code /rename or Codex turn_context.summary).
           // Non-string / empty values are silently dropped — matches the
           // "ignore + fall back" pattern used by cwd / agent_id above.
@@ -422,6 +424,7 @@ function startHttpServer() {
                 headless,
                 displayHint: display_svg,
                 sessionTitle,
+                tokenUsage,
               });
             }
             res.writeHead(200, { [CLAWD_SERVER_HEADER]: CLAWD_SERVER_ID });

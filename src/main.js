@@ -294,6 +294,8 @@ function getObjRect(bounds) {
 
 let win;
 let hitWin;  // input window — small opaque rect over hitbox, receives all pointer events
+let tokenBubbleWin = null;  // token usage stats bubble
+let showTokenStats = false;  // whether to show token stats bubble
 let viewportOffsetY = 0;
 const themeMarginEnvelopeCache = new Map();
 let tray = null;
@@ -397,6 +399,10 @@ function togglePetVisibility() {
       }
     }
     syncUpdateBubbleVisibility();
+    if (showTokenStats && tokenBubbleWin && !tokenBubbleWin.isDestroyed()) {
+      tokenBubbleWin.showInactive();
+      if (isLinux) tokenBubbleWin.setSkipTaskbar(true);
+    }
     reapplyMacVisibility();
     petHidden = false;
   } else {
@@ -407,6 +413,7 @@ function togglePetVisibility() {
       if (perm.bubble && !perm.bubble.isDestroyed()) perm.bubble.hide();
     }
     hideUpdateBubble();
+    if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) tokenBubbleWin.hide();
     petHidden = true;
   }
   syncPermissionShortcuts();
@@ -700,6 +707,114 @@ const {
 function repositionFloatingBubbles() {
   if (pendingPermissions.length) repositionBubbles();
   repositionUpdateBubble();
+  repositionTokenBubble();
+}
+
+// ── Token Usage Stats Bubble ──
+function createTokenBubble() {
+  if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) return;
+  
+  const { BrowserWindow } = require("electron");
+  tokenBubbleWin = new BrowserWindow({
+    width: 200,
+    height: 140,
+    frame: false,
+    transparent: true,
+    alwaysOnTop: true,
+    resizable: false,
+    skipTaskbar: true,
+    hasShadow: false,
+    show: false,
+    ...(isLinux ? { type: LINUX_WINDOW_TYPE } : {}),
+    ...(isMac ? { type: "panel", roundedCorners: false } : {}),
+    webPreferences: {
+      preload: path.join(__dirname, "preload-token-bubble.js"),
+      backgroundThrottling: false,
+    },
+  });
+  
+  tokenBubbleWin.setFocusable(false);
+  if (isWin) tokenBubbleWin.setAlwaysOnTop(true, WIN_TOPMOST_LEVEL);
+  tokenBubbleWin.loadFile(path.join(__dirname, "token-bubble.html"));
+  
+  tokenBubbleWin.on("closed", () => {
+    tokenBubbleWin = null;
+  });
+}
+
+function repositionTokenBubble() {
+  if (!tokenBubbleWin || tokenBubbleWin.isDestroyed() || !showTokenStats) return;
+  if (!win || win.isDestroyed()) return;
+
+  const petBounds = getPetWindowBounds();
+  const bubbleBounds = tokenBubbleWin.getBounds();
+
+  // Position to the left of the pet with 12px gap
+  const x = Math.round(petBounds.x - bubbleBounds.width - 12);
+  const y = Math.round(petBounds.y + (petBounds.height - bubbleBounds.height) / 2);
+
+  tokenBubbleWin.setBounds({ x, y, width: bubbleBounds.width, height: bubbleBounds.height });
+}
+
+function showTokenBubble() {
+  if (!showTokenStats) return;
+  
+  if (!tokenBubbleWin || tokenBubbleWin.isDestroyed()) {
+    createTokenBubble();
+  }
+  
+  if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) {
+    repositionTokenBubble();
+    tokenBubbleWin.showInactive();
+    if (isLinux) tokenBubbleWin.setSkipTaskbar(true);
+    reapplyMacVisibility();
+  }
+}
+
+function hideTokenBubble() {
+  if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) {
+    tokenBubbleWin.webContents.send("token-hide");
+    setTimeout(() => {
+      if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) {
+        tokenBubbleWin.hide();
+      }
+    }, 300);
+  }
+}
+
+function updateTokenBubble(tokenUsage) {
+  if (!showTokenStats || !tokenUsage) return;
+  
+  if (!tokenBubbleWin || tokenBubbleWin.isDestroyed()) {
+    createTokenBubble();
+    // Wait for window to be ready
+    tokenBubbleWin.webContents.once("did-finish-load", () => {
+      tokenBubbleWin.webContents.send("token-update", tokenUsage);
+      showTokenBubble();
+    });
+  } else {
+    tokenBubbleWin.webContents.send("token-update", tokenUsage);
+    if (!tokenBubbleWin.isVisible()) {
+      showTokenBubble();
+    }
+  }
+}
+
+function toggleTokenStats() {
+  showTokenStats = !showTokenStats;
+  if (showTokenStats) {
+    // Get current aggregated token usage
+    const tokenUsage = _state.getAggregatedTokenUsage();
+    if (tokenUsage) {
+      updateTokenBubble(tokenUsage);
+    } else {
+      showTokenBubble();
+    }
+  } else {
+    hideTokenBubble();
+  }
+  buildContextMenu();
+  buildTrayMenu();
 }
 
 // ── macOS cross-Space visibility helper ──
@@ -727,6 +842,7 @@ function reapplyMacVisibility() {
   };
   apply(win);
   apply(hitWin);
+  apply(tokenBubbleWin);
   for (const perm of pendingPermissions) apply(perm.bubble);
   apply(_updateBubble.getBubbleWindow());
   apply(contextMenuOwner);
@@ -791,6 +907,15 @@ const _stateCtx = {
       if (_isAgentEnabled(probe, id)) return true;
     }
     return false;
+  },
+  onTokenUsageChanged: () => {
+    // Called by state.js when token usage data changes
+    const tokenUsage = _state && _state.getAggregatedTokenUsage ? _state.getAggregatedTokenUsage() : null;
+    if (tokenUsage && showTokenStats) {
+      updateTokenBubble(tokenUsage);
+    } else if (!tokenUsage && tokenBubbleWin && !tokenBubbleWin.isDestroyed() && tokenBubbleWin.isVisible()) {
+      hideTokenBubble();
+    }
   },
 };
 const _state = require("./state")(_stateCtx);
@@ -1078,6 +1203,9 @@ const _menuCtx = {
   getActiveThemeCapabilities: () => activeTheme ? activeTheme._capabilities : null,
   ensureUserThemesDir: () => themeLoader.ensureUserThemesDir(),
   openSettingsWindow: () => openSettingsWindow(),
+  get showTokenStats() { return showTokenStats; },
+  set showTokenStats(v) { showTokenStats = v; if (v) showTokenBubble(); else hideTokenBubble(); },
+  toggleTokenStats: () => toggleTokenStats(),
 };
 const _menu = require("./menu")(_menuCtx);
 const { t, buildContextMenu, buildTrayMenu, rebuildAllMenus, createTray,
@@ -2724,6 +2852,12 @@ function createWindow() {
   ipcMain.on("permission-decide", (event, behavior) => _perm.handleDecide(event, behavior));
   ipcMain.on("update-bubble-height", (event, height) => handleUpdateBubbleHeight(event, height));
   ipcMain.on("update-bubble-action", (event, actionId) => handleUpdateBubbleAction(event, actionId));
+  ipcMain.on("token-bubble-height", (event, height) => {
+    if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) {
+      tokenBubbleWin.setSize(200, height);
+      repositionTokenBubble();
+    }
+  });
 
   initFocusHelper();
   startMainTick();
