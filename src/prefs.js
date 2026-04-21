@@ -97,6 +97,17 @@ const SCHEMA = {
     defaultFactory: () => ({}),
     normalize: normalizeThemeVariant,
   },
+  // Comate Monitor: 配额数据轮询配置
+  comateMonitor: {
+    type: "object",
+    defaultFactory: () => ({
+      enabled: false,
+      apiUrl: "",
+      username: "",
+      pollIntervalMs: 5000,
+    }),
+    normalize: normalizeComateMonitor,
+  },
 };
 
 const SCHEMA_KEYS = Object.freeze(Object.keys(SCHEMA));
@@ -195,6 +206,26 @@ function normalizeAgents(value, defaultsValue) {
     }
     if (touched) out[id] = merged;
   }
+  return out;
+}
+
+function normalizeComateMonitor(value, defaultsValue) {
+  if (!value || typeof value !== "object") return defaultsValue;
+  const out = { ...defaultsValue };
+
+  if (typeof value.enabled === "boolean") {
+    out.enabled = value.enabled;
+  }
+  if (typeof value.apiUrl === "string") {
+    out.apiUrl = value.apiUrl.trim();
+  }
+  if (typeof value.username === "string") {
+    out.username = value.username.trim();
+  }
+  if (typeof value.pollIntervalMs === "number" && value.pollIntervalMs >= 1000) {
+    out.pollIntervalMs = value.pollIntervalMs;
+  }
+
   return out;
 }
 

@@ -29,6 +29,7 @@ const {
   materializeVirtualBounds,
 } = require("./drag-position");
 const { getLaunchSizingWorkArea, getProportionalPixelSize } = require("./size-utils");
+const ComateMonitor = require("./comate-monitor");
 
 // ── Autoplay policy: allow sound playback without user gesture ──
 // MUST be set before any BrowserWindow is created (before app.whenReady)
@@ -168,6 +169,8 @@ const _settingsController = createSettingsController({
     stopMonitorForAgent: _deferredStopMonitorForAgent,
     clearSessionsByAgent: _deferredClearSessionsByAgent,
     dismissPermissionsByAgent: _deferredDismissPermissionsByAgent,
+    startComateMonitor,
+    stopComateMonitor,
     resizePet: _deferredResizePet,
     // Theme deps — defined much later in the file, wrapped in lazy closures.
     // activateTheme accepts (themeId, variantId?, overrideMap?) and returns
@@ -296,6 +299,8 @@ let win;
 let hitWin;  // input window — small opaque rect over hitbox, receives all pointer events
 let tokenBubbleWin = null;  // token usage stats bubble
 let showTokenStats = false;  // whether to show token stats bubble
+let comateMonitor = null;   // Comate quota monitor instance
+let comateQuotaData = null; // cached quota data
 let viewportOffsetY = 0;
 const themeMarginEnvelopeCache = new Map();
 let tray = null;
@@ -783,22 +788,41 @@ function hideTokenBubble() {
 }
 
 function updateTokenBubble(tokenUsage) {
-  if (!showTokenStats || !tokenUsage) return;
-  
+  if (!showTokenStats) return;
+
+  // 整合 Claude token 数据和 Comate 配额数据
+  const enrichedData = {
+    // ── Claude token 数据 ──
+    input_tokens: tokenUsage?.input_tokens || 0,
+    output_tokens: tokenUsage?.output_tokens || 0,
+    total_tokens: tokenUsage?.total_tokens || 0,
+    cost_usd: tokenUsage?.cost_usd || null,
+    used_percentage: tokenUsage?.used_percentage || null,
+    cache_creation_tokens: tokenUsage?.cache_creation_tokens || 0,
+    cache_read_tokens: tokenUsage?.cache_read_tokens || 0,
+
+    // ── Comate 配额数据 ──
+    username: comateQuotaData?.username || null,
+    monthly_used_quota: comateQuotaData?.monthly_used_quota || null,
+    permanent_quota: comateQuotaData?.permanent_quota || null,
+    agent_costs: comateQuotaData?.agent_costs || {},
+  };
+
   if (!tokenBubbleWin || tokenBubbleWin.isDestroyed()) {
     createTokenBubble();
     // Wait for window to be ready
     tokenBubbleWin.webContents.once("did-finish-load", () => {
-      tokenBubbleWin.webContents.send("token-update", tokenUsage);
+      tokenBubbleWin.webContents.send("token-update", enrichedData);
       showTokenBubble();
     });
   } else {
-    tokenBubbleWin.webContents.send("token-update", tokenUsage);
+    tokenBubbleWin.webContents.send("token-update", enrichedData);
     if (!tokenBubbleWin.isVisible()) {
       showTokenBubble();
     }
   }
 }
+
 
 function toggleTokenStats() {
   showTokenStats = !showTokenStats;
@@ -815,6 +839,43 @@ function toggleTokenStats() {
   }
   buildContextMenu();
   buildTrayMenu();
+}
+
+/**
+ * 启动 Comate Monitor
+ */
+function startComateMonitor() {
+  if (comateMonitor) {
+    comateMonitor.stop();
+    comateMonitor = null;
+  }
+
+  const config = _settingsController.get("comateMonitor");
+  if (!config || !config.enabled || !config.apiUrl || !config.username) {
+    return; // disabled or not configured
+  }
+
+  comateMonitor = new ComateMonitor(config, (quotaData) => {
+    comateQuotaData = quotaData;
+    // 更新气泡（如果显示）
+    if (showTokenStats) {
+      const tokenUsage = _state.getAggregatedTokenUsage();
+      updateTokenBubble(tokenUsage);
+    }
+  });
+
+  comateMonitor.start();
+}
+
+/**
+ * 停止 Comate Monitor
+ */
+function stopComateMonitor() {
+  if (comateMonitor) {
+    comateMonitor.stop();
+    comateMonitor = null;
+  }
+  comateQuotaData = null;
 }
 
 // ── macOS cross-Space visibility helper ──
@@ -3276,6 +3337,9 @@ if (!gotTheLock) {
 
     // Auto-updater: setup event handlers (user triggers check via tray menu)
     setupAutoUpdater();
+
+    // Start Comate Monitor if enabled
+    startComateMonitor();
   });
 
   app.on("before-quit", () => {
@@ -3292,6 +3356,10 @@ if (!gotTheLock) {
     stopTopmostWatchdog();
     if (hwndRecoveryTimer) { clearTimeout(hwndRecoveryTimer); hwndRecoveryTimer = null; }
     _focus.cleanup();
+    if (comateMonitor) {
+      comateMonitor.stop();
+      comateMonitor = null;
+    }
     if (hitWin && !hitWin.isDestroyed()) hitWin.destroy();
   });
 

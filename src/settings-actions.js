@@ -392,6 +392,52 @@ const updateRegistry = {
   // updates `theme` and `themeVariant` separately.
   themeVariant: requirePlainObject("themeVariant"),
 
+  // Comate Monitor: 配额监控配置
+  comateMonitor: {
+    validate(value) {
+      if (!isPlainObject(value)) {
+        return { status: "error", message: "comateMonitor must be an object" };
+      }
+      // 如果启用，则 apiUrl 和 username 必填
+      if (value.enabled) {
+        if (!value.apiUrl || typeof value.apiUrl !== "string" || !value.apiUrl.trim()) {
+          return { status: "error", message: "Comate API URL is required when enabled" };
+        }
+        if (!value.username || typeof value.username !== "string" || !value.username.trim()) {
+          return { status: "error", message: "Comate username is required when enabled" };
+        }
+      }
+      // 验证 pollIntervalMs
+      if (value.pollIntervalMs && (typeof value.pollIntervalMs !== "number" || value.pollIntervalMs < 1000)) {
+        return { status: "error", message: "Poll interval must be at least 1000ms" };
+      }
+      return { status: "ok" };
+    },
+    effect(value, deps) {
+      // 如果启用，则启动 monitor；否则停止
+      if (value.enabled && deps && typeof deps.startComateMonitor === "function") {
+        try {
+          deps.startComateMonitor(value);
+        } catch (err) {
+          return {
+            status: "error",
+            message: `Failed to start Comate Monitor: ${err && err.message}`,
+          };
+        }
+      } else if (!value.enabled && deps && typeof deps.stopComateMonitor === "function") {
+        try {
+          deps.stopComateMonitor();
+        } catch (err) {
+          return {
+            status: "error",
+            message: `Failed to stop Comate Monitor: ${err && err.message}`,
+          };
+        }
+      }
+      return { status: "ok" };
+    },
+  },
+
   shortcuts: {
     validate(value) {
       return validateShortcutMapShape(value);
@@ -1372,11 +1418,87 @@ function resizePet(payload, deps) {
   }
 }
 
+function testComateConnection(payload, deps) {
+  // 测试 Comate API 连接
+  if (!isPlainObject(payload)) {
+    return { status: "error", message: "testComateConnection requires an object payload" };
+  }
+
+  const { apiUrl, username } = payload;
+  if (!apiUrl || typeof apiUrl !== "string" || !apiUrl.trim()) {
+    return { status: "error", message: "API URL is required" };
+  }
+  if (!username || typeof username !== "string" || !username.trim()) {
+    return { status: "error", message: "Username is required" };
+  }
+
+  // 返回异步操作标记
+  return new Promise((resolve) => {
+    const https = require("https");
+    const http = require("http");
+
+    const url = new URL(apiUrl);
+    url.pathname = "/api/mine/all_info";
+    url.searchParams.set("username", username);
+    const urlString = url.toString();
+
+    const protocol = urlString.startsWith("https") ? https : http;
+    const timeoutMs = 5000;
+    let completed = false;
+
+    const timeoutHandle = setTimeout(() => {
+      if (!completed) {
+        completed = true;
+        resolve({ status: "error", message: "Connection timeout" });
+      }
+    }, timeoutMs);
+
+    const req = protocol.get(urlString, { timeout: timeoutMs }, (res) => {
+      clearTimeout(timeoutHandle);
+      if (completed) return;
+
+      let body = "";
+      res.on("data", (chunk) => { body += chunk; });
+      res.on("end", () => {
+        completed = true;
+        if (res.statusCode === 200) {
+          try {
+            const json = JSON.parse(body);
+            resolve({
+              status: "ok",
+              message: `Connected successfully. Username: ${json.data?.username || "unknown"}`,
+            });
+          } catch (err) {
+            resolve({ status: "error", message: `Invalid JSON response: ${err.message}` });
+          }
+        } else {
+          resolve({ status: "error", message: `HTTP ${res.statusCode}` });
+        }
+      });
+      res.on("error", (err) => {
+        completed = true;
+        resolve({ status: "error", message: err.message });
+      });
+    });
+
+    req.on("error", (err) => {
+      clearTimeout(timeoutHandle);
+      if (!completed) {
+        completed = true;
+        resolve({ status: "error", message: err.message });
+      }
+    });
+
+    req.end();
+  });
+}
+
 const commandRegistry = {
   removeTheme,
   installHooks,
   uninstallHooks,
   resizePet,
+  testComateConnection,
   registerShortcut,
   resetShortcut,
   resetAllShortcuts,

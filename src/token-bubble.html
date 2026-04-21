@@ -179,6 +179,40 @@ body { padding: 4px; }
 .context-fill.warning { background: var(--output-color); }
 .context-fill.critical { background: #ef4444; }
 
+.agent-costs {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 12px;
+  margin-top: 8px;
+  padding-top: 4px;
+}
+
+.agent-cost-item {
+  display: contents;
+}
+
+.agent-cost-label {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.agent-cost-value {
+  color: var(--cost-color-dim);
+  font-weight: 600;
+  font-size: 13px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease;
+}
+
+.agent-costs:hover .agent-cost-value {
+  color: var(--cost-color);
+}
+
 .hidden { display: none; }
 </style>
 </head>
@@ -215,6 +249,23 @@ body { padding: 4px; }
         <div class="context-fill" id="contextFill" style="width: 0%"></div>
       </div>
     </div>
+    <!-- Comate 配额信息分组 -->
+    <div class="divider hidden" id="quotaDivider"></div>
+    <div class="stat-row hidden" id="usernameRow">
+      <span class="stat-label">User</span>
+      <span class="stat-value total" id="username">—</span>
+    </div>
+    <div class="stat-row hidden" id="monthlyUsedRow">
+      <span class="stat-label">Monthly Used</span>
+      <span class="stat-value cost" id="monthlyUsed">—</span>
+    </div>
+    <div class="stat-row hidden" id="permanentQuotaRow">
+      <span class="stat-label">Permanent Quota</span>
+      <span class="stat-value total" id="permanentQuota">—</span>
+    </div>
+    <!-- Agent 成本分布 -->
+    <div class="divider hidden" id="agentCostsDivider"></div>
+    <div class="agent-costs" id="agentCosts"></div>
   </div>
 </div>
 
@@ -229,6 +280,12 @@ const headerText = document.getElementById("headerText");
 const contextRow = document.getElementById("contextRow");
 const contextPercent = document.getElementById("contextPercent");
 const contextFill = document.getElementById("contextFill");
+const quotaDivider = document.getElementById("quotaDivider");
+const usernameRow = document.getElementById("usernameRow");
+const monthlyUsedRow = document.getElementById("monthlyUsedRow");
+const permanentQuotaRow = document.getElementById("permanentQuotaRow");
+const agentCosts = document.getElementById("agentCosts");
+const agentCostsDivider = document.getElementById("agentCostsDivider");
 
 function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
@@ -250,6 +307,64 @@ function updateStats(data) {
     costValue.textContent = "0.00";
   }
   costRow.classList.remove("hidden");
+
+  // ── 新增：Comate 配额信息 ──
+  const hasQuotaData = !!(data.username || data.monthly_used_quota !== null || data.permanent_quota !== null);
+
+  if (data.username) {
+    document.getElementById("username").textContent = data.username;
+    usernameRow.classList.remove("hidden");
+  } else {
+    usernameRow.classList.add("hidden");
+  }
+
+  if (typeof data.monthly_used_quota === "number") {
+    document.getElementById("monthlyUsed").textContent = "$" + data.monthly_used_quota.toFixed(2);
+    monthlyUsedRow.classList.remove("hidden");
+  } else {
+    monthlyUsedRow.classList.add("hidden");
+  }
+
+  if (typeof data.permanent_quota === "number") {
+    document.getElementById("permanentQuota").textContent = "$" + data.permanent_quota.toFixed(2);
+    permanentQuotaRow.classList.remove("hidden");
+  } else {
+    permanentQuotaRow.classList.add("hidden");
+  }
+
+  // 显示配额分割线
+  quotaDivider.classList.toggle("hidden", !hasQuotaData);
+
+  // ── 新增：Agent 成本分布 ──
+  agentCosts.innerHTML = "";
+  if (data.agent_costs && typeof data.agent_costs === "object") {
+    const entries = Object.entries(data.agent_costs);
+    if (entries.length > 0) {
+      agentCostsDivider.classList.remove("hidden");
+      for (const [agentName, cost] of entries) {
+        if (typeof cost !== "number") continue;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "agent-cost-item";
+
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "agent-cost-label";
+        labelDiv.textContent = agentName + ":";
+
+        const valueDiv = document.createElement("div");
+        valueDiv.className = "agent-cost-value";
+        valueDiv.textContent = "$" + cost.toFixed(2);
+
+        itemDiv.appendChild(labelDiv);
+        itemDiv.appendChild(valueDiv);
+        agentCosts.appendChild(itemDiv);
+      }
+    } else {
+      agentCostsDivider.classList.add("hidden");
+    }
+  } else {
+    agentCostsDivider.classList.add("hidden");
+  }
 
   // Context usage percentage (from native Claude Code data)
   if (typeof data.used_percentage === "number" && data.used_percentage > 0) {
