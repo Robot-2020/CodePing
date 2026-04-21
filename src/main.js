@@ -749,9 +749,9 @@ function repositionTokenBubble() {
   const petBounds = getPetWindowBounds();
   const bubbleBounds = tokenBubbleWin.getBounds();
 
-  // Position to the left of the pet with 12px gap
-  const x = Math.round(petBounds.x - bubbleBounds.width - 12);
-  const y = Math.round(petBounds.y + (petBounds.height - bubbleBounds.height) / 2);
+  // Position below the pet with 8px gap
+  const x = Math.round(petBounds.x + (petBounds.width - bubbleBounds.width) / 2);
+  const y = Math.round(petBounds.y + petBounds.height + 8);
 
   tokenBubbleWin.setBounds({ x, y, width: bubbleBounds.width, height: bubbleBounds.height });
 }

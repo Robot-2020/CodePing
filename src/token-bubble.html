@@ -204,7 +204,7 @@ body { padding: 4px; }
     </div>
     <div class="cost-row" id="costRow">
       <span class="stat-label">Cost</span>
-      <span class="stat-value cost">$<span id="costValue">0.0000</span></span>
+      <span class="stat-value cost">$<span id="costValue">0.00</span></span>
     </div>
     <div class="context-row hidden" id="contextRow">
       <div class="context-label">
@@ -243,11 +243,11 @@ function updateStats(data) {
   outputTokens.textContent = formatNumber(data.output_tokens || 0);
   totalTokens.textContent = formatNumber(data.total_tokens || 0);
 
-  // Always show cost row, display in USD
+  // Always show cost row, display in USD (2 decimal places)
   if (data.cost_usd && data.cost_usd > 0) {
-    costValue.textContent = data.cost_usd.toFixed(4);
+    costValue.textContent = data.cost_usd.toFixed(2);
   } else {
-    costValue.textContent = "0.0000";
+    costValue.textContent = "0.00";
   }
   costRow.classList.remove("hidden");
 
