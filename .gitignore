@@ -28,6 +28,7 @@ docs/**
 !docs/guides/codex-wsl-clarification.md
 !docs/guides/codex-wsl-clarification.zh-CN.md
 !docs/guides/codex-wsl-clarification.ko-KR.md
+!docs/guides/comate-auto-login.md
 !docs/investigations/
 !docs/investigations/permission-hook-fail-deny-investigation.md
 !docs/releases/
