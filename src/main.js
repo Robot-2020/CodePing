@@ -713,11 +713,11 @@ function repositionFloatingBubbles() {
 // ── Token Usage Stats Bubble ──
 function createTokenBubble() {
   if (tokenBubbleWin && !tokenBubbleWin.isDestroyed()) return;
-  
+
   const { BrowserWindow } = require("electron");
   tokenBubbleWin = new BrowserWindow({
     width: 200,
-    height: 140,
+    height: 160,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
