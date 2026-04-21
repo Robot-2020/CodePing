@@ -2201,11 +2201,25 @@ function renderGeneralTab(parent) {
     labelKey: "rowComateEnable",
     descKey: "rowComateEnableDesc",
     onToggle: ({ nextRaw }) => {
-      // 获取当前完整的 comateMonitor 对象，然后更新 enabled 字段
-      const snapshot = window.settingsAPI.getSnapshot?.() || {};
-      const currentComate = snapshot.comateMonitor || {};
+      // 获取最新的 snapshot（不是过期的变量）
+      const latestSnapshot = window.settingsAPI.getSnapshot?.() || {};
+      const latestComate = latestSnapshot.comateMonitor || {};
+
+      // 如果要启用，先检查 API URL 和 username 是否已填充
+      if (nextRaw) {
+        if (!latestComate.apiUrl || !latestComate.apiUrl.trim()) {
+          showToast("✗ API URL is required to enable OneAPI Monitor", { error: true });
+          return { status: "error", message: "API URL required" };
+        }
+        if (!latestComate.username || !latestComate.username.trim()) {
+          showToast("✗ Username is required to enable OneAPI Monitor", { error: true });
+          return { status: "error", message: "Username required" };
+        }
+      }
+
+      // 使用最新的值更新
       return window.settingsAPI.update("comateMonitor", {
-        ...currentComate,
+        ...latestComate,
         enabled: nextRaw,
       });
     },
