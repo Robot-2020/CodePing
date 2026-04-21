@@ -2200,6 +2200,15 @@ function renderGeneralTab(parent) {
     key: "comateMonitor.enabled",
     labelKey: "rowComateEnable",
     descKey: "rowComateEnableDesc",
+    onToggle: ({ nextRaw }) => {
+      // 获取当前完整的 comateMonitor 对象，然后更新 enabled 字段
+      const snapshot = window.settingsAPI.getSnapshot?.() || {};
+      const currentComate = snapshot.comateMonitor || {};
+      return window.settingsAPI.update("comateMonitor", {
+        ...currentComate,
+        enabled: nextRaw,
+      });
+    },
   });
   comateRows.push(enableRow);
 
@@ -2335,16 +2344,28 @@ function renderGeneralTab(parent) {
       apiUrl: comateApiUrl || "",
     }).then((result) => {
       if (result && result.status === "ok") {
-        // Auto-login 成功，自动填充 Cookie 字段
+        // Auto-login 成功
         if (result.cookie) {
           const cookieField = document.querySelector("#comate-cookie");
           if (cookieField) {
+            // 直接设置值
             cookieField.value = result.cookie;
-            // 触发保存
+            // 强制触发改变事件让系统检测到值已改变
             cookieField.dispatchEvent(new Event("change", { bubbles: true }));
+            // 立即保存
+            cookieField.blur();
           }
         }
-        showToast("✓ " + (result.message || "Auto-login successful"), { error: false });
+
+        // Auto Login 成功后自动启用 Monitor
+        const snapshot = window.settingsAPI.getSnapshot?.() || {};
+        const currentComate = snapshot.comateMonitor || {};
+        window.settingsAPI.update("comateMonitor", {
+          ...currentComate,
+          enabled: true, // 自动启用
+        });
+
+        showToast("✓ " + (result.message || "Auto-login successful - OneAPI Monitor 已启用"), { error: false });
       } else {
         showToast("✗ " + (result && result.message || "Auto-login failed"), { error: true });
       }
@@ -2370,7 +2391,7 @@ function renderGeneralTab(parent) {
   });
   comateRows.push(testRow);
 
-  parent.appendChild(buildSection("Comate Monitor", comateRows));
+  parent.appendChild(buildSection("OneAPI Monitor", comateRows));
 }
 
 function buildSection(title, rows) {

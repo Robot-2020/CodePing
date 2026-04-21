@@ -68,10 +68,15 @@ class ComateAuthHelper {
 
       // 提取 Cookie
       const cookies = await this.page.cookies();
+      console.log(`[ComateAuth] Raw cookies count: ${cookies.length}`);
+      console.log(`[ComateAuth] Cookie names: ${cookies.map(c => c.name).join(", ")}`);
+
       const cookieString = cookies
         .map((c) => `${c.name}=${c.value}`)
         .join("; ");
 
+      console.log(`[ComateAuth] Cookie string length: ${cookieString.length}`);
+      console.log(`[ComateAuth] Cookie string preview: ${cookieString.substring(0, 100)}...`);
       console.log(`[ComateAuth] Login successful, extracted ${cookies.length} cookies`);
 
       // 计算 Cookie 过期时间（距离现在还剩多少秒）

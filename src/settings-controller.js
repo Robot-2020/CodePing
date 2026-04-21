@@ -160,7 +160,16 @@ function createSettingsController({
   // `options.skipEffect` true → only the validator runs (used by hydrate()).
   // Returns either a sync result object or a Promise resolving to one.
   function invokeAction(key, value, options = {}) {
-    const entry = updates[key];
+    let entry = updates[key];
+    let rootKey = key;
+
+    // 支持嵌套路径，如 "comateMonitor.enabled" → 查找 "comateMonitor" 的 validator
+    if (!entry && key.includes(".")) {
+      const parts = key.split(".");
+      rootKey = parts[0];
+      entry = updates[rootKey];
+    }
+
     if (!entry) {
       return { status: "error", message: `unknown settings key: ${key}` };
     }
@@ -171,7 +180,17 @@ function createSettingsController({
     if (!validator) {
       return { status: "error", message: `${key}: entry has no validator` };
     }
-    const validateResult = runStep(`${key} validate`, validator, value, buildDeps());
+
+    // 如果是嵌套路径，验证时需要传递完整的对象
+    let valueToValidate = value;
+    if (key !== rootKey) {
+      const currentObj = store.get(rootKey) || {};
+      valueToValidate = { ...currentObj };
+      const nestedProp = key.split(".")[1];
+      valueToValidate[nestedProp] = value;
+    }
+
+    const validateResult = runStep(`${key} validate`, validator, valueToValidate, buildDeps());
 
     const effect = options.skipEffect ? null : resolveEffect(entry);
     if (!effect) return validateResult;
@@ -179,7 +198,7 @@ function createSettingsController({
     // Effect runs only if validate succeeded.
     function maybeRunEffect(r) {
       if (!r || r.status !== "ok" || r.noop) return r;
-      return runStep(`${key} effect`, effect, value, buildDeps());
+      return runStep(`${key} effect`, effect, valueToValidate, buildDeps());
     }
 
     if (isThenable(validateResult)) {
@@ -198,7 +217,22 @@ function createSettingsController({
       };
     }
     if (actionResult.noop) return { status: "ok", noop: true };
-    const { changed } = store._commit({ [key]: value });
+
+    // 处理嵌套路径，如 "comateMonitor.enabled"
+    let commitData;
+    if (key.includes(".")) {
+      const parts = key.split(".");
+      const rootKey = parts[0];
+      const nestedProp = parts[1];
+      const currentObj = store.get(rootKey) || {};
+      commitData = {
+        [rootKey]: { ...currentObj, [nestedProp]: value },
+      };
+    } else {
+      commitData = { [key]: value };
+    }
+
+    const { changed } = store._commit(commitData);
     if (changed) {
       const persisted = persistInternal();
       if (persisted.status !== "ok") return persisted;

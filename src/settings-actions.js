@@ -438,6 +438,42 @@ const updateRegistry = {
     },
   },
 
+  // 嵌套字段更新支持
+  "comateMonitor.enabled": function (value) {
+    if (typeof value !== "boolean") {
+      return { status: "error", message: "comateMonitor.enabled must be boolean" };
+    }
+    return { status: "ok" };
+  },
+
+  "comateMonitor.apiUrl": function (value) {
+    if (typeof value !== "string") {
+      return { status: "error", message: "comateMonitor.apiUrl must be string" };
+    }
+    return { status: "ok" };
+  },
+
+  "comateMonitor.username": function (value) {
+    if (typeof value !== "string") {
+      return { status: "error", message: "comateMonitor.username must be string" };
+    }
+    return { status: "ok" };
+  },
+
+  "comateMonitor.cookie": function (value) {
+    if (typeof value !== "string") {
+      return { status: "error", message: "comateMonitor.cookie must be string" };
+    }
+    return { status: "ok" };
+  },
+
+  "comateMonitor.pollIntervalMs": function (value) {
+    if (typeof value !== "number" || value < 1000) {
+      return { status: "error", message: "pollIntervalMs must be at least 1000" };
+    }
+    return { status: "ok" };
+  },
+
   shortcuts: {
     validate(value) {
       return validateShortcutMapShape(value);
@@ -1456,7 +1492,16 @@ function testComateConnection(payload, deps) {
     // 构建请求选项，支持 Cookie
     const options = {
       timeout: timeoutMs,
-      headers: {},
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+      },
     };
 
     // 如果有 Cookie，添加到请求头
@@ -1540,6 +1585,8 @@ function autoLoginComate(payload, deps) {
   return (async () => {
     try {
       const ComateAuthHelper = require("./comate-auth");
+      const path = require("path");
+      const fs = require("fs");
       const helper = new ComateAuthHelper();
 
       console.log("[autoLoginComate] Starting automated login...");
@@ -1549,10 +1596,21 @@ function autoLoginComate(payload, deps) {
         return { status: "error", message: result.error };
       }
 
+      const cookieString = result.cookies;
+
+      // 保存 cookie 到临时文件方便用户复制
+      const tempCookieFile = path.join(__dirname, "..", "last-extracted-cookie.txt");
+      try {
+        fs.writeFileSync(tempCookieFile, cookieString, "utf-8");
+        console.log(`[autoLoginComate] Saved cookie to ${tempCookieFile}`);
+      } catch (err) {
+        console.warn("[autoLoginComate] Failed to save temp cookie file:", err.message);
+      }
+
       return {
         status: "ok",
         message: `Auto-login successful! Extracted ${result.cookies.split(";").length} cookies.`,
-        cookie: result.cookies,
+        cookie: cookieString,
       };
     } catch (err) {
       return {
