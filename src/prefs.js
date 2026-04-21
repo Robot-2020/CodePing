@@ -105,6 +105,7 @@ const SCHEMA = {
       apiUrl: "",
       username: "",
       pollIntervalMs: 5000,
+      cookie: "",  // Optional: user-provided Cookie from browser
     }),
     normalize: normalizeComateMonitor,
   },

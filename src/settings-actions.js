@@ -1424,7 +1424,7 @@ function testComateConnection(payload, deps) {
     return { status: "error", message: "testComateConnection requires an object payload" };
   }
 
-  const { apiUrl, username } = payload;
+  const { apiUrl, username, cookie } = payload;
   if (!apiUrl || typeof apiUrl !== "string" || !apiUrl.trim()) {
     return { status: "error", message: "API URL is required" };
   }
@@ -1453,7 +1453,18 @@ function testComateConnection(payload, deps) {
       }
     }, timeoutMs);
 
-    const req = protocol.get(urlString, { timeout: timeoutMs }, (res) => {
+    // 构建请求选项，支持 Cookie
+    const options = {
+      timeout: timeoutMs,
+      headers: {},
+    };
+
+    // 如果有 Cookie，添加到请求头
+    if (cookie && typeof cookie === "string" && cookie.trim().length > 0) {
+      options.headers["Cookie"] = cookie.trim();
+    }
+
+    const req = protocol.get(urlString, options, (res) => {
       clearTimeout(timeoutHandle);
       if (completed) return;
 
@@ -1471,6 +1482,8 @@ function testComateConnection(payload, deps) {
           } catch (err) {
             resolve({ status: "error", message: `Invalid JSON response: ${err.message}` });
           }
+        } else if (res.statusCode === 302) {
+          resolve({ status: "error", message: "HTTP 302 - Need to login and provide Cookie. Please copy SECURE_ZT_GW_TOKEN from browser F12 → Application → Cookies" });
         } else {
           resolve({ status: "error", message: `HTTP ${res.statusCode}` });
         }

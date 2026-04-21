@@ -143,7 +143,9 @@ class ComateMonitor {
       };
 
       // 如果有 Cookie，添加到请求头
-      if (Object.keys(this._cookies).length > 0) {
+      if (this._config.cookie && typeof this._config.cookie === "string") {
+        options.headers["Cookie"] = this._config.cookie;
+      } else if (Object.keys(this._cookies).length > 0) {
         const cookieString = Object.entries(this._cookies)
           .map(([name, value]) => `${name}=${value}`)
           .join("; ");

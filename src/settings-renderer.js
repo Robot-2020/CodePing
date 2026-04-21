@@ -2275,6 +2275,32 @@ function renderGeneralTab(parent) {
   });
   comateRows.push(pollRow);
 
+  // Cookie input (for manual authentication)
+  const cookieRow = document.createElement("div");
+  cookieRow.className = "row";
+  cookieRow.innerHTML =
+    `<div class="row-text">` +
+      `<span class="row-label">Cookie (Optional)</span>` +
+      `<span class="row-desc">浏览器中登陆后，从 F12 → Application → Cookies 复制 SECURE_ZT_GW_TOKEN</span>` +
+    `</div>` +
+    `<div class="row-control"><textarea class="text-input" id="comate-cookie" placeholder="从浏览器 F12 复制 Cookie 值" style="height: 60px;"></textarea></div>`;
+  const cookieInput = cookieRow.querySelector("#comate-cookie");
+  const comateCookie = snapshot && snapshot.comateMonitor && snapshot.comateMonitor.cookie ? snapshot.comateMonitor.cookie : "";
+  cookieInput.value = comateCookie;
+  cookieInput.addEventListener("change", (e) => {
+    const newVal = e.target.value.trim();
+    if (newVal !== comateCookie) {
+      window.settingsAPI.update("comateMonitor", {
+        enabled: comateEnabled,
+        apiUrl: comateApiUrl,
+        username: comateUsername,
+        pollIntervalMs: comatePollInterval,
+        cookie: newVal,
+      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
+    }
+  });
+  comateRows.push(cookieRow);
+
   // Test Connection button
   const testRow = document.createElement("div");
   testRow.className = "row";
@@ -2303,10 +2329,12 @@ function renderGeneralTab(parent) {
   );
 
   const testBtn = testRow.querySelector("#comate-test-btn");
-  attachActivation(testBtn, () =>
-    window.settingsAPI.command("testComateConnection", {
+  attachActivation(testBtn, () => {
+    const cookieVal = document.querySelector("#comate-cookie")?.value || "";
+    return window.settingsAPI.command("testComateConnection", {
       apiUrl: comateApiUrl || "",
       username: comateUsername || "",
+      cookie: cookieVal,
     }).then((result) => {
       if (result && result.status === "ok") {
         showToast("✓ " + (result.message || "Connection successful"), { error: false });
@@ -2314,8 +2342,8 @@ function renderGeneralTab(parent) {
         showToast("✗ " + (result && result.message || "Connection failed"), { error: true });
       }
       return result;
-    })
-  );
+    });
+  });
   comateRows.push(testRow);
 
   parent.appendChild(buildSection("Comate Monitor", comateRows));
