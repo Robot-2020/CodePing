@@ -851,9 +851,10 @@ function startComateMonitor() {
   }
 
   const config = _settingsController.get("comateMonitor");
-  if (!config || !config.enabled || !config.apiUrl || !config.username) {
+  if (!config || !config.enabled || !config.apiUrl) {
     return; // disabled or not configured
   }
+  // Note: username and cookie are optional for monitor operation
 
   comateMonitor = new ComateMonitor(config, (quotaData) => {
     comateQuotaData = quotaData;
