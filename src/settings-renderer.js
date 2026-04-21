@@ -2311,6 +2311,7 @@ function renderGeneralTab(parent) {
     `</div>` +
     `<div class="row-control">` +
       `<button class="action-btn" id="comate-login-btn">Login</button>` +
+      `<button class="action-btn" id="comate-auto-login-btn">Auto Login</button>` +
       `<button class="action-btn" id="comate-test-btn">Test</button>` +
     `</div>`;
 
@@ -2323,6 +2324,29 @@ function renderGeneralTab(parent) {
         showToast("📱 " + (result.message || "Opening browser..."), { error: false });
       } else {
         showToast("✗ " + (result && result.message || "Failed to open"), { error: true });
+      }
+      return result;
+    })
+  );
+
+  const autoLoginBtn = testRow.querySelector("#comate-auto-login-btn");
+  attachActivation(autoLoginBtn, () =>
+    window.settingsAPI.command("autoLoginComate", {
+      apiUrl: comateApiUrl || "",
+    }).then((result) => {
+      if (result && result.status === "ok") {
+        // Auto-login 成功，自动填充 Cookie 字段
+        if (result.cookie) {
+          const cookieField = document.querySelector("#comate-cookie");
+          if (cookieField) {
+            cookieField.value = result.cookie;
+            // 触发保存
+            cookieField.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+        }
+        showToast("✓ " + (result.message || "Auto-login successful"), { error: false });
+      } else {
+        showToast("✗ " + (result && result.message || "Auto-login failed"), { error: true });
       }
       return result;
     })

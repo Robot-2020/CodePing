@@ -1527,6 +1527,42 @@ function openComateAuthUrl(payload) {
   }
 }
 
+/**
+ * 自动化登录 — 使用 Puppeteer 打开浏览器，等待用户完成登录，自动提取 Cookie
+ */
+function autoLoginComate(payload, deps) {
+  const { apiUrl } = payload || {};
+  if (!apiUrl || typeof apiUrl !== "string" || !apiUrl.trim()) {
+    return { status: "error", message: "API URL is required" };
+  }
+
+  // 返回异步操作
+  return (async () => {
+    try {
+      const ComateAuthHelper = require("./comate-auth");
+      const helper = new ComateAuthHelper();
+
+      console.log("[autoLoginComate] Starting automated login...");
+      const result = await helper.login(apiUrl.trim(), 120000); // 120 秒超时
+
+      if (result.error) {
+        return { status: "error", message: result.error };
+      }
+
+      return {
+        status: "ok",
+        message: `Auto-login successful! Extracted ${result.cookies.split(";").length} cookies.`,
+        cookie: result.cookies,
+      };
+    } catch (err) {
+      return {
+        status: "error",
+        message: `Auto-login failed: ${err && err.message}`,
+      };
+    }
+  })();
+}
+
 const commandRegistry = {
   removeTheme,
   installHooks,
@@ -1534,6 +1570,7 @@ const commandRegistry = {
   resizePet,
   testComateConnection,
   openComateAuthUrl,
+  autoLoginComate,
   registerShortcut,
   resetShortcut,
   resetAllShortcuts,
