@@ -1574,6 +1574,7 @@ function autoLoginComate(payload, deps) {
       const ComateAuthHelper = require("./comate-auth");
       const path = require("path");
       const fs = require("fs");
+      const { app } = require("electron");
       const helper = new ComateAuthHelper();
 
       console.log("[autoLoginComate] Starting automated login...");
@@ -1585,8 +1586,9 @@ function autoLoginComate(payload, deps) {
 
       const cookieString = result.cookies;
 
-      // 保存 cookie 到临时文件方便用户复制
-      const tempCookieFile = path.join(__dirname, "..", "last-extracted-cookie.txt");
+      // 保存 cookie 到 userData 目录（在打包后的只读 app.asar 中无法写入，
+      // 因此使用 Electron 提供的可写 userData 目录，dev 与 prod 都能工作）
+      const tempCookieFile = path.join(app.getPath("userData"), "last-extracted-cookie.txt");
       try {
         fs.writeFileSync(tempCookieFile, cookieString, "utf-8");
         console.log(`[autoLoginComate] Saved cookie to ${tempCookieFile}`);

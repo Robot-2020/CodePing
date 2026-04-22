@@ -856,7 +856,7 @@ function startComateMonitor(config) {
     return;
   }
 
-  const cookieFile = require("path").join(__dirname, "..", "last-extracted-cookie.txt");
+  const cookieFile = require("path").join(app.getPath("userData"), "last-extracted-cookie.txt");
 
   comateMonitor = new ComateMonitor(cfg, (quotaData) => {
     comateQuotaData = quotaData;
