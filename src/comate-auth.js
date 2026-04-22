@@ -35,11 +35,18 @@ class ComateAuthHelper {
         args: [
           "--no-sandbox",
           "--disable-setuid-sandbox",
-          "--disable-web-resources", // 防止加载外部资源，加快速度
         ],
       });
 
-      this.page = await this.browser.newPage();
+      // 监听浏览器断开（用户关闭浏览器窗口）
+      let browserDisconnected = false;
+      this.browser.on("disconnected", () => {
+        browserDisconnected = true;
+      });
+
+      // 复用默认页面，避免多开空白标签
+      const pages = await this.browser.pages();
+      this.page = pages.length > 0 ? pages[0] : await this.browser.newPage();
 
       // 设置超时
       this.page.setDefaultTimeout(timeoutMs);
@@ -64,7 +71,7 @@ class ComateAuthHelper {
       }
 
       // 等待用户完成登录 — 检测是否返回到 API 端点（不再是 302）
-      await this._waitForLoginCompletion(apiUrl, timeoutMs);
+      const apiData = await this._waitForLoginCompletion(apiUrl, timeoutMs, () => browserDisconnected);
 
       // 提取 Cookie
       const cookies = await this.page.cookies();
@@ -84,7 +91,28 @@ class ComateAuthHelper {
         ? Math.min(...cookies.map((c) => c.expires || Infinity)) - Math.floor(Date.now() / 1000)
         : 0;
 
-      return { cookies: cookieString, expires_in: Math.max(0, expiresIn) };
+      // 尝试从 JWT token 解码 username（备选方案）
+      let username = apiData.username || "";
+      if (!username) {
+        const ztToken = cookies.find(c => c.name === "SECURE_ZT_GW_TOKEN");
+        if (ztToken) {
+          try {
+            const payload = ztToken.value.split(".")[1];
+            const decoded = JSON.parse(Buffer.from(payload, "base64").toString());
+            username = decoded.username || "";
+            console.log(`[ComateAuth] Extracted username from JWT: ${username}`);
+          } catch (err) {
+            console.warn(`[ComateAuth] Failed to decode JWT:`, err.message);
+          }
+        }
+      }
+
+      // 返回 cookies 和 username（从 API 响应中提取）
+      return {
+        cookies: cookieString,
+        username,
+        expires_in: Math.max(0, expiresIn),
+      };
     } catch (err) {
       console.error("[ComateAuth] Login failed:", err.message);
       return { error: err.message };
@@ -96,12 +124,18 @@ class ComateAuthHelper {
   /**
    * 等待用户完成登录 — 轮询检测 API 响应状态
    * 登录成功后，/api/mine/all_info 不再返回 302，而是返回 200 + JSON 数据
+   * @returns {Promise<{username: string}>} API 返回的用户数据
    */
-  async _waitForLoginCompletion(apiUrl, timeoutMs) {
+  async _waitForLoginCompletion(apiUrl, timeoutMs, isClosed) {
     const startTime = Date.now();
     const pollInterval = 2000; // 每 2 秒检查一次
 
     while (Date.now() - startTime < timeoutMs) {
+      // 浏览器被用户关闭
+      if (isClosed && isClosed()) {
+        throw new Error("Browser closed by user");
+      }
+
       try {
         // 在当前页面上执行 fetch 请求，检查 API 是否返回 200
         const response = await this.page.evaluate(async (url, username) => {
@@ -110,6 +144,10 @@ class ComateAuthHelper {
               method: "GET",
               credentials: "include", // 包含 Cookie
             });
+            if (res.ok) {
+              const data = await res.json();
+              return { status: res.status, ok: res.ok, data };
+            }
             return { status: res.status, ok: res.ok };
           } catch (e) {
             return { error: e.message };
@@ -118,7 +156,11 @@ class ComateAuthHelper {
 
         if (response.status === 200 || response.ok) {
           console.log("[ComateAuth] Login completed - API returning 200");
-          return true;
+          console.log("[ComateAuth] API response data:", JSON.stringify(response.data || {}).substring(0, 200));
+          // 从 API 响应提取 username
+          const username = response.data?.username || response.data?.data?.username || "";
+          console.log("[ComateAuth] Extracted username:", username);
+          return { username };
         }
 
         if (response.status === 302) {
@@ -128,6 +170,10 @@ class ComateAuthHelper {
         // 等待再检查
         await new Promise((resolve) => setTimeout(resolve, pollInterval));
       } catch (err) {
+        // 浏览器被关闭导致的错误，立即退出
+        if ((isClosed && isClosed()) || err.message.includes("Target closed") || err.message.includes("Session closed")) {
+          throw new Error("Browser closed by user");
+        }
         console.warn("[ComateAuth] Poll check error:", err.message);
         await new Promise((resolve) => setTimeout(resolve, pollInterval));
       }

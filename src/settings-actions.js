@@ -398,15 +398,6 @@ const updateRegistry = {
       if (!isPlainObject(value)) {
         return { status: "error", message: "comateMonitor must be an object" };
       }
-      // 如果启用，则 apiUrl 和 username 必填
-      if (value.enabled) {
-        if (!value.apiUrl || typeof value.apiUrl !== "string" || !value.apiUrl.trim()) {
-          return { status: "error", message: "Comate API URL is required when enabled" };
-        }
-        if (!value.username || typeof value.username !== "string" || !value.username.trim()) {
-          return { status: "error", message: "Comate username is required when enabled" };
-        }
-      }
       // 验证 pollIntervalMs
       if (value.pollIntervalMs && (typeof value.pollIntervalMs !== "number" || value.pollIntervalMs < 1000)) {
         return { status: "error", message: "Poll interval must be at least 1000ms" };
@@ -1455,15 +1446,12 @@ function resizePet(payload, deps) {
 }
 
 function testComateConnection(payload, deps) {
-  // 测试 Comate API 连接
+  // 测试 Comate API 连接 (使用硬编码的 URL)
   if (!isPlainObject(payload)) {
     return { status: "error", message: "testComateConnection requires an object payload" };
   }
 
-  const { apiUrl, username, cookie } = payload;
-  if (!apiUrl || typeof apiUrl !== "string" || !apiUrl.trim()) {
-    return { status: "error", message: "API URL is required" };
-  }
+  const { username, cookie } = payload;
   if (!username || typeof username !== "string" || !username.trim()) {
     return { status: "error", message: "Username is required" };
   }
@@ -1473,6 +1461,7 @@ function testComateConnection(payload, deps) {
     const https = require("https");
     const http = require("http");
 
+    const apiUrl = "https://oneapi-comate.baidu-int.com";
     const url = new URL(apiUrl);
     url.pathname = "/api/mine/all_info";
     url.searchParams.set("username", username);
@@ -1554,10 +1543,9 @@ function testComateConnection(payload, deps) {
 
 function openComateAuthUrl(payload) {
   // 打开 Comate 认证 URL，让用户登录后获取 Cookie
-  const { apiUrl } = payload || {};
-  if (!apiUrl || typeof apiUrl !== "string") {
-    return { status: "error", message: "API URL is required" };
-  }
+  // 使用硬编码的默认 API URL（与 comate-monitor.js 保持一致）
+  const DEFAULT_COMATE_API_URL = "https://oneapi-comate.baidu-int.com";
+  const apiUrl = (payload && payload.apiUrl) || DEFAULT_COMATE_API_URL;
 
   try {
     const { shell } = require("electron");
@@ -1576,10 +1564,9 @@ function openComateAuthUrl(payload) {
  * 自动化登录 — 使用 Puppeteer 打开浏览器，等待用户完成登录，自动提取 Cookie
  */
 function autoLoginComate(payload, deps) {
-  const { apiUrl } = payload || {};
-  if (!apiUrl || typeof apiUrl !== "string" || !apiUrl.trim()) {
-    return { status: "error", message: "API URL is required" };
-  }
+  // 使用硬编码的默认 API URL（与 comate-monitor.js 保持一致）
+  const DEFAULT_COMATE_API_URL = "https://oneapi-comate.baidu-int.com";
+  const apiUrl = (payload && payload.apiUrl) || DEFAULT_COMATE_API_URL;
 
   // 返回异步操作
   return (async () => {
@@ -1611,6 +1598,7 @@ function autoLoginComate(payload, deps) {
         status: "ok",
         message: `Auto-login successful! Extracted ${result.cookies.split(";").length} cookies.`,
         cookie: cookieString,
+        username: result.username || "",
       };
     } catch (err) {
       return {

@@ -96,6 +96,8 @@ const STRINGS = {
     placeholderTitle: "Coming soon",
     placeholderDesc: "This panel will land in a future CodePing release. The plan lives in docs/plans/plan-settings-panel.md.",
     toastSaveFailed: "Couldn't save: ",
+    rowComateEnable: "Enable OneAPI Monitor",
+    rowComateEnableDesc: "Periodically poll quota information when enabled",
     langEnglish: "English",
     langChinese: "中文",
 
@@ -277,6 +279,8 @@ const STRINGS = {
     placeholderTitle: "敬请期待",
     placeholderDesc: "此面板将在未来的 CodePing 版本中推出。计划文档位于 docs/plans/plan-settings-panel.md。",
     toastSaveFailed: "保存失败：",
+    rowComateEnable: "开启 OneAPI 监控",
+    rowComateEnableDesc: "启用后将定时轮询配额使用情况",
     langEnglish: "English",
     langChinese: "中文",
 
@@ -2187,223 +2191,55 @@ function renderGeneralTab(parent) {
   ]));
 
   // Section: Comate Monitor
-  const comateConfig = snapshot && snapshot.comateMonitor;
-  const comateApiUrl = (comateConfig && comateConfig.apiUrl) || "";
-  const comateUsername = (comateConfig && comateConfig.username) || "";
-  const comatePollInterval = (comateConfig && comateConfig.pollIntervalMs) || 5000;
-  const comateEnabled = !!(comateConfig && comateConfig.enabled);
-
   const comateRows = [];
 
-  // Enable switch
-  const enableRow = buildSwitchRow({
-    key: "comateMonitor.enabled",
-    labelKey: "rowComateEnable",
-    descKey: "rowComateEnableDesc",
-    onToggle: ({ nextRaw }) => {
-      // 获取最新的 snapshot（不是过期的变量）
-      const latestSnapshot = window.settingsAPI.getSnapshot?.() || {};
-      const latestComate = latestSnapshot.comateMonitor || {};
-
-      // 如果要启用，先检查 API URL 和 username 是否已填充
-      if (nextRaw) {
-        if (!latestComate.apiUrl || !latestComate.apiUrl.trim()) {
-          showToast("✗ API URL is required to enable OneAPI Monitor", { error: true });
-          return { status: "error", message: "API URL required" };
-        }
-        if (!latestComate.username || !latestComate.username.trim()) {
-          showToast("✗ Username is required to enable OneAPI Monitor", { error: true });
-          return { status: "error", message: "Username required" };
-        }
-      }
-
-      // 使用最新的值更新
-      return window.settingsAPI.update("comateMonitor", {
-        ...latestComate,
-        enabled: nextRaw,
-      });
-    },
-  });
-  comateRows.push(enableRow);
-
-  // API URL input
-  const apiUrlRow = document.createElement("div");
-  apiUrlRow.className = "row";
-  apiUrlRow.innerHTML =
+  // Auto Login 行：左信息 + 右按钮
+  const autoLoginRow = document.createElement("div");
+  autoLoginRow.className = "row";
+  autoLoginRow.innerHTML =
     `<div class="row-text">` +
-      `<span class="row-label">API URL</span>` +
-      `<span class="row-desc">Comate API 端点地址</span>` +
-    `</div>` +
-    `<div class="row-control"><input type="text" class="text-input" id="comate-api-url" placeholder="https://oneapi-comate.baidu-int.com" /></div>`;
-  const apiUrlInput = apiUrlRow.querySelector("#comate-api-url");
-  apiUrlInput.value = comateApiUrl;
-  apiUrlInput.addEventListener("change", (e) => {
-    const newVal = e.target.value.trim();
-    if (newVal !== comateApiUrl) {
-      window.settingsAPI.update("comateMonitor", {
-        enabled: comateEnabled,
-        apiUrl: newVal,
-        username: comateUsername,
-        pollIntervalMs: comatePollInterval,
-      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
-    }
-  });
-  comateRows.push(apiUrlRow);
-
-  // Username input
-  const usernameRow = document.createElement("div");
-  usernameRow.className = "row";
-  usernameRow.innerHTML =
-    `<div class="row-text">` +
-      `<span class="row-label">Username</span>` +
-      `<span class="row-desc">Comate 用户名</span>` +
-    `</div>` +
-    `<div class="row-control"><input type="text" class="text-input" id="comate-username" placeholder="wuzhiao" /></div>`;
-  const usernameInput = usernameRow.querySelector("#comate-username");
-  usernameInput.value = comateUsername;
-  usernameInput.addEventListener("change", (e) => {
-    const newVal = e.target.value.trim();
-    if (newVal !== comateUsername) {
-      window.settingsAPI.update("comateMonitor", {
-        enabled: comateEnabled,
-        apiUrl: comateApiUrl,
-        username: newVal,
-        pollIntervalMs: comatePollInterval,
-      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
-    }
-  });
-  comateRows.push(usernameRow);
-
-  // Poll interval input
-  const pollRow = document.createElement("div");
-  pollRow.className = "row";
-  pollRow.innerHTML =
-    `<div class="row-text">` +
-      `<span class="row-label">Poll Interval (ms)</span>` +
-      `<span class="row-desc">轮询间隔，最小 1000ms</span>` +
-    `</div>` +
-    `<div class="row-control"><input type="number" class="text-input" id="comate-poll-interval" placeholder="5000" min="1000" step="1000" /></div>`;
-  const pollInput = pollRow.querySelector("#comate-poll-interval");
-  pollInput.value = comatePollInterval;
-  pollInput.addEventListener("change", (e) => {
-    const newVal = parseInt(e.target.value) || 5000;
-    if (newVal !== comatePollInterval && newVal >= 1000) {
-      window.settingsAPI.update("comateMonitor", {
-        enabled: comateEnabled,
-        apiUrl: comateApiUrl,
-        username: comateUsername,
-        pollIntervalMs: newVal,
-      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
-    }
-  });
-  comateRows.push(pollRow);
-
-  // Cookie input (for manual authentication)
-  const cookieRow = document.createElement("div");
-  cookieRow.className = "row";
-  cookieRow.innerHTML =
-    `<div class="row-text">` +
-      `<span class="row-label">Cookie (Optional)</span>` +
-      `<span class="row-desc">浏览器中登陆后，从 F12 → Application → Cookies 复制 SECURE_ZT_GW_TOKEN</span>` +
-    `</div>` +
-    `<div class="row-control"><textarea class="text-input" id="comate-cookie" placeholder="从浏览器 F12 复制 Cookie 值" style="height: 60px;"></textarea></div>`;
-  const cookieInput = cookieRow.querySelector("#comate-cookie");
-  const comateCookie = snapshot && snapshot.comateMonitor && snapshot.comateMonitor.cookie ? snapshot.comateMonitor.cookie : "";
-  cookieInput.value = comateCookie;
-  cookieInput.addEventListener("change", (e) => {
-    const newVal = e.target.value.trim();
-    if (newVal !== comateCookie) {
-      window.settingsAPI.update("comateMonitor", {
-        enabled: comateEnabled,
-        apiUrl: comateApiUrl,
-        username: comateUsername,
-        pollIntervalMs: comatePollInterval,
-        cookie: newVal,
-      }).catch((err) => showToast("Failed to save: " + err, { error: true }));
-    }
-  });
-  comateRows.push(cookieRow);
-
-  // Test Connection button
-  const testRow = document.createElement("div");
-  testRow.className = "row";
-  testRow.innerHTML =
-    `<div class="row-text">` +
-      `<span class="row-label">Test Connection</span>` +
-      `<span class="row-desc">验证 API 是否可访问</span>` +
+      `<span class="row-label">一键登录</span>` +
+      `<span class="row-desc">自动登录 OneAPI 并获取配额数据</span>` +
     `</div>` +
     `<div class="row-control">` +
-      `<button class="action-btn" id="comate-login-btn">Login</button>` +
-      `<button class="action-btn" id="comate-auto-login-btn">Auto Login</button>` +
-      `<button class="action-btn" id="comate-test-btn">Test</button>` +
+      `<button class="comate-auto-login-btn" id="comate-auto-login-btn">` +
+        `<span class="comate-login-icon">🔑</span>` +
+        `<span class="comate-login-text">Auto Login</span>` +
+      `</button>` +
     `</div>`;
 
-  const loginBtn = testRow.querySelector("#comate-login-btn");
-  attachActivation(loginBtn, () =>
-    window.settingsAPI.command("openComateAuthUrl", {
-      apiUrl: comateApiUrl || "",
-    }).then((result) => {
+  const autoLoginBtn = autoLoginRow.querySelector("#comate-auto-login-btn");
+  attachActivation(autoLoginBtn, () => {
+    autoLoginBtn.classList.add("logging-in");
+    autoLoginBtn.querySelector(".comate-login-text").textContent = "登录中...";
+    autoLoginBtn.querySelector(".comate-login-icon").textContent = "⏳";
+
+    const resetBtn = () => {
+      autoLoginBtn.classList.remove("logging-in", "login-success");
+      autoLoginBtn.querySelector(".comate-login-icon").textContent = "🔑";
+      autoLoginBtn.querySelector(".comate-login-text").textContent = "Auto Login";
+    };
+
+    return window.settingsAPI.command("autoLoginComate", {}).then((result) => {
+      autoLoginBtn.classList.remove("logging-in");
       if (result && result.status === "ok") {
-        showToast("📱 " + (result.message || "Opening browser..."), { error: false });
+        autoLoginBtn.classList.add("login-success");
+        autoLoginBtn.querySelector(".comate-login-icon").textContent = "✨";
+        autoLoginBtn.querySelector(".comate-login-text").textContent = "成功！";
+        showToast("✓ " + (result.message || "Auto-login successful"), { error: false });
+        setTimeout(resetBtn, 3000);
       } else {
-        showToast("✗ " + (result && result.message || "Failed to open"), { error: true });
-      }
-      return result;
-    })
-  );
-
-  const autoLoginBtn = testRow.querySelector("#comate-auto-login-btn");
-  attachActivation(autoLoginBtn, () =>
-    window.settingsAPI.command("autoLoginComate", {
-      apiUrl: comateApiUrl || "",
-    }).then((result) => {
-      if (result && result.status === "ok") {
-        // Auto-login 成功
-        if (result.cookie) {
-          const cookieField = document.querySelector("#comate-cookie");
-          if (cookieField) {
-            // 直接设置值
-            cookieField.value = result.cookie;
-            // 强制触发改变事件让系统检测到值已改变
-            cookieField.dispatchEvent(new Event("change", { bubbles: true }));
-            // 立即保存
-            cookieField.blur();
-          }
-        }
-
-        // Auto Login 成功后自动启用 Monitor
-        const snapshot = window.settingsAPI.getSnapshot?.() || {};
-        const currentComate = snapshot.comateMonitor || {};
-        window.settingsAPI.update("comateMonitor", {
-          ...currentComate,
-          enabled: true, // 自动启用
-        });
-
-        showToast("✓ " + (result.message || "Auto-login successful - OneAPI Monitor 已启用"), { error: false });
-      } else {
+        autoLoginBtn.querySelector(".comate-login-icon").textContent = "🔑";
+        autoLoginBtn.querySelector(".comate-login-text").textContent = "重试";
         showToast("✗ " + (result && result.message || "Auto-login failed"), { error: true });
+        setTimeout(resetBtn, 3000);
       }
       return result;
-    })
-  );
-
-  const testBtn = testRow.querySelector("#comate-test-btn");
-  attachActivation(testBtn, () => {
-    const cookieVal = document.querySelector("#comate-cookie")?.value || "";
-    return window.settingsAPI.command("testComateConnection", {
-      apiUrl: comateApiUrl || "",
-      username: comateUsername || "",
-      cookie: cookieVal,
-    }).then((result) => {
-      if (result && result.status === "ok") {
-        showToast("✓ " + (result.message || "Connection successful"), { error: false });
-      } else {
-        showToast("✗ " + (result && result.message || "Connection failed"), { error: true });
-      }
-      return result;
+    }).catch(() => {
+      resetBtn();
     });
   });
-  comateRows.push(testRow);
+  comateRows.push(autoLoginRow);
 
   parent.appendChild(buildSection("OneAPI Monitor", comateRows));
 }

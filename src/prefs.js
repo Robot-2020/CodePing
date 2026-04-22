@@ -97,15 +97,14 @@ const SCHEMA = {
     defaultFactory: () => ({}),
     normalize: normalizeThemeVariant,
   },
-  // Comate Monitor: 配额数据轮询配置
+  // Comate Monitor: 配额数据轮询配置（默认启用）
   comateMonitor: {
     type: "object",
     defaultFactory: () => ({
-      enabled: false,
-      apiUrl: "",
+      enabled: true,
       username: "",
+      cookie: "",
       pollIntervalMs: 5000,
-      cookie: "",  // Optional: user-provided Cookie from browser
     }),
     normalize: normalizeComateMonitor,
   },
@@ -222,6 +221,9 @@ function normalizeComateMonitor(value, defaultsValue) {
   }
   if (typeof value.username === "string") {
     out.username = value.username.trim();
+  }
+  if (typeof value.cookie === "string") {
+    out.cookie = value.cookie;
   }
   if (typeof value.pollIntervalMs === "number" && value.pollIntervalMs >= 1000) {
     out.pollIntervalMs = value.pollIntervalMs;

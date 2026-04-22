@@ -983,15 +983,18 @@ function buildSessionSubmenu() {
   const now = Date.now();
 
   function buildItem(e) {
+    // Defensive: coerce id to string. The server coerces on ingress, but a
+    // legacy session (from an earlier process) could carry a non-string key.
+    const idStr = typeof e.id === "string" ? e.id : String(e.id != null ? e.id : "");
     // 4-category badge derived from session.state + recentEvents tail.
     // Not the raw state name — user-facing language (Running/Done/...).
     const badgeKey = SESSION_BADGE_KEYS[deriveSessionBadge(e)] || "sessionBadgeIdle";
     const badgeText = ctx.t(badgeKey);
-    const folder = e.cwd ? path.basename(e.cwd) : (e.id.length > 6 ? e.id.slice(0, 6) + ".." : e.id);
+    const folder = e.cwd ? path.basename(e.cwd) : (idStr.length > 6 ? idStr.slice(0, 6) + ".." : idStr);
     // Prefer user-set session title (Claude Code /rename, Codex turn summary)
     // over the cwd folder name when available.
     const baseName = normalizeTitle(e.sessionTitle) || folder;
-    const name = ctx.showSessionId ? `${baseName} #${e.id.slice(-3)}` : baseName;
+    const name = ctx.showSessionId ? `${baseName} #${idStr.slice(-3)}` : baseName;
     const elapsed = formatElapsed(now - e.updatedAt);
     const hasPid = !!e.sourcePid;
     const icon = getAgentIcon(e.agentId);

@@ -5,7 +5,6 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const os = require("os");
-const { spawn } = require("child_process");
 const {
   CLAWD_SERVER_HEADER,
   CLAWD_SERVER_ID,
@@ -134,7 +133,6 @@ const setImmediateFn = ctx.setImmediate || setImmediate;
 const setTimeoutFn = ctx.setTimeout || setTimeout;
 const clearTimeoutFn = ctx.clearTimeout || clearTimeout;
 const nowFn = typeof ctx.now === "function" ? ctx.now : Date.now;
-const spawnFn = ctx.spawn || spawn;
 const clearRuntimeConfigFn = ctx.clearRuntimeConfig || clearRuntimeConfig;
 const getPortCandidatesFn = ctx.getPortCandidates || getPortCandidates;
 const readRuntimePortFn = ctx.readRuntimePort || readRuntimePort;
@@ -200,79 +198,6 @@ function syncComateHooks() {
     }
   } catch (err) {
     console.warn("CodePing: failed to sync Comate hooks:", err.message);
-  }
-}
-
-// Comate session file monitor process
-let comateMonitorProcess = null;
-
-function startComateMonitor() {
-  // Check if comate-engine store directory exists
-  const storeDir = pathApi.join(osApi.homedir(), ".comate-engine", "store");
-  if (!fsApi.existsSync(storeDir)) {
-    // Comate not installed or not used, skip
-    console.log("CodePing: Comate store directory not found, skipping monitor");
-    return;
-  }
-
-  try {
-    const monitorScript = pathApi.resolve(__dirname, "..", "hooks", "comate-monitor.js");
-    // Electron asar: resolve to unpacked path for child_process
-    const actualScript = monitorScript.replace(/app\.asar([\/\\])/, "app.asar.unpacked$1");
-    if (!fsApi.existsSync(monitorScript)) {
-      console.warn("CodePing: comate-monitor.js not found at", monitorScript);
-      return;
-    }
-
-    console.log("CodePing: starting Comate monitor:", actualScript);
-
-    // Start monitor process — set ELECTRON_RUN_AS_NODE to ensure Node.js mode
-    const env = Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: "1" });
-    comateMonitorProcess = spawnFn(process.execPath, [actualScript], {
-      stdio: ["ignore", "pipe", "pipe"],
-      detached: false,
-      env,
-    });
-
-    comateMonitorProcess.stdout.on("data", (data) => {
-      const msg = data.toString().trim();
-      if (msg) console.log(`[Comate Monitor] ${msg}`);
-    });
-
-    comateMonitorProcess.stderr.on("data", (data) => {
-      console.warn(`[Comate Monitor] ${data.toString().trim()}`);
-    });
-
-    comateMonitorProcess.on("error", (err) => {
-      console.warn("CodePing: Comate monitor spawn error:", err.message);
-      comateMonitorProcess = null;
-      // Retry after 5 seconds
-      setTimeoutFn(() => startComateMonitor(), 5000);
-    });
-
-    comateMonitorProcess.on("exit", (code, signal) => {
-      if (code !== 0 && code !== null) {
-        console.warn(`CodePing: Comate monitor exited with code ${code} signal ${signal}`);
-        comateMonitorProcess = null;
-        // Retry after 5 seconds
-        setTimeoutFn(() => startComateMonitor(), 5000);
-      } else {
-        comateMonitorProcess = null;
-      }
-    });
-
-    console.log("CodePing: Comate session monitor started (pid:", comateMonitorProcess.pid + ")");
-  } catch (err) {
-    console.warn("CodePing: failed to start Comate monitor:", err.message);
-  }
-}
-
-function stopComateMonitor() {
-  if (comateMonitorProcess) {
-    try {
-      comateMonitorProcess.kill();
-    } catch {}
-    comateMonitorProcess = null;
   }
 }
 
@@ -396,7 +321,10 @@ function startHttpServer() {
             return;
           }
           if (ctx.STATE_SVGS[state]) {
-            const sid = session_id || "default";
+            // Coerce to string: Comate's conversation_id / other agents may send
+            // numeric ids; a non-string Map key breaks later menu rendering
+            // (state.js buildItem calls e.id.slice()).
+            const sid = session_id != null && session_id !== "" ? String(session_id) : "default";
             if (state.startsWith("mini-") && !svg) {
               res.writeHead(400);
               res.end("mini states require svg override");
@@ -493,7 +421,7 @@ function startHttpServer() {
             const toolName = typeof data.tool_name === "string" && data.tool_name ? data.tool_name : "unknown";
             const rawInput = data.tool_input && typeof data.tool_input === "object" ? data.tool_input : {};
             const toolInput = truncateDeep(rawInput);
-            const sessionId = typeof data.session_id === "string" ? data.session_id : "default";
+            const sessionId = typeof data.session_id === "string" && data.session_id ? data.session_id : (data.session_id != null ? String(data.session_id) : "default");
             const requestId = typeof data.request_id === "string" ? data.request_id : null;
             const bridgeUrl = typeof data.bridge_url === "string" ? data.bridge_url : "";
             const bridgeToken = typeof data.bridge_token === "string" ? data.bridge_token : "";
@@ -604,7 +532,8 @@ function startHttpServer() {
           const toolName = typeof data.tool_name === "string" ? data.tool_name : "Unknown";
           const rawInput = data.tool_input && typeof data.tool_input === "object" ? data.tool_input : {};
           const toolInput = truncateDeep(rawInput);
-          const sessionId = data.session_id || "default";
+          // Coerce to string — non-string ids break state.js buildItem (e.id.slice).
+          const sessionId = data.session_id != null && data.session_id !== "" ? String(data.session_id) : "default";
           // Tag the permEntry with the source agent. Clawd's HTTP permission
           // path is shared by the remaining HTTP-hook integrations (Claude Code
           // capabilities.permissionApproval=true and POST here). Stamping lets
@@ -730,11 +659,6 @@ function startHttpServer() {
       } catch (err) {
         console.warn("CodePing: Comate hooks sync error:", err.message);
       }
-      try {
-        startComateMonitor();
-      } catch (err) {
-        console.warn("CodePing: Comate monitor start error:", err.message);
-      }
     });
   });
 
@@ -744,7 +668,6 @@ function startHttpServer() {
 function cleanup() {
   clearRuntimeConfigFn();
   stopClaudeSettingsWatcher();
-  stopComateMonitor();
   if (httpServer) httpServer.close();
 }
 
@@ -753,8 +676,6 @@ return {
   getHookServerPort,
   syncClawdHooks,
   syncComateHooks,
-  startComateMonitor,
-  stopComateMonitor,
   startClaudeSettingsWatcher,
   stopClaudeSettingsWatcher,
   cleanup,

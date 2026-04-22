@@ -5,54 +5,26 @@
 
 const https = require("https");
 const http = require("http");
+const fs = require("fs");
+
+const COMATE_API_URL = "https://oneapi-comate.baidu-int.com";
 
 class ComateMonitor {
-  constructor(config, onQuotaChanged) {
-    this._config = config;              // { enabled, apiUrl, username, pollIntervalMs, cookies }
+  constructor(config, onQuotaChanged, options = {}) {
+    this._config = config;              // { enabled, pollIntervalMs }
     this._onQuotaChanged = onQuotaChanged; // 数据变化回调
+    this._onNeedLogin = options.onNeedLogin || null; // cookie 为空时的回调
+    this._cookieFile = options.cookieFile || null;    // cookie 文件路径
     this._interval = null;              // 轮询定时器
     this._lastData = null;              // 缓存的上一次数据
     this._isPolling = false;            // 是否正在轮询中
     this._failureCount = 0;             // 连续失败次数（用于指数退避）
     this._maxFailures = 5;              // 最多重试 5 次后停止
-    this._cookies = {};                 // 保存的 Cookie 信息
-
-    // 如果配置中有 cookies，加载到内存
-    if (config.cookies) {
-      this._cookies = { ...config.cookies };
-    }
+    this._loginTriggered = false;       // 是否已触发过自动登录（避免重复触发）
 
     // 确保轮询间隔至少 1000ms
-    const interval = config.pollIntervalMs || 5000;
+    const interval = config.pollIntervalMs || 10000;
     this._pollIntervalMs = Math.max(1000, interval);
-  }
-
-  /**
-   * 设置 Cookie（用于认证）
-   */
-  setCookies(cookieDict) {
-    this._cookies = { ...cookieDict };
-    console.log("[ComateMonitor] Cookies updated");
-  }
-
-  /**
-   * 获取当前 Cookie
-   */
-  getCookies() {
-    return { ...this._cookies };
-  }
-
-  /**
-   * 从 Set-Cookie 头解析 Cookie
-   */
-  _parseCookieFromHeader(setCookieHeader) {
-    // Set-Cookie 格式: "name=value; Path=/; Domain=...; Secure; HttpOnly"
-    if (!setCookieHeader) return null;
-    const parts = setCookieHeader.split(";");
-    if (parts.length === 0) return null;
-
-    const [nameValue] = parts[0].trim().split("=");
-    return nameValue ? parts[0].trim() : null;
   }
 
   /**
@@ -86,16 +58,55 @@ class ComateMonitor {
   }
 
   /**
+   * 从 cookie 文件读取 cookie 和 username
+   */
+  _readCookieFromFile() {
+    if (!this._cookieFile) return { cookie: "", username: "" };
+    try {
+      const content = fs.readFileSync(this._cookieFile, "utf-8").trim();
+      if (!content) return { cookie: "", username: "" };
+      let username = "";
+      const jwtMatch = content.match(/SECURE_ZT_GW_TOKEN=([^;]+)/);
+      if (jwtMatch) {
+        try {
+          const payload = JSON.parse(Buffer.from(jwtMatch[1].split(".")[1], "base64").toString());
+          if (payload.username) username = payload.username;
+        } catch (_) { /* ignore */ }
+      }
+      return { cookie: content, username };
+    } catch (_) {
+      return { cookie: "", username: "" };
+    }
+  }
+
+  /**
    * 单次轮询
    */
   _poll() {
-    if (this._isPolling || !this._config.enabled || !this._config.apiUrl || !this._config.username) {
+    if (this._isPolling || !this._config.enabled) {
       return;
     }
 
+    // 从文件读取 cookie
+    const { cookie, username } = this._readCookieFromFile();
+
+    // cookie 为空时，触发自动登录（仅一次）
+    if (!cookie && !this._loginTriggered && this._onNeedLogin) {
+      this._loginTriggered = true;
+      console.log("[ComateMonitor] No cookie found, triggering auto login...");
+      this._onNeedLogin();
+      return; // 等下次轮询再尝试
+    }
+
+    if (!cookie) {
+      return; // 没有 cookie，跳过本次轮询
+    }
+
+    // 有 cookie，重置登录触发标志（cookie 过期后可再次触发）
+    this._loginTriggered = false;
     this._isPolling = true;
 
-    this._fetchQuotaData()
+    this._fetchQuotaData(cookie, username)
       .then(data => {
         this._failureCount = 0;
         this._handleQuotaData(data);
@@ -103,6 +114,13 @@ class ComateMonitor {
       .catch(err => {
         this._failureCount++;
         console.error(`[ComateMonitor] 获取配额数据失败 (${this._failureCount}/${this._maxFailures}):`, err.message);
+
+        // 302 表示 cookie 过期，触发重新登录
+        if (err.message.includes("302") && !this._loginTriggered && this._onNeedLogin) {
+          this._loginTriggered = true;
+          console.log("[ComateMonitor] Cookie expired (302), triggering auto login...");
+          this._onNeedLogin();
+        }
 
         // 失败超过阈值时停止轮询
         if (this._failureCount >= this._maxFailures) {
@@ -118,14 +136,14 @@ class ComateMonitor {
   /**
    * 获取配额数据（支持 Cookie 认证）
    */
-  _fetchQuotaData() {
+  _fetchQuotaData(cookie, username) {
     return new Promise((resolve, reject) => {
-      const { apiUrl, username } = this._config;
-
-      // 构建 URL
-      const url = new URL(apiUrl);
+      // 构建 URL (使用硬编码的 API 地址)
+      const url = new URL(COMATE_API_URL);
       url.pathname = "/api/mine/all_info";
-      url.searchParams.set("username", username);
+      if (username) {
+        url.searchParams.set("username", username);
+      }
       const urlString = url.toString();
 
       // 选择 http 或 https
@@ -139,37 +157,25 @@ class ComateMonitor {
       // 构建请求选项，支持 Cookie
       const options = {
         timeout: timeoutMs,
-        headers: {},
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "zh-CN,zh;q=0.9",
+          "Cache-Control": "no-cache",
+          "Pragma": "no-cache",
+        },
       };
 
       // 如果有 Cookie，添加到请求头
-      if (this._config.cookie && typeof this._config.cookie === "string") {
-        options.headers["Cookie"] = this._config.cookie;
-      } else if (Object.keys(this._cookies).length > 0) {
-        const cookieString = Object.entries(this._cookies)
-          .map(([name, value]) => `${name}=${value}`)
-          .join("; ");
-        options.headers["Cookie"] = cookieString;
+      if (cookie && typeof cookie === "string") {
+        options.headers["Cookie"] = cookie;
       }
 
       const req = protocol.get(urlString, options, (res) => {
         clearTimeout(timeoutHandle);
 
-        // 如果返回 302 或其他重定向，可能需要更新 Cookie
+        // 302 表示需要认证（cookie 过期或无效）
         if (res.statusCode === 302 || res.statusCode === 301) {
-          // 尝试从响应头获取 Set-Cookie（虽然 302 通常不会包含数据）
-          if (res.headers["set-cookie"]) {
-            res.headers["set-cookie"].forEach(setCookie => {
-              const cookiePart = this._parseCookieFromHeader(setCookie);
-              if (cookiePart) {
-                const [name, value] = cookiePart.split("=");
-                if (name && value !== undefined) {
-                  this._cookies[name] = value;
-                }
-              }
-            });
-            console.warn("[ComateMonitor] Got 302, updated cookies from response");
-          }
           reject(new Error(`HTTP ${res.statusCode} - Need authentication`));
           res.resume();
           return;

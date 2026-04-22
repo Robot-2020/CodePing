@@ -103,6 +103,8 @@ const i18n = {
     shortcutErrorConflict: "Conflict with {other}. Try another key.",
     shortcutErrorSystemConflict: "Already in use by system or another app.",
     shortcutErrorRegistrationFailed: "Saved, but currently not active due to system conflict. Rebind or try again later.",
+    rowComateEnable: "Enable OneAPI Monitor",
+    rowComateEnableDesc: "Periodically poll quota information when enabled",
     quit: "Quit",
   },
   zh: {
@@ -201,6 +203,8 @@ const i18n = {
     shortcutErrorConflict: "与 {other} 冲突，请换一个组合键。",
     shortcutErrorSystemConflict: "该组合键已被系统或其他应用占用。",
     shortcutErrorRegistrationFailed: "已保存，但当前因系统冲突未生效。请重新绑定或稍后再试。",
+    rowComateEnable: "开启 OneAPI 监控",
+    rowComateEnableDesc: "启用后将定时轮询配额使用情况",
     quit: "退出",
   },
 };

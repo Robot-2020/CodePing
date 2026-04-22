@@ -297,12 +297,14 @@ const EVENT_TO_STATE = {
   WorktreeCreate: "carrying",
 };
 
-function buildStateBody(event, payload, resolve) {
+function buildStateBody(event, payload, resolve, options = {}) {
   const state = EVENT_TO_STATE[event];
   if (!state) return null;
 
-  const sessionId = payload.session_id || "default";
-  const cwd = payload.cwd || "";
+  const agentId = options.agentId || "claude-code";
+
+  const sessionId = payload.session_id || payload.sessionId || "default";
+  const cwd = payload.cwd || process.env.WORKSPACE_DIR || "";
   const source = payload.source || payload.reason || "";
 
   // /clear triggers SessionEnd → SessionStart in quick succession;
@@ -310,7 +312,7 @@ function buildStateBody(event, payload, resolve) {
   const resolvedState = (event === "SessionEnd" && source === "clear") ? "sweeping" : state;
 
   const body = { state: resolvedState, session_id: sessionId, event };
-  body.agent_id = "claude-code";
+  body.agent_id = agentId;
   if (cwd) body.cwd = cwd;
   // Session title: prefer payload field, fall back to scanning the transcript
   // tail for user-set custom-title / agent-name events
@@ -424,14 +426,21 @@ function buildStateBody(event, payload, resolve) {
   return body;
 }
 
-function main() {
+const DEFAULT_AGENT_NAMES = { win: new Set(["claude.exe"]), mac: new Set(["claude"]) };
+const DEFAULT_AGENT_CMDLINE = (cmd) => cmd.includes("claude-code") || cmd.includes("@anthropic-ai");
+
+function runHook(options = {}) {
   const event = process.argv[2];
   if (!EVENT_TO_STATE[event]) process.exit(0);
 
+  const agentId = options.agentId || "claude-code";
+  const agentNames = options.agentNames || DEFAULT_AGENT_NAMES;
+  const agentCmdlineCheck = options.agentCmdlineCheck || DEFAULT_AGENT_CMDLINE;
+
   const config = getPlatformConfig();
   const resolve = createPidResolver({
-    agentNames: { win: new Set(["claude.exe"]), mac: new Set(["claude"]) },
-    agentCmdlineCheck: (cmd) => cmd.includes("claude-code") || cmd.includes("@anthropic-ai"),
+    agentNames,
+    agentCmdlineCheck,
     platformConfig: config,
   });
 
@@ -440,7 +449,7 @@ function main() {
   if (event === "SessionStart" && !process.env.CLAWD_REMOTE) resolve();
 
   readStdinJson().then((payload) => {
-    const body = buildStateBody(event, payload || {}, resolve);
+    const body = buildStateBody(event, payload || {}, resolve, { agentId });
     if (!body) process.exit(0);
     postStateToRunningServer(
       JSON.stringify(body),
@@ -450,6 +459,16 @@ function main() {
   });
 }
 
+function main() {
+  runHook();
+}
+
 if (require.main === module) main();
 
-module.exports = { buildStateBody, extractSessionTitleFromTranscript, extractTokenUsageFromTranscript };
+module.exports = {
+  buildStateBody,
+  extractSessionTitleFromTranscript,
+  extractTokenUsageFromTranscript,
+  runHook,
+  EVENT_TO_STATE,
+};

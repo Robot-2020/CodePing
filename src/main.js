@@ -802,9 +802,9 @@ function updateTokenBubble(tokenUsage) {
     cache_read_tokens: tokenUsage?.cache_read_tokens || 0,
 
     // ── Comate 配额数据 ──
-    username: comateQuotaData?.username || null,
-    monthly_used_quota: comateQuotaData?.monthly_used_quota || null,
-    permanent_quota: comateQuotaData?.permanent_quota || null,
+    username: comateQuotaData?.username ?? null,
+    monthly_used_quota: comateQuotaData?.monthly_used_quota ?? null,
+    permanent_quota: comateQuotaData?.permanent_quota ?? null,
     agent_costs: comateQuotaData?.agent_costs || {},
   };
 
@@ -844,25 +844,44 @@ function toggleTokenStats() {
 /**
  * 启动 Comate Monitor
  */
-function startComateMonitor() {
+function startComateMonitor(config) {
   if (comateMonitor) {
     comateMonitor.stop();
     comateMonitor = null;
   }
 
-  const config = _settingsController.get("comateMonitor");
-  if (!config || !config.enabled || !config.apiUrl) {
-    return; // disabled or not configured
+  // 从 controller 获取最新配置
+  const cfg = config || (_settingsController && _settingsController.get("comateMonitor"));
+  if (!cfg || !cfg.enabled) {
+    return;
   }
-  // Note: username and cookie are optional for monitor operation
 
-  comateMonitor = new ComateMonitor(config, (quotaData) => {
+  const cookieFile = require("path").join(__dirname, "..", "last-extracted-cookie.txt");
+
+  comateMonitor = new ComateMonitor(cfg, (quotaData) => {
     comateQuotaData = quotaData;
-    // 更新气泡（如果显示）
-    if (showTokenStats) {
-      const tokenUsage = _state.getAggregatedTokenUsage();
-      updateTokenBubble(tokenUsage);
+    // 收到数据后自动开启 Token Stats 显示
+    if (!showTokenStats) {
+      showTokenStats = true;
+      buildContextMenu();
+      buildTrayMenu();
     }
+    const tokenUsage = _state.getAggregatedTokenUsage();
+    updateTokenBubble(tokenUsage);
+  }, {
+    cookieFile,
+    onNeedLogin: () => {
+      console.log("[ComateMonitor] Auto login triggered by monitor");
+      _settingsController.applyCommand("autoLoginComate", {}).then((result) => {
+        if (result && result.status === "ok") {
+          console.log("[ComateMonitor] Auto login successful, next poll will use new cookie");
+        } else {
+          console.warn("[ComateMonitor] Auto login failed:", result && result.message);
+        }
+      }).catch(err => {
+        console.error("[ComateMonitor] Auto login error:", err && err.message);
+      });
+    },
   });
 
   comateMonitor.start();

@@ -540,7 +540,17 @@ function reconcileVersionedHooks(settings, supportedEvents, versionInfo) {
 function registerHooks(options = {}) {
   const settingsPath = options.settingsPath || path.join(os.homedir(), ".claude", "settings.json");
   const hookPort = getHookServerPort(options.port);
-  const hookScript = asarUnpackedPath(path.resolve(__dirname, "clawd-hook.js").replace(/\\/g, "/"));
+  const marker = options.marker || MARKER;
+  const hookScript = options.hookScript
+    ? asarUnpackedPath(options.hookScript.replace(/\\/g, "/"))
+    : asarUnpackedPath(path.resolve(__dirname, "clawd-hook.js").replace(/\\/g, "/"));
+  const autoStartScript = options.autoStartScript
+    ? asarUnpackedPath(options.autoStartScript.replace(/\\/g, "/"))
+    : asarUnpackedPath(path.resolve(__dirname, "auto-start.js").replace(/\\/g, "/"));
+  const httpHooks = options.httpHooks || HTTP_HOOKS;
+  const deprecatedCoreHooks = options.deprecatedCoreHooks || DEPRECATED_CORE_HOOKS;
+  const skipVersionDetection = options.skipVersionDetection === true;
+  const agentLabel = options.agentLabel || "Claude Code";
 
   // Read existing settings
   let settings = {};
@@ -560,7 +570,7 @@ function registerHooks(options = {}) {
   // to avoid destructively overwriting a working config with bare "node".
   const resolved = options.nodeBin !== undefined ? options.nodeBin : resolveNodeBin();
   const nodeBin = resolved
-    || extractNodeBinFromSettings(settings, MARKER)
+    || extractNodeBinFromSettings(settings, marker)
     || "node";
 
   let added = 0;
@@ -570,10 +580,15 @@ function registerHooks(options = {}) {
   let removed = 0;
   let changed = false;
 
-  // Detect CC version for versioned hooks filtering
-  const versionInfo = options.claudeVersionInfo || getClaudeVersion();
+  // Detect CC version for versioned hooks filtering.
+  // Comate (or other agents) can pass skipVersionDetection=true to include all versioned hooks.
+  const versionInfo = skipVersionDetection
+    ? { version: null, source: null, status: "known" }
+    : (options.claudeVersionInfo || getClaudeVersion());
   const { supported: supportedVersionedHooks, unsupported: unsupportedVersionedHooks } =
-    getSupportedVersionedHooks(versionInfo);
+    skipVersionDetection
+      ? { supported: VERSIONED_HOOKS.slice(), unsupported: [] }
+      : getSupportedVersionedHooks(versionInfo);
   const supportedVersionedEvents = new Set(supportedVersionedHooks.map((hook) => hook.event));
   versionSkipped = unsupportedVersionedHooks.length;
 
@@ -581,13 +596,13 @@ function registerHooks(options = {}) {
   removed += reconcileResult.removed;
   changed = changed || reconcileResult.changed;
 
-  // Remove deprecated hooks we used to register. Match by MARKER so user-authored
+  // Remove deprecated hooks we used to register. Match by marker so user-authored
   // hooks for the same event are preserved untouched. See issue #127.
-  for (const event of DEPRECATED_CORE_HOOKS) {
+  for (const event of deprecatedCoreHooks) {
     if (!Array.isArray(settings.hooks[event])) continue;
     const result = removeMatchingCommandHooks(
       settings.hooks[event],
-      (command) => command.includes(MARKER)
+      (command) => command.includes(marker)
     );
     if (!result.changed) continue;
     removed += result.removed;
@@ -615,7 +630,7 @@ function registerHooks(options = {}) {
     const desiredCommand = options.remote
       ? `CLAWD_REMOTE=1 "${nodeBin}" "${hookScript}" ${event}`
       : `"${nodeBin}" "${hookScript}" ${event}`;
-    const commandSync = syncCommandHook(settings.hooks[event], MARKER, desiredCommand);
+    const commandSync = syncCommandHook(settings.hooks[event], marker, desiredCommand);
     if (commandSync.found) {
       if (commandSync.changed) {
         updated++;
@@ -641,7 +656,6 @@ function registerHooks(options = {}) {
 
   // Register auto-start hook for SessionStart (launches app if not running)
   if (options.autoStart) {
-    const autoStartScript = asarUnpackedPath(path.resolve(__dirname, "auto-start.js").replace(/\\/g, "/"));
 
     if (!Array.isArray(settings.hooks.SessionStart)) {
       settings.hooks.SessionStart = [];
@@ -680,11 +694,11 @@ function registerHooks(options = {}) {
   // Clean up stale command hooks for HTTP-only events (e.g. PermissionRequest).
   // Old versions or manual edits may have registered a command hook alongside the
   // HTTP hook, causing Claude Code to fire both and produce duplicate bubbles.
-  for (const event of Object.keys(HTTP_HOOKS)) {
+  for (const event of Object.keys(httpHooks)) {
     if (!Array.isArray(settings.hooks[event])) continue;
     const result = removeMatchingCommandHooks(
       settings.hooks[event],
-      (command) => command.includes(MARKER)
+      (command) => command.includes(marker)
     );
     if (result.changed) {
       settings.hooks[event] = result.entries;
@@ -694,7 +708,7 @@ function registerHooks(options = {}) {
   }
 
   // Register HTTP hooks (permission decision collection)
-  for (const [event, { matcher, hook }] of Object.entries(HTTP_HOOKS)) {
+  for (const [event, { matcher, hook }] of Object.entries(httpHooks)) {
     if (!Array.isArray(settings.hooks[event])) {
       settings.hooks[event] = [];
       changed = true;
@@ -728,10 +742,12 @@ function registerHooks(options = {}) {
     const versionLabel = versionInfo.status === "known" ? versionInfo.version : "unknown";
     const versionSource = versionInfo.source || "unavailable";
     console.log(`Clawd hooks installed to ${settingsPath}`);
-    console.log(`  Claude Code version: ${versionLabel}`);
-    console.log(`  Detection source: ${versionSource}`);
-    if (versionInfo.status === "unknown") {
-      console.log("  Versioned hooks: disabled (Claude Code version could not be detected)");
+    if (!skipVersionDetection) {
+      console.log(`  ${agentLabel} version: ${versionLabel}`);
+      console.log(`  Detection source: ${versionSource}`);
+      if (versionInfo.status === "unknown") {
+        console.log("  Versioned hooks: disabled (version could not be detected)");
+      }
     }
     console.log(`  Added: ${added} hooks`);
     if (updated > 0) console.log(`  Updated: ${updated} stale hook paths`);
@@ -744,8 +760,8 @@ function registerHooks(options = {}) {
       console.log(`  Skipped: ${versionSkipped} (${reason})`);
     }
     console.log(`\nHook events: ${hookEvents.join(", ")}`);
-    if (Object.keys(HTTP_HOOKS).length > 0) {
-      console.log(`HTTP hooks: ${Object.keys(HTTP_HOOKS).join(", ")}`);
+    if (Object.keys(httpHooks).length > 0) {
+      console.log(`HTTP hooks: ${Object.keys(httpHooks).join(", ")}`);
     }
   }
 
@@ -762,6 +778,9 @@ function registerHooks(options = {}) {
 
 function unregisterHooks(options = {}) {
   const settingsPath = options.settingsPath || path.join(os.homedir(), ".claude", "settings.json");
+  const marker = options.marker || MARKER;
+  const removeAutoStart = options.removeAutoStart !== false;
+  const removeHttpHooks = options.removeHttpHooks !== false;
   let settings = {};
   try {
     settings = JSON.parse(fs.readFileSync(settingsPath, "utf-8"));
@@ -781,14 +800,16 @@ function unregisterHooks(options = {}) {
 
     const commandResult = removeMatchingCommandHooks(
       entries,
-      (command) => command.includes(MARKER)
-        || command.includes(AUTO_START_MARKER)
-        || command.includes(LEGACY_AUTO_START_MARKER)
+      (command) => command.includes(marker)
+        || (removeAutoStart && command.includes(AUTO_START_MARKER))
+        || (removeAutoStart && command.includes(LEGACY_AUTO_START_MARKER))
     );
-    const httpResult = removeMatchingHttpHooks(
-      commandResult.entries,
-      (hook) => isClawdPermissionHook(hook)
-    );
+    const httpResult = removeHttpHooks
+      ? removeMatchingHttpHooks(
+          commandResult.entries,
+          (hook) => isClawdPermissionHook(hook)
+        )
+      : { entries: commandResult.entries, removed: 0, changed: false };
 
     if (!commandResult.changed && !httpResult.changed) continue;
 
